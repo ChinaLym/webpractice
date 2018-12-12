@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/e_declare?characterEncoding=UTF-8
+    username: root
+    password: root
+  jpa:
+    show-sql: false
+  thymeleaf:
+    mode: LEGACYHTML5 #非完全严格检查,严格使用HTML5
+    cache: false      #开发时关闭缓存以查看实时页面
+    encoding: UTF-8
+    servlet:
+      content-type: text/html

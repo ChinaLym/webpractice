@@ -1,0 +1,20 @@
+        <nav th:fragment="page(url)">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" tabindex="-1" 
+                        th:href="@{${url}} + |?page=| + ${datas.number < 1 ? 0 : (datas.number - 1)}">上一页</a>
+                </li>
+                <li class="page-item" 
+                    th:each="pageNum : ${#numbers.sequence(0, datas.totalPages - 1)}"
+                    th:class="|page-item| + ${pageNum == datas.number ? ' active' : ''}">
+                    <a class="page-link" href="#" th:text="${pageNum + 1}" th:href="@{${url}} + |?page=| + ${pageNum}">1</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#" 
+                        th:href="@{${url}} + |?page=| + ${datas.number >= (datas.totalPages - 1) ? datas.number : (datas.number + 1)}">下一页</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#" th:text="|共 | + ${datas.totalPages} + | 页|">共10页</a>
+                </li>
+            </ul>
+        </nav>
