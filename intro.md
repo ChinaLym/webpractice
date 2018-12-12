@@ -82,7 +82,7 @@ or  git@github.com:ChinaLym/webpractice.git
 
 根目录：com.edeclare ---> com.edeclare
 
-1.工程启动类(ApplicationServer.java)置于com.edeclare.build包下
+1.工程启动类(EdeclareApplication.java)置于com.edeclare包下
 
 2.实体类(domain)置于com.edeclare.domain
 

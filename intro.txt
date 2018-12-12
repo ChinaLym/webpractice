@@ -49,21 +49,6 @@ SET GLOBAL time_zone='+8:00';
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 【其他开发插件】
 前端：
 eclipse 安装 ZenCoding(或者直接在eclipse  http://emmet.io/eclipse/updates/)：
@@ -99,7 +84,7 @@ or  git@github.com:ChinaLym/webpractice.git
 
 根目录：com.edeclare ---> com.edeclare
 
-1.工程启动类(ApplicationServer.java)置于com.edeclare.build包下
+1.工程启动类(EdeclareApplication.java)置于com.edeclare包下
 
 2.实体类(entity)置于com.edeclare.entity
 
