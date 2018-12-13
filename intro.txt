@@ -21,7 +21,7 @@ mybatis °ë×Ô¶¯¿ò¼Ü £¬Ñ§Ï°ÉÏÊÖ¿ìËÙ£¬¿ÉÒÔ¶¨ÖÆÓÅ»¯sql£¬ÓÅ»¯Áª²é	but ¿ª·¢´úÂëÁ¿¸ü´ó£
 ¿ª·¢»·¾³£º	eclipse 	£¨Ñ§Ï°³É±¾£¬ÏîÄ¿ÖÜÆÚ½Ï¶Ì£¬ÏîÄ¿½ÏÐ¡£¬Ê¹ÓÃÊìÏ¤µÄeclipseÓÅÓÚÎ´ÕÆÎÕµÄidea£©
 °æ±¾¿ØÖÆ£º 	Git		£¨ÊµÓÃÐÔ´óÓÚSVN£¬ÇÒ·½±ãËæÊ±Ìá½»£©
 ´úÂëÖÊÁ¿ÉóºË£º	ali²å¼þ+Ô¼¶¨ÃüÃû£¨Ò»¼ü°²×°Ê¹ÓÃ£¬×éÔ±½ÏÉÙ£¬³É±¾µÍÓÚsonar£©
-°ü¹ÜÀí¹¤¾ß£º	maven		£¨×éÔ±¾ùÊìÏ¤maven£¬²»ÓÃgradle£©
+°ü¹ÜÀí¹¤¾ß£º	maven		£¨×éÔ±¾ùÊìÏ¤maven£¬²»ÓÃgradle or Ant£©
 ³ÖÐø¼¯³É:	ÎÞ		£¨Ö»ÓÐÒ»¸ö°æ±¾£¬Í¬Ê±¿¼ÂÇÑ§Ï°³É±¾£©
 
 Êý¾Ý¿â		mysql		£¨¿ªÔ´Ãâ·ÑÖ÷Á÷£¬×éÔ±¾ù»á£©
