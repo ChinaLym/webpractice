@@ -15,12 +15,39 @@ eclipse怎么设置：https://blog.csdn.net/qq_35425070/article/details/83829440
 
 后端详细参考，前端thymeleaf模板未提供可靠参考！
 
-
-
-
-
-
-
+src
+├─main
+│  ├─java
+│  │  └─com
+│  │      └─edeclare
+│  │          ├─annotation		注解
+│  │          ├─aop			AOP切面
+│  │          │  ├─filter		过滤器
+│  │          │  └─interceptor	拦截器
+│  │          ├─config		配置类
+│  │          ├─constant		静态类
+│  │          ├─controller		控制器
+│  │          ├─entity		实体类
+│  │          ├─exception		自定义异常类
+│  │          ├─repository		持久层（dao）
+│  │          ├─service		业务逻辑层
+│  │          │  └─impl		业务逻辑实现类
+│  │          ├─servlet		服务程序
+│  │          └─utils		工具类
+│  └─resources			
+│      ├─static			前端仅供参考
+│      │  ├─css
+│      │  ├─image
+│      │  └─js
+│      └─templates
+│          ├─common
+│          ├─message
+│          └─search
+└─test
+    └─java
+        └─com
+            └─edeclare		测试类
+                └─test
 
 
 
