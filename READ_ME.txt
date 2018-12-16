@@ -1,4 +1,7 @@
 【运行与使用】编码必看
+获取最新版：
+git clone git@github.com:ChinaLym/webpractice.git
+
 
 The server time zone value '?D1ú±ê×?ê±??' is.....错误解决：
 在mysql
