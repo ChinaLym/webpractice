@@ -11,20 +11,16 @@ import javax.persistence.*;
 @Entity
 @Table(name="tb_project")
 @NamedQuery(name="Project.findAll", query="SELECT p FROM Project p")
-public class Project implements Serializable {
+public class Project extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name="pk_id")
-	private int pkId;
 
 	private String domain;
 
 	@Column(name="idx_activity_id")
-	private int idxActivityId;
+	private Integer activityId;
 
 	@Column(name="idx_director")
-	private int idxDirector;
+	private Integer director;
 
 	private String level;
 
@@ -34,21 +30,13 @@ public class Project implements Serializable {
 
 	private String remarks;
 
-	private int score;
+	private Integer score;
 
 	private String status;
 
 	private String text;
 
 	public Project() {
-	}
-
-	public int getPkId() {
-		return this.pkId;
-	}
-
-	public void setPkId(int pkId) {
-		this.pkId = pkId;
 	}
 
 	public String getDomain() {
@@ -59,20 +47,20 @@ public class Project implements Serializable {
 		this.domain = domain;
 	}
 
-	public int getIdxActivityId() {
-		return this.idxActivityId;
+	public Integer getActivityId() {
+		return activityId;
 	}
 
-	public void setIdxActivityId(int idxActivityId) {
-		this.idxActivityId = idxActivityId;
+	public void setActivityId(Integer activityId) {
+		this.activityId = activityId;
 	}
 
-	public int getIdxDirector() {
-		return this.idxDirector;
+	public Integer getDirector() {
+		return director;
 	}
 
-	public void setIdxDirector(int idxDirector) {
-		this.idxDirector = idxDirector;
+	public void setDirector(Integer director) {
+		this.director = director;
 	}
 
 	public String getLevel() {
@@ -107,11 +95,11 @@ public class Project implements Serializable {
 		this.remarks = remarks;
 	}
 
-	public int getScore() {
+	public Integer getScore() {
 		return this.score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(Integer score) {
 		this.score = score;
 	}
 

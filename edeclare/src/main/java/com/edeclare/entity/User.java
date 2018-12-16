@@ -12,12 +12,8 @@ import java.util.Date;
 @Entity
 @Table(name="tb_user")
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
-public class User implements Serializable {
+public class User extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name="pk_id")
-	private int pkId;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_time")
@@ -26,14 +22,14 @@ public class User implements Serializable {
 	private String department;
 
 	@Column(name="idx_phone")
-	private String idxPhone;
+	private String phone;
 
 	private String name;
 
 	private String password;
 
 	@Column(name="role_id")
-	private int roleId;
+	private Integer roleId;
 
 	private String sex;
 
@@ -42,21 +38,13 @@ public class User implements Serializable {
 	private String text;
 
 	@Column(name="uk_account")
-	private String ukAccount;
+	private String account;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="update_time")
 	private Date updateTime;
 
 	public User() {
-	}
-
-	public int getPkId() {
-		return this.pkId;
-	}
-
-	public void setPkId(int pkId) {
-		this.pkId = pkId;
 	}
 
 	public Date getCreateTime() {
@@ -75,12 +63,12 @@ public class User implements Serializable {
 		this.department = department;
 	}
 
-	public String getIdxPhone() {
-		return this.idxPhone;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setIdxPhone(String idxPhone) {
-		this.idxPhone = idxPhone;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getName() {
@@ -99,11 +87,11 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public int getRoleId() {
+	public Integer getRoleId() {
 		return this.roleId;
 	}
 
-	public void setRoleId(int roleId) {
+	public void setRoleId(Integer roleId) {
 		this.roleId = roleId;
 	}
 
@@ -131,12 +119,12 @@ public class User implements Serializable {
 		this.text = text;
 	}
 
-	public String getUkAccount() {
-		return this.ukAccount;
+	public String getAccount() {
+		return this.account;
 	}
 
-	public void setUkAccount(String ukAccount) {
-		this.ukAccount = ukAccount;
+	public void setAccount(String account) {
+		this.account = account;
 	}
 
 	public Date getUpdateTime() {
@@ -147,4 +135,12 @@ public class User implements Serializable {
 		this.updateTime = updateTime;
 	}
 
+	@Override
+	public String toString() {
+		return "User [" + super.toString() + ",createTime=" + createTime + ", department=" + department + ", phone=" + phone + ", name=" + name
+				+ ", password=" + password + ", roleId=" + roleId + ", sex=" + sex + ", status=" + status + ", text="
+				+ text + ", account=" + account + ", updateTime=" + updateTime + "]";
+	}
+
+	
 }

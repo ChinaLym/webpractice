@@ -11,12 +11,8 @@ import javax.persistence.*;
 @Entity
 @Table(name="tb_role")
 @NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
-public class Role implements Serializable {
+public class Role extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name="pk_id")
-	private int pkId;
 
 	private String description;
 
@@ -25,14 +21,6 @@ public class Role implements Serializable {
 	private String status;
 
 	public Role() {
-	}
-
-	public int getPkId() {
-		return this.pkId;
-	}
-
-	public void setPkId(int pkId) {
-		this.pkId = pkId;
 	}
 
 	public String getDescription() {

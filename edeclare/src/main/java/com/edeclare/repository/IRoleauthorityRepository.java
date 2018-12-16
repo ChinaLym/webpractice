@@ -1,4 +1,4 @@
-package com.edeclare.dao;
+package com.edeclare.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

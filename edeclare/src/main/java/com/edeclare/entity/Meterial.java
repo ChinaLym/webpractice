@@ -12,12 +12,8 @@ import java.util.Date;
 @Entity
 @Table(name="tb_meterial")
 @NamedQuery(name="Meterial.findAll", query="SELECT m FROM Meterial m")
-public class Meterial implements Serializable {
+public class Meterial extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name="pk_id")
-	private int pkId;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="change_time")
@@ -32,10 +28,10 @@ public class Meterial implements Serializable {
 	private Date endTime;
 
 	@Column(name="idx_project_id")
-	private int idxProjectId;
+	private Integer projectId;
 
 	@Column(name="is_commit")
-	private byte isCommit;
+	private Boolean commit;
 
 	private String name;
 
@@ -46,12 +42,13 @@ public class Meterial implements Serializable {
 	public Meterial() {
 	}
 
-	public int getPkId() {
-		return this.pkId;
+	public Integer getProjectId() {
+		return projectId;
 	}
 
-	public void setPkId(int pkId) {
-		this.pkId = pkId;
+
+	public void setProjectId(Integer projectId) {
+		this.projectId = projectId;
 	}
 
 	public Date getChangeTime() {
@@ -77,21 +74,14 @@ public class Meterial implements Serializable {
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
-
-	public int getIdxProjectId() {
-		return this.idxProjectId;
+	
+	public Boolean getCommit() {
+		return commit;
 	}
-
-	public void setIdxProjectId(int idxProjectId) {
-		this.idxProjectId = idxProjectId;
-	}
-
-	public byte getIsCommit() {
-		return this.isCommit;
-	}
-
-	public void setIsCommit(byte isCommit) {
-		this.isCommit = isCommit;
+	
+	
+	public void setCommit(Boolean commit) {
+		this.commit = commit;
 	}
 
 	public String getName() {

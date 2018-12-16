@@ -1,0 +1,163 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>注册</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" th:href="@{/css/style.css}" type='text/css'/>
+		<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+</head>
+<body>
+	 <!-----start-main---->
+	 <div class="main">
+		<div class="login-form"> 
+			<h1>欢迎注册</h1>
+					<div class="head">
+						<img src="images/user.png" th:src="@{/image/user.png}" alt=""/>
+					</div>
+				<form id="registerform" onsubmit="return false"><!--  onkeyup="this.value=this.value.replace(/\D/g,'')"  -->
+						<input  type="text" class="text" placeholder="学号" id="id" name="account"
+						 	onkeyup="this.value=this.value.replace(/\D/g,'')"
+						 	oninvalid="setCustomValidity('请输入13位学号');"
+						 	pattern="^[0-9]{13}$" maxlength=13 
+						 	oninput="setCustomValidity('')" required
+    						 />
+    					<input  type="text" class="text" placeholder="姓名" id="name" name="name"
+						 	onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')"
+						 	oninvalid="setCustomValidity('暂只支持中文');"
+						 	pattern="^[\u4e00-\u9fa5]+$" maxlength=20 
+						 	oninput="setCustomValidity('')" required
+    						 />
+						<input type="password" placeholder="密码" id="password" name="password"
+							onkeyup="value=value.replace(/[^\w]/g,'')"
+						 	oninvalid="setCustomValidity('输入6-18位密码，暂只支持字母和数字');"
+						 	pattern="^[\w]{6,18}$" maxlength=18 
+						 	oninput="setCustomValidity('')" required
+						 	/>
+						<input type="password" placeholder="确认密码" id="repetPassword"
+							onkeyup="value=value.replace(/[^\w]/g,'')"
+						 	oninvalid="setCustomValidity('再次确认密码');"
+						 	pattern="^[\w]{6,18}$" maxlength=18 
+						 	oninput="setCustomValidity('')" required
+						 	/>
+						<input  type="text" class="text" placeholder="学院" id="academy" name="academy"
+						 	onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')"
+						 	oninvalid="setCustomValidity('输入正确学院名称');"
+						 	pattern="^[\u4e00-\u9fa5]+$" maxlength=20 
+						 	oninput="setCustomValidity('')" required
+    						 />
+						<input  type="text" class="text" placeholder="专业" id="major" name="major"
+						 	onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')"
+						 	oninvalid="setCustomValidity('输入正确专业名称');"
+						 	pattern="^[\u4e00-\u9fa5]+$" maxlength=20 
+						 	oninput="setCustomValidity('')" required
+    						 />
+						<input type="verificationCode" id="verificationCode" placeholder="验证码"
+						onkeyup="value=value.replace(/[^\w]/g,'')"  onblur = "checkImageCode()"
+    					maxlength="4" required>
+    					<span style="color:#999;"  id = "verificationCodeTip"></span>
+						<img src="verify/getImage" style="width:40%;margin-bottom: -5%;float:right;border-radius: 5px"
+    						width="103" height="38" onclick="changeImage();" id="image"/>
+    					<br>
+						
+						
+						<div class="submit">
+							<input type="submit" id="submit" value="注册" >
+					</div>	
+					<p><a href="/login">已有账号？直接登录</a></p>
+				</form>
+				<input id="codeCheck" type="hidden" value="" />
+			</div>
+			<!--//End-login-form-->
+
+		</div>
+			 <!-----//end-main---->
+		 		
+
+</body>
+<script type="text/javascript">
+
+var hasSubmit = false;
+var contentPath = "/" + location.pathname.split("/")[1];
+	
+	var userLocation = "Unknown";
+	/*获取位置*/
+	//userLocation = getUserLocation();
+	
+	function changeImage() {
+		var time = new Date();
+		document.getElementById("image").src= "/verify/getImage?t="+time;
+		$("#verificationCode").val("");
+	}
+	
+	function regexVerifyCode(){
+		var patrn = /[A-Za-z0-9]{4}/g;
+		var s = $("#verificationCode").val();
+		if(patrn.exec(s)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/*校验 验证码是否正确*/
+	function checkImageCode() {
+		 var value =  $("#verificationCode").val();
+		 if(regexVerifyCode()){
+			 var param = {"imageValue":value};
+			 $.get(contentPath + "/verify/checkCode",param,function(returnData){
+				 $("#codeCheck").val(returnData);
+				 /* if(returnData=='true')
+					 $("#codeCheck").val('true');
+				 else 
+					 $("#codeCheck").val('false'); */
+			 });
+		 }
+		 return false;
+	}
+	$("#registerform").submit(function(e){
+		if(hasSubmit == true)
+			return;
+		
+		if('true' == $("#codeCheck").val()){
+			//hasSubmit = true;
+			//$("#submit").css("background", "#999999");
+			//alert('submit');
+			addNewUser()
+		}
+		else{
+		}
+	});
+	
+	
+	var jsObj = {
+			"id"   : "" ,
+		    "name" : "" ,
+		    "password" : "" ,
+		    "academy" : "" ,
+		    "major": "" 
+		}
+	var JSONstr;
+	function addNewUser() {
+		jsObj.id =  $("#id").val();
+		jsObj.name = $("#name").val();
+		jsObj.password = $("#password").val();
+		jsObj.academy = $("#academy").val();
+		jsObj.major = $("#major").val();
+		JSONstr = JSON.stringify(jsObj);
+		$.ajax({
+			   type:"post",
+			   url:"${pageContext.request.contextPath }/register",
+			   contentType:"application/json;charset=utf-8",
+			   data : JSONstr,
+			   success:function(returnUser){
+				   returnUser = JSON.parse(returnUser);
+				   if(returnUser){
+					   alert("注册成功！");
+					   location.href=contentPath + "/login";
+				   }
+			   }});
+	}	
+		
+
+</script>
+
+
+</html>

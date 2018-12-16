@@ -12,12 +12,8 @@ import java.util.Date;
 @Entity
 @Table(name="tb_activity")
 @NamedQuery(name="Activity.findAll", query="SELECT a FROM Activity a")
-public class Activity implements Serializable {
+public class Activity extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name="pk_id")
-	private int pkId;
 
 	private String content;
 
@@ -27,8 +23,8 @@ public class Activity implements Serializable {
 
 	private String level;
 
-	@Column(name="publish_man")
-	private int publishMan;
+	@Column(name="sponsor")
+	private int sponsor;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="start_time")
@@ -43,14 +39,6 @@ public class Activity implements Serializable {
 	private Date updateTime;
 
 	public Activity() {
-	}
-
-	public int getPkId() {
-		return this.pkId;
-	}
-
-	public void setPkId(int pkId) {
-		this.pkId = pkId;
 	}
 
 	public String getContent() {
@@ -77,12 +65,12 @@ public class Activity implements Serializable {
 		this.level = level;
 	}
 
-	public int getPublishMan() {
-		return this.publishMan;
+	public int getSponsor() {
+		return this.sponsor;
 	}
 
-	public void setPublishMan(int publishMan) {
-		this.publishMan = publishMan;
+	public void setSponsor(int sponsor) {
+		this.sponsor = sponsor;
 	}
 
 	public Date getStartTime() {

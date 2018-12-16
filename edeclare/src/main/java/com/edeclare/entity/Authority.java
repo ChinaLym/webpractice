@@ -11,13 +11,9 @@ import javax.persistence.*;
 @Entity
 @Table(name="tb_authority")
 @NamedQuery(name="Authority.findAll", query="SELECT a FROM Authority a")
-public class Authority implements Serializable {
+public class Authority extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name="pk_id")
-	private int pkId;
-
+	
 	private String describe;
 
 	private String name;
@@ -30,14 +26,6 @@ public class Authority implements Serializable {
 	private String url;
 
 	public Authority() {
-	}
-
-	public int getPkId() {
-		return this.pkId;
-	}
-
-	public void setPkId(int pkId) {
-		this.pkId = pkId;
 	}
 
 	public String getDescribe() {

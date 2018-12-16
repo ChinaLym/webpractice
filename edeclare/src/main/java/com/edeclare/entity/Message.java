@@ -12,12 +12,8 @@ import java.util.Date;
 @Entity
 @Table(name="tb_message")
 @NamedQuery(name="Message.findAll", query="SELECT m FROM Message m")
-public class Message implements Serializable {
+public class Message extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name="pk_id")
-	private int pkId;
 
 	private String content;
 
@@ -26,27 +22,19 @@ public class Message implements Serializable {
 	private Date createTime;
 
 	@Column(name="idx_receiver")
-	private int idxReceiver;
+	private Integer receiver;
 
 	@Column(name="is_delete")
-	private byte isDelete;
+	private Boolean isDelete;
 
 	@Column(name="is_read")
-	private byte isRead;
+	private Boolean isRead;
 
 	private String sender;
 
 	private String title;
 
 	public Message() {
-	}
-
-	public int getPkId() {
-		return this.pkId;
-	}
-
-	public void setPkId(int pkId) {
-		this.pkId = pkId;
 	}
 
 	public String getContent() {
@@ -64,28 +52,28 @@ public class Message implements Serializable {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-
-	public int getIdxReceiver() {
-		return this.idxReceiver;
+	
+	public Integer getReceiver() {
+		return receiver;
 	}
 
-	public void setIdxReceiver(int idxReceiver) {
-		this.idxReceiver = idxReceiver;
+	public void setReceiver(Integer receiver) {
+		this.receiver = receiver;
 	}
 
-	public byte getIsDelete() {
+	public Boolean getIsDelete() {
 		return this.isDelete;
 	}
 
-	public void setIsDelete(byte isDelete) {
+	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
 	}
 
-	public byte getIsRead() {
+	public Boolean getIsRead() {
 		return this.isRead;
 	}
 
-	public void setIsRead(byte isRead) {
+	public void setIsRead(Boolean isRead) {
 		this.isRead = isRead;
 	}
 

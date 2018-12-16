@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>登录</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" th:href="@{/css/style.css}" type='text/css'/>
+		<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+		<!-- <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script> -->
+</head>
+<body>
+	 <!-----start-main---->
+	 <div class="main">
+		<div class="login-form">
+			<h1>学生登陆</h1>
+					<div class="head">
+						<img src="../image/user.png" th:src="@{/image/user.png}" alt=""/>
+					</div>
+				<form id="loginform" onsubmit="return false"><!--  onkeyup="this.value=this.value.replace(/\D/g,'')"  -->
+						<input  type="text" class="text" placeholder="学号"  id="id"
+						 	onkeyup="this.value=this.value.replace(/\D/g,'')"
+						 	oninvalid="setCustomValidity('请输入13位学号');"
+						 	pattern="^[0-9]{13}$" maxlength=13 
+						 	oninput="setCustomValidity('')" required
+						 	name="name"
+    						 />
+						<input type="password" placeholder="密码" id="password"
+							onkeyup="value=value.replace(/[^\w]/g,'')"
+						 	oninvalid="setCustomValidity('密码长度错误');"
+						 	pattern="^[\w]{6,18}$" maxlength=18 
+						 	oninput="setCustomValidity('')" required
+						 	name="password"
+						 	/>
+						<input type="verificationCode" id="verificationCode" placeholder="验证码"
+						onkeyup="value=value.replace(/[^\w]/g,'')"  onblur = "checkImageCode()"
+    					maxlength="4" required>
+    					<span style="color:#999;"  id = "verificationCodeTip"></span>
+						<img src="verify/getImage" style="width:40%;margin-bottom: -5%;float:right;border-radius: 5px;" alt="验证码"
+    						width="103" height="38" onclick="changeImage();" id="image"/>
+    					<br>
+						
+						<!-- <input type="checkbox" checked="checked" />下次自动登录<br> -->
+						
+						<div class="submit">
+							<input type="submit" id="submit" value="登录" >
+					</div>	
+					<p><a href="#">忘记密码？</a> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<a href="/register">注册</a></p>
+				</form>
+				<input id="codeCheck" type="hidden" value="" />
+			</div>
+			<!--//End-login-form-->
+
+		</div>
+			 <!-----//end-main---->
+		 		
+
+</body>
+
+<script type="text/javascript">
+
+var hasSubmit = false;
+var contentPath = "/" + location.pathname.split("/")[1];
+	
+	var userLocation = "Unknown";
+	/*获取位置*/
+	//userLocation = getUserLocation();
+	
+	function changeImage() {
+		var time = new Date();
+		document.getElementById("image").src= "/verify/getImage?t="+time;
+		$("#verificationCode").val("");
+	}
+	
+	function regexVerifyCode(){
+		var patrn = /[A-Za-z0-9]{4}/g;
+		var s = $("#verificationCode").val();
+		if(patrn.exec(s)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/*校验 验证码是否正确*/
+	function checkImageCode() {
+		$("#codeCheck").val(true);
+		return true;
+		 var value =  $("#verificationCode").val();
+		 if(regexVerifyCode()){
+			 var param = {"imageValue":value};
+			 $.get(contentPath + "/verify/checkCode",param,function(returnData){
+				 $("#codeCheck").val(returnData);
+				 /* if(returnData=='true')
+					 $("#codeCheck").val('true');
+				 else 
+					 $("#codeCheck").val('false'); */
+			 });
+		 }
+		 return false;
+	}
+	$("#loginform").submit(function(e){
+		if(hasSubmit == true)
+			return;
+		
+		if('true' == $("#codeCheck").val()){
+			login();
+			/* hasSubmit = true;
+			$("#submit").css("background", "#999999");
+			alert('submit'); */
+		}
+		else{
+			alert("CodeError");
+		}
+	});
+	var jsObj = {
+			"account"   : "2015329620093" ,
+		    "password" : "" ,
+		}
+	var JSONstr;
+	function login() {
+		//jsObj.account =  $("#name").val();
+		jsObj.password = $("#password").val();
+		JSONstr = JSON.stringify(jsObj);
+		console.log(JSONstr);
+		$.ajax({
+			   type:"post",
+			   url:"login",
+			   contentType:"application/json;charset=utf-8",
+			   data : JSONstr,
+			   success:function(returnUser){
+				   if("success" == returnUser)
+				   	   location.href="/main";
+				   else if("error" == returnUser)
+					   alert("登录失败！");
+				   //returnUser = JSON.parse(returnUser);
+				   //alert(returnUser);
+			   }});
+	}	
+</script>
+
+
+</html>

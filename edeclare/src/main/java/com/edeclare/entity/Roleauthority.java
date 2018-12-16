@@ -11,43 +11,31 @@ import javax.persistence.*;
 @Entity
 @Table(name="tb_role_authority")
 @NamedQuery(name="Roleauthority.findAll", query="SELECT r FROM Roleauthority r")
-public class Roleauthority implements Serializable {
+public class Roleauthority extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="pk_id")
-	private int pkId;
-
 	@Column(name="authority_id")
-	private int authorityId;
+	private Integer authorityId;
 
 	@Column(name="role_id")
-	private int roleId;
+	private Integer roleId;
 
 	public Roleauthority() {
 	}
 
-	public int getPkId() {
-		return this.pkId;
-	}
-
-	public void setPkId(int pkId) {
-		this.pkId = pkId;
-	}
-
-	public int getauthorityId() {
+	public Integer getauthorityId() {
 		return this.authorityId;
 	}
 
-	public void setauthorityId(int authorityId) {
+	public void setauthorityId(Integer authorityId) {
 		this.authorityId = authorityId;
 	}
 
-	public int getRoleId() {
+	public Integer getRoleId() {
 		return this.roleId;
 	}
 
-	public void setRoleId(int roleId) {
+	public void setRoleId(Integer roleId) {
 		this.roleId = roleId;
 	}
 

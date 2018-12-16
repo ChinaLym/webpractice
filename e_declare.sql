@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `tb_activity`;
 
 CREATE TABLE `tb_activity` (
   `pk_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `publish_man` int(11) unsigned DEFAULT NULL COMMENT '发布人',
+  `sponsor` int(11) unsigned DEFAULT NULL COMMENT '发布人_user表主键',
   `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '活动标题',
   `content` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '活动内容',
   `level` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '活动级别',
@@ -31,9 +31,11 @@ CREATE TABLE `tb_activity` (
   `end_time` datetime DEFAULT NULL COMMENT '结束时间',
   `text` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`pk_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `tb_activity` */
+
+insert  into `tb_activity`(`pk_id`,`sponsor`,`title`,`content`,`level`,`update_time`,`start_time`,`end_time`,`text`) values (1,2,'第一届大学生JavaWeb大赛','报名者须...','一等','2018-12-15 21:03:39','2018-12-15 21:03:54','2019-01-16 21:03:58','强烈建议大家参与');
 
 /*Table structure for table `tb_authority` */
 
@@ -45,11 +47,13 @@ CREATE TABLE `tb_authority` (
   `name` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '权限名称',
   `url` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'url地址',
   `describe` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '权限描述',
-  `status` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '状态',
+  `status` varchar(30) COLLATE utf8_unicode_ci DEFAULT '正常' COMMENT '状态',
   PRIMARY KEY (`pk_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `tb_authority` */
+
+insert  into `tb_authority`(`pk_id`,`parent_id`,`name`,`url`,`describe`,`status`) values (1,-1,'根目录','/','根节点','正常'),(2,1,'系统设置',NULL,'系统稳定有关的设置','正常'),(3,2,'角色权限管理',NULL,'管理所有角色权限的能力','正常'),(4,2,'菜单管理',NULL,'管理菜单','未开放'),(5,2,'角色管理',NULL,'改变其他用户的角色','正常'),(6,1,'用户管理',NULL,'与用户相关的管理','正常'),(7,6,'用户信息管理',NULL,'修改其他用户的信息','正常'),(8,6,'用户角色分配',NULL,'修改其他用户的角色','正常'),(9,6,'密码重置',NULL,'重置其他用户密码','正常');
 
 /*Table structure for table `tb_message` */
 
@@ -62,13 +66,15 @@ CREATE TABLE `tb_message` (
   `idx_receiver` int(11) unsigned NOT NULL COMMENT '接收者,user_id',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `content` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '消息内容',
-  `is_read` tinyint(3) unsigned DEFAULT '0' COMMENT '0:未读，else已读',
-  `is_delete` tinyint(3) unsigned DEFAULT '0' COMMENT '0:未删除，1已删除',
+  `is_read` tinyint(1) DEFAULT '0' COMMENT '0:未读，else已读',
+  `is_delete` tinyint(1) DEFAULT '0' COMMENT '0:未删除，1已删除',
   PRIMARY KEY (`pk_id`),
   KEY `idx_receiver` (`idx_receiver`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `tb_message` */
+
+insert  into `tb_message`(`pk_id`,`title`,`sender`,`idx_receiver`,`create_time`,`content`,`is_read`,`is_delete`) values (1,'消息标题','system',1,'2018-12-15 19:12:17','这是一条测试消息',0,0),(2,'一条消息','system',1,'2018-12-15 19:13:12','第二条测试消息',0,0);
 
 /*Table structure for table `tb_meterial` */
 
@@ -82,13 +88,15 @@ CREATE TABLE `tb_meterial` (
   `url` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '提交地址',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `change_time` datetime DEFAULT NULL COMMENT '修改时间',
-  `end_time` datetime DEFAULT NULL COMMENT '截止时间',
-  `is_commit` tinyint(3) unsigned DEFAULT '0' COMMENT '是否提交',
+  `end_time` datetime DEFAULT NULL COMMENT '最晚提交截止时间',
+  `is_commit` tinyint(1) DEFAULT '0' COMMENT '是否提交',
   PRIMARY KEY (`pk_id`),
   KEY `idx_project_id` (`idx_project_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `tb_meterial` */
+
+insert  into `tb_meterial`(`pk_id`,`idx_project_id`,`name`,`text`,`url`,`create_time`,`change_time`,`end_time`,`is_commit`) values (1,1,'方舟反应炉','也称作常温核反应或者冷核聚变反应堆','D:/test/ArcReactor.jpg','2018-12-16 14:42:07','2018-12-16 14:42:15','2019-01-01 14:42:28',0);
 
 /*Table structure for table `tb_project` */
 
@@ -109,9 +117,11 @@ CREATE TABLE `tb_project` (
   PRIMARY KEY (`pk_id`),
   KEY `activity_id` (`idx_activity_id`),
   KEY `idx_director` (`idx_director`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `tb_project` */
+
+insert  into `tb_project`(`pk_id`,`idx_activity_id`,`name`,`idx_director`,`level`,`domain`,`promise`,`score`,`remarks`,`text`,`status`) values (1,1,'钢铁侠的铠甲研发',2,'高级','领域','立项承诺',0,'','备注','状态');
 
 /*Table structure for table `tb_role` */
 
@@ -123,9 +133,11 @@ CREATE TABLE `tb_role` (
   `description` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '描述',
   `status` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`pk_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `tb_role` */
+
+insert  into `tb_role`(`pk_id`,`name`,`description`,`status`) values (1,'ROOT','权力至高无上',NULL),(2,'行政管理员','总想发起项目',NULL),(3,'专家','爱搞研究',NULL),(4,'教职工','喜欢做项目',NULL),(5,'职能部门员工','吃瓜',NULL);
 
 /*Table structure for table `tb_role_authority` */
 
@@ -136,9 +148,11 @@ CREATE TABLE `tb_role_authority` (
   `role_id` int(11) NOT NULL,
   `anthority_id` int(11) NOT NULL,
   PRIMARY KEY (`pk_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `tb_role_authority` */
+
+insert  into `tb_role_authority`(`pk_id`,`role_id`,`anthority_id`) values (1,1,2),(2,1,3),(3,1,4),(4,1,5),(5,1,6),(6,1,7),(7,1,8),(8,1,9);
 
 /*Table structure for table `tb_user` */
 
@@ -147,7 +161,7 @@ DROP TABLE IF EXISTS `tb_user`;
 CREATE TABLE `tb_user` (
   `pk_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `uk_account` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户账号',
-  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户密码',
+  `password` varchar(100) COLLATE utf8_unicode_ci DEFAULT '000000' COMMENT '用户密码',
   `name` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户姓名',
   `sex` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户性别',
   `idx_phone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户电话',
@@ -160,9 +174,11 @@ CREATE TABLE `tb_user` (
   PRIMARY KEY (`pk_id`),
   UNIQUE KEY `uk_account` (`uk_account`),
   KEY `idx_phone` (`idx_phone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `tb_user` */
+
+insert  into `tb_user`(`pk_id`,`uk_account`,`password`,`name`,`sex`,`idx_phone`,`department`,`role_id`,`create_time`,`update_time`,`status`,`text`) values (1,'1111111111111','123456','ROOT','男','11111111111','部门',1,'2018-12-15 18:56:46','2018-12-15 18:56:51','正常','至高无上的ROOT'),(11,'2015000000001','000000','张三','男','15888888888','总指挥部',2,'2018-12-15 19:15:56','2018-12-15 19:15:58','测试','就爱管项目');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
