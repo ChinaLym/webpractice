@@ -25,10 +25,10 @@ public class Message extends BaseEntity implements Serializable {
 	private Integer receiver;
 
 	@Column(name="is_delete")
-	private Boolean isDelete;
+	private Boolean delete;
 
 	@Column(name="is_read")
-	private Boolean isRead;
+	private Boolean read;
 
 	private String sender;
 
@@ -61,20 +61,20 @@ public class Message extends BaseEntity implements Serializable {
 		this.receiver = receiver;
 	}
 
-	public Boolean getIsDelete() {
-		return this.isDelete;
+	public Boolean getDelete() {
+		return this.delete;
 	}
 
-	public void setIsDelete(Boolean isDelete) {
-		this.isDelete = isDelete;
+	public void setDelete(Boolean delete) {
+		this.delete = delete;
 	}
 
-	public Boolean getIsRead() {
-		return this.isRead;
+	public Boolean getRead() {
+		return this.read;
 	}
 
-	public void setIsRead(Boolean isRead) {
-		this.isRead = isRead;
+	public void setRead(Boolean read) {
+		this.read = read;
 	}
 
 	public String getSender() {

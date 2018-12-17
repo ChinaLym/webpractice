@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edeclare.annotation.LoginRequired;
+import com.edeclare.constant.responseBody.BaseResponse;
+import com.edeclare.constant.responseBody.enums.URIResponseEnum;
+import com.edeclare.constant.responseBody.enums.UserControllerResponseEnum;
 import com.edeclare.entity.User;
 import com.edeclare.service.IUserService;
 /**
@@ -65,7 +68,7 @@ public class UserController {
     
     @PostMapping(value = "/login")
     @ResponseBody
-    public String login(@ModelAttribute User user, HttpSession session) {
+    public BaseResponse login(@ModelAttribute User user, HttpSession session) {
         System.out.println(user.getName() + "---" + user.getPassword());
         User loginUser = null;
 		try {
@@ -75,11 +78,11 @@ public class UserController {
 		}
         if(loginUser == null) {
             // 登录失败，返回登录界面
-            return "error";
+            return UserControllerResponseEnum.FAIL;
         } else {
             // 登录成功
             session.setAttribute("user", loginUser);
-            return "redirect:/index";
+            return URIResponseEnum.REDIRECT.setUri("/index");
         }
     }
     @PostMapping(value = "/register")

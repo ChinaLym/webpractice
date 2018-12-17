@@ -25,7 +25,7 @@ CREATE TABLE `tb_activity` (
   `sponsor` int(11) unsigned DEFAULT NULL COMMENT '发布人_user表主键',
   `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '活动标题',
   `content` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '活动内容',
-  `level` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '活动级别',
+  `level` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '活动级别：[校级一类，校级二类]',
   `update_time` datetime DEFAULT NULL COMMENT '修改/发布时间',
   `start_time` datetime DEFAULT NULL COMMENT '创建时间',
   `end_time` datetime DEFAULT NULL COMMENT '结束时间',
@@ -47,7 +47,7 @@ CREATE TABLE `tb_authority` (
   `name` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '权限名称',
   `url` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'url地址',
   `describe` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '权限描述',
-  `status` varchar(30) COLLATE utf8_unicode_ci DEFAULT '正常' COMMENT '状态',
+  `status` varchar(30) COLLATE utf8_unicode_ci DEFAULT 'NORMAL' COMMENT '状态：[正常，禁用]',
   PRIMARY KEY (`pk_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -113,7 +113,7 @@ CREATE TABLE `tb_project` (
   `score` int(11) unsigned DEFAULT NULL COMMENT '专家打分',
   `remarks` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '专家评语',
   `text` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '备注',
-  `status` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '目前状态:初审通过 | 项评审中 | 已立项 | 不立项 | 中期检查通过 | 中期检查待整改 | 已结题 | 结题验收待整改',
+  `status` varchar(30) COLLATE utf8_unicode_ci DEFAULT 'FIRST_TRIAL_PENDING' COMMENT '目前状态：[待初审，初审通过，初审不通过，立项评审中，已立项，不立项，待中期检查，中期检查通过，中期检查待整改，待结题，已结题，结题验收待整改]',
   PRIMARY KEY (`pk_id`),
   KEY `activity_id` (`idx_activity_id`),
   KEY `idx_director` (`idx_director`)
@@ -121,7 +121,7 @@ CREATE TABLE `tb_project` (
 
 /*Data for the table `tb_project` */
 
-insert  into `tb_project`(`pk_id`,`idx_activity_id`,`name`,`idx_director`,`level`,`domain`,`promise`,`score`,`remarks`,`text`,`status`) values (1,1,'钢铁侠的铠甲研发',2,'高级','领域','立项承诺',0,'','备注','状态');
+insert  into `tb_project`(`pk_id`,`idx_activity_id`,`name`,`idx_director`,`level`,`domain`,`promise`,`score`,`remarks`,`text`,`status`) values (1,1,'钢铁侠的铠甲研发',2,'校级一类','领域','立项承诺',0,'','备注','状态');
 
 /*Table structure for table `tb_role` */
 
@@ -131,7 +131,7 @@ CREATE TABLE `tb_role` (
   `pk_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '角色名称',
   `description` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '描述',
-  `status` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '状态',
+  `status` varchar(30) COLLATE utf8_unicode_ci DEFAULT 'NORMAL' COMMENT '状态：[正常，禁用]',
   PRIMARY KEY (`pk_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -162,14 +162,14 @@ CREATE TABLE `tb_user` (
   `pk_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `uk_account` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户账号',
   `password` varchar(100) COLLATE utf8_unicode_ci DEFAULT '000000' COMMENT '用户密码',
-  `name` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户姓名',
-  `sex` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户性别',
+  `name` varchar(30) COLLATE utf8_unicode_ci DEFAULT '用户' COMMENT '用户姓名',
+  `sex` varchar(4) COLLATE utf8_unicode_ci DEFAULT '保密' COMMENT '用户性别:[保密，男，女]',
   `idx_phone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户电话',
   `department` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '所属部门',
   `role_id` int(11) DEFAULT NULL COMMENT '所属角色',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '最近更新时间',
-  `status` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户状态',
+  `status` varchar(30) COLLATE utf8_unicode_ci DEFAULT 'NORMAL' COMMENT '用户状态：[正常，异常，冻结，销户]',
   `text` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`pk_id`),
   UNIQUE KEY `uk_account` (`uk_account`),

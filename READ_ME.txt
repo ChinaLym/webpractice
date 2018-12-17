@@ -18,24 +18,28 @@ eclipse怎么设置：https://blog.csdn.net/qq_35425070/article/details/83829440
 
 后端详细参考，前端thymeleaf模板未提供可靠参考！
 
+
 src
 ├─main
 │  ├─java
 │  │  └─com
 │  │      └─edeclare
 │  │          ├─annotation		注解
-│  │          ├─aop			AOP切面
+│  │          ├─aop			AOP切面						-主要作用：与切面有关的，如日志记录，登录拦截等
 │  │          │  ├─filter		过滤器
 │  │          │  └─interceptor	拦截器
-│  │          ├─config		配置类
-│  │          ├─constant		静态类
+│  │          ├─config		配置类						-与整个项目配置有关
+│  │          ├─constant		常量类
+│  │          │  ├─fieldEnum		数据库字段中允许出现的值枚举			*2018年12月17日添加
+│  │          │  └─responseBody		responseBody注解的方法返回的类型		*涉及设计模式：调用链方式，原型模式，适配器模式
+│  │          │      └─enums		responseBody注解的方法允许返回的值枚举		*
 │  │          ├─controller		控制器
 │  │          ├─entity		实体类
 │  │          ├─exception		自定义异常类
 │  │          ├─repository		持久层（dao）
 │  │          ├─service		业务逻辑层
 │  │          │  └─impl		业务逻辑实现类
-│  │          ├─servlet		服务程序
+│  │          ├─servlet		服务程序					-主要作用：sql慢查，请求统计，数据分析
 │  │          └─utils		工具类
 │  └─resources			
 │      ├─static			前端仅供参考
