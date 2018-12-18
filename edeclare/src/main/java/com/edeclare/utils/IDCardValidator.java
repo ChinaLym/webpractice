@@ -15,57 +15,60 @@ import java.util.regex.Pattern;
  * @Version 1.0
  */
 public class IDCardValidator {
-		static final Map<String,String> areaCodeMap = new HashMap<String,String>();
+		static final Map<String,String> AREA_CODE_MAP = new HashMap<String,String>();
 		static {
-			areaCodeMap.put("11", "北京");   
-	        areaCodeMap.put("12", "天津");   
-	        areaCodeMap.put("13", "河北");   
-	        areaCodeMap.put("14", "山西");   
-	        areaCodeMap.put("15", "内蒙古");   
-	        areaCodeMap.put("21", "辽宁");   
-	        areaCodeMap.put("22", "吉林");   
-	        areaCodeMap.put("23", "黑龙江");   
-	        areaCodeMap.put("31", "上海");   
-	        areaCodeMap.put("32", "江苏");   
-	        areaCodeMap.put("33", "浙江");   
-	        areaCodeMap.put("34", "安徽");   
-	        areaCodeMap.put("35", "福建");   
-	        areaCodeMap.put("36", "江西");   
-	        areaCodeMap.put("37", "山东");   
-	        areaCodeMap.put("41", "河南");   
-	        areaCodeMap.put("42", "湖北");   
-	        areaCodeMap.put("43", "湖南");   
-	        areaCodeMap.put("44", "广东");   
-	        areaCodeMap.put("45", "广西");   
-	        areaCodeMap.put("46", "海南");   
-	        areaCodeMap.put("50", "重庆");   
-	        areaCodeMap.put("51", "四川");   
-	        areaCodeMap.put("52", "贵州");   
-	        areaCodeMap.put("53", "云南");   
-	        areaCodeMap.put("54", "西藏");   
-	        areaCodeMap.put("61", "陕西");   
-	        areaCodeMap.put("62", "甘肃");   
-	        areaCodeMap.put("63", "青海");   
-	        areaCodeMap.put("64", "宁夏");   
-	        areaCodeMap.put("65", "新疆");   
-	        areaCodeMap.put("71", "台湾");   
-	        areaCodeMap.put("81", "香港");   
-	        areaCodeMap.put("82", "澳门");   
-	        areaCodeMap.put("91", "国外");
+			AREA_CODE_MAP.put("11", "北京");   
+	        AREA_CODE_MAP.put("12", "天津");   
+	        AREA_CODE_MAP.put("13", "河北");   
+	        AREA_CODE_MAP.put("14", "山西");   
+	        AREA_CODE_MAP.put("15", "内蒙古");   
+	        AREA_CODE_MAP.put("21", "辽宁");   
+	        AREA_CODE_MAP.put("22", "吉林");   
+	        AREA_CODE_MAP.put("23", "黑龙江");   
+	        AREA_CODE_MAP.put("31", "上海");   
+	        AREA_CODE_MAP.put("32", "江苏");   
+	        AREA_CODE_MAP.put("33", "浙江");   
+	        AREA_CODE_MAP.put("34", "安徽");   
+	        AREA_CODE_MAP.put("35", "福建");   
+	        AREA_CODE_MAP.put("36", "江西");   
+	        AREA_CODE_MAP.put("37", "山东");   
+	        AREA_CODE_MAP.put("41", "河南");   
+	        AREA_CODE_MAP.put("42", "湖北");   
+	        AREA_CODE_MAP.put("43", "湖南");   
+	        AREA_CODE_MAP.put("44", "广东");   
+	        AREA_CODE_MAP.put("45", "广西");   
+	        AREA_CODE_MAP.put("46", "海南");   
+	        AREA_CODE_MAP.put("50", "重庆");   
+	        AREA_CODE_MAP.put("51", "四川");   
+	        AREA_CODE_MAP.put("52", "贵州");   
+	        AREA_CODE_MAP.put("53", "云南");   
+	        AREA_CODE_MAP.put("54", "西藏");   
+	        AREA_CODE_MAP.put("61", "陕西");   
+	        AREA_CODE_MAP.put("62", "甘肃");   
+	        AREA_CODE_MAP.put("63", "青海");   
+	        AREA_CODE_MAP.put("64", "宁夏");   
+	        AREA_CODE_MAP.put("65", "新疆");   
+	        AREA_CODE_MAP.put("71", "台湾");   
+	        AREA_CODE_MAP.put("81", "香港");   
+	        AREA_CODE_MAP.put("82", "澳门");   
+	        AREA_CODE_MAP.put("91", "国外");
 		}
-		
+		static final String NUMBER_WITH_X = "[0-9]*(X)?";
+		static final String NUMBERS = "[0-9]*";
+		static final Pattern NUMBERS_PATTERN = Pattern.compile(NUMBERS);
+		static final Pattern NUMBER_WITH_X_PATTERN = Pattern.compile(NUMBER_WITH_X);
 		/**
 		 * 根据areaCode获得地区
 		 * @param areaCode
 		 * @return
 		 */
 		public static String getAreaByCode(String areaCode) {
-			return areaCodeMap.get(areaCode);
+			return AREA_CODE_MAP.get(areaCode);
 		}
 		
 		/*
 	    private static Map<String, String> getAreaCode() {   
-	        return areaCodeMap;   
+	        return AREA_CODE_MAP;   
 	    }
 	    */
 	    
@@ -75,7 +78,7 @@ public class IDCardValidator {
 	     * @return true:合法,false:非法
 	     */
 	    public static boolean isValidAreaCode(String idCard){
-	    	return areaCodeMap.containsKey(idCard.substring(0,2));
+	    	return AREA_CODE_MAP.containsKey(idCard.substring(0,2));
 	    }
 	    
 	    /**  
@@ -84,8 +87,7 @@ public class IDCardValidator {
 		 */
 		public static boolean isNumberOrLetterX(String idCard){
 			boolean flag = false;
-			Pattern p = Pattern.compile("[0-9]*(X)?");
-			Matcher m = p.matcher(idCard);
+			Matcher m = NUMBER_WITH_X_PATTERN.matcher(idCard);
 			if(m.matches()){
 				flag=true;
 			}
@@ -103,8 +105,7 @@ public class IDCardValidator {
 				//System.out.println("身份证号码长度必须为15");
 				return flag;
 			}
-			Pattern p = Pattern.compile("[0-9]*");
-			Matcher m = p.matcher(idCard);
+			Matcher m = NUMBERS_PATTERN.matcher(idCard);
 			if(m.matches()){
 				flag=true;
 			}
@@ -127,11 +128,14 @@ public class IDCardValidator {
 				year = Integer.parseInt(idCard.substring(6,10));
 				month = Integer.parseInt(idCard.substring(10, 12));
 				day = Integer.parseInt(idCard.substring(12,14));
-			}else return false;
+			}else {
+				return false;
+			}
+				
 			
 			//年份的话,仅仅设定区间为向前200年
 			Date date = new Date();
-			SimpleDateFormat simple = new SimpleDateFormat("YYYY");
+			SimpleDateFormat simple = new SimpleDateFormat("yyyy");
 			String formatDate = simple.format(date);
 			int nowYear = Integer.parseInt(formatDate);
 			if(year<nowYear-200 || year>nowYear){
@@ -147,12 +151,12 @@ public class IDCardValidator {
 		}
 	
 	/**17位数字的本体码权重*/
-	private static final int[] weight = {7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2};
+	private static final int[] WEIGHT = {7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2};
 	
 	/**求和之后mod 11的对应最后一位合法位的字符,下标分别为Y: 0 1 2 3 4 5 6 7 8 9 10 */
-	private static final char[] validate = {'1','0','X','9','8','7','6','5','4','3','2'};
+	private static final char[] VALIDATE = {'1','0','X','9','8','7','6','5','4','3','2'};
 	
-	public static final String IdCardNumRegex = "[1-9]\\d{16}(\\d|X|x)|[1-9]\\d{14}";
+	public static final String ID_CARD_NUMBER_REGEX = "[1-9]\\d{16}(\\d|X|x)|[1-9]\\d{14}";
 	/**
 	 * 校验身份证是否合法
 	 * * 规则：
@@ -165,7 +169,7 @@ public class IDCardValidator {
 	 * @return true:合法,false:非法
 	 */
 	public static boolean isValidIDCard(String idCard){
-		if(Pattern.matches(IdCardNumRegex, idCard)) {
+		if(Pattern.matches(ID_CARD_NUMBER_REGEX, idCard)) {
 			//校验地区码和Date是否合法
 			if( isValidAreaCode(idCard)
 					&& isValidDateOfBirth(idCard)
@@ -196,12 +200,12 @@ public class IDCardValidator {
 			//(1)计算十七位数字本体码加权求和
 			int sum = 0;
 			for (int i = 0; i < 17; i++) {
-				sum += (temp[i]-'0')*weight[i];
+				sum += (temp[i]-'0')*WEIGHT[i];
 			}
 			//(2)计算模 Y = mod(S, 11),Y=S mod 11
 			int modResult = sum%11;
 			//(3)根据模，查找得到对应的校验码 
-			return modResult == 2?'X' == idCard.charAt(idCard.length()-1)||'x' == idCard.charAt(idCard.length()-1):validate[modResult] == idCard.charAt(idCard.length()-1);
+			return modResult == 2?'X' == idCard.charAt(idCard.length()-1)||'x' == idCard.charAt(idCard.length()-1):VALIDATE[modResult] == idCard.charAt(idCard.length()-1);
 		}else if(length==15) {
 			return true;
 		}

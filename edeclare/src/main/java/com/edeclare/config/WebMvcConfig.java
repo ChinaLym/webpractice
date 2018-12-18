@@ -32,6 +32,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
      * 配置静态资源的web访问路径，例如上传的文件 abc.png 保存在 D:/book/upload 下
      * 那么在浏览器中访问的路径为：http://localhost:8080/upload/abc.png
      */
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/upload/**").addResourceLocations(
                 "file:///" + WebMvcConfig.FILE_DIR);

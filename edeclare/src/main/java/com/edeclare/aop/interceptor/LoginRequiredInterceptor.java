@@ -56,7 +56,9 @@ public class LoginRequiredInterceptor implements HandlerInterceptor{
 	
 	private <T extends Annotation> T findAnnotation(HandlerMethod handler, Class<T> annotationType) {
         T annotation = handler.getBeanType().getAnnotation(annotationType);
-        if (annotation != null) return annotation;
+        if (annotation != null) {
+        	return annotation;
+        }
         return handler.getMethodAnnotation(annotationType);
     }
 	

@@ -6,7 +6,10 @@ import java.util.Random;
 import org.apache.commons.codec.binary.Hex;
  
 /**
- * MD5加密解密工具类
+* Type: MD5Utils
+* Description: MD5加密解密工具类
+* @author LYM
+* @date Dec 18, 2018
  */
 public class MD5Utils {
 
@@ -30,8 +33,9 @@ public class MD5Utils {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < digest.length; i++) {
 			int var = digest[i] & 0xff;
-			if (var < 16)
+			if (var < 16) {
 				sb.append("0");
+			}
 			sb.append(Integer.toHexString(var));
 		}
 		return sb.toString();
@@ -157,7 +161,9 @@ public class MD5Utils {
 	 * @return
 	 */
 	public static String getSaltPlus(String salt) {
-		if(salt.length()!=16)return salt;
+		if(salt.length()!=16) {
+			return salt;
+		}
 		char c[] = salt.toCharArray();
 		char temp;
 		for(int i = 0; i < 6; i++) {
@@ -180,8 +186,8 @@ public class MD5Utils {
 				cs1[i / 3 * 2 + 1] = md5str.charAt(i + 2);
 				cs2[i / 3] = md5str.charAt(i + 1);
 			}
-			String Salt = new String(cs2);
-			return md5Hex(password + Salt).equals(String.valueOf(cs1));
+			String salt = new String(cs2);
+			return md5Hex(password + salt).equals(String.valueOf(cs1));
 		}catch(Exception e) {
 			return false;
 		}
@@ -194,10 +200,10 @@ public class MD5Utils {
 	 * 若两者有为空则返回false(逻辑在底层中)
 	 * @return
 	 */
-	public static boolean verifyPass(String transportPass,String db_pass) {
+	public static boolean verifyPass(String transportPass,String dbPass) {
 		String[] time = TimeUtil.getLastAndNowTime();
-		return MD5Utils.getSaltverifyMD5((db_pass + time[1]),transportPass)||
-				MD5Utils.getSaltverifyMD5((db_pass + time[0]),transportPass);
+		return MD5Utils.getSaltverifyMD5((dbPass + time[1]),transportPass)||
+				MD5Utils.getSaltverifyMD5((dbPass + time[0]),transportPass);
 	
 	}
 	

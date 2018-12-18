@@ -1,5 +1,10 @@
 package com.edeclare.utils;
-
+/**
+* Type: TimeUtil
+* Description: 返回按一定格式化的当前时间
+* @author LYM
+* @date Dec 18, 2018
+ */
 public class TimeUtil {
 	
 	/**

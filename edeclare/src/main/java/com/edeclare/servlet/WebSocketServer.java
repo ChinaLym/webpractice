@@ -29,12 +29,48 @@ public class WebSocketServer {
 	//日志记录器
 	private static final Logger LOGGER = LoggerFactory.getLogger(WebSocketServer.class);
 	
-    //使用道格李的ConcurrentHashSet, 放的是WebSocketServer而不是session为了复用自己方法
+    //高效，弱一致性，放的是WebSocketServer而非session是为了复用自身的方法
     private static transient volatile Set<WebSocketServer> webSocketSet = ConcurrentHashMap.newKeySet();
  
     //与某个客户端的连接会话，需要通过它来给客户端发送数据
     private Session session;
  
+    /**
+     * Title: sendInfo
+     * Description: 群发消息
+     * @param message
+     */
+    public static void sendInfo(String message) {
+    	LOGGER.info("webSocket-sendInfo群发消息：" + message);
+        for (WebSocketServer item : webSocketSet) {
+            item.sendMessage(message);
+        }
+    }
+ 
+    /**
+     * Title: getOnlineCount
+     * Description: 获取连接数
+     * @return
+     */
+    public static int getOnlineCount() {
+        return webSocketSet.size();
+    }
+    /* *********************以下为非static方法************************** */
+    /**
+     * Title: sendMessage
+     * Description: 向客户端发送消息
+     * @param message
+     * @throws IOException
+     */
+    public boolean sendMessage(String message) {
+        try {
+			this.session.getBasicRemote().sendText(message);
+			return true;
+		} catch (IOException error) {
+			LOGGER.error("webSocket-sendMessage发生错误:" + error.getClass() + error.getMessage());
+			return false;
+		}
+    }
     /**
      * 连接建立成功调用的方法*/
     @OnOpen
@@ -72,39 +108,13 @@ public class WebSocketServer {
         LOGGER.error("webSocket发生错误:" + error.getClass() + error.getMessage());
     }
  
-    /**
-     * Title: sendMessage
-     * Description: 向客户端发送消息
-     * @param message
-     * @throws IOException
-     */
-    public boolean sendMessage(String message) {
-        try {
-			this.session.getBasicRemote().sendText(message);
-			return true;
-		} catch (IOException error) {
-			LOGGER.error("webSocket-sendMessage发生错误:" + error.getClass() + error.getMessage());
-			return false;
-		}
+    @Override
+    public int hashCode() {
+    	return super.hashCode();
     }
- 
- 
-    /**
-     * 群发自定义消息
-     * */
-    public static void sendInfo(String message) {
-    	LOGGER.info("webSocket-sendInfo群发消息：" + message);
-        for (WebSocketServer item : webSocketSet) {
-            item.sendMessage(message);
-        }
-    }
- 
-    /**
-     * Title: getOnlineCount
-     * Description: 获取连接数
-     * @return
-     */
-    public static int getOnlineCount() {
-        return webSocketSet.size();
+    
+    @Override
+    public boolean equals(Object obj) {
+    	return super.equals(obj);
     }
 }

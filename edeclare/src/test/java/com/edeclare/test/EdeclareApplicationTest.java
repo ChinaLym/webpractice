@@ -17,7 +17,7 @@ import com.edeclare.utils.SpringUtil;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class EdeclareApplicationTests {
+public class EdeclareApplicationTest {
 
 	/**
 	 * Title: 测试druid连接池是否生效，若输出为DruidDataSource的toString方法则连接池生效
