@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!--
+	默认入口 http://localhost:8080/testWebsocket 
+	101状态码表示没问题
+	-->
+	<title>登录</title>
+		<meta charset="utf-8">
+		<link href="css/style.css" rel='stylesheet' type='text/css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+		<script th:src="@{/js/sockjs.min.js}"></script>
+</head>
+<body>
+	 <!-----start-main---->
+	 <div class="main">
+			<h2>socketTest</h2>
+			<input type="button" id="send" value="点击向服务器发送消息">
+			<p id="recive"></p>
+
+		</div>
+			 <!-----//end-main---->
+</body>
+<script type="text/javascript">
+var ws = null;
+var ws_status = false;
+function openWebSocket(){
+    //判断当前浏览器是否支持WebSocket
+    if ('WebSocket' in window) {
+        ws = new WebSocket("ws://"+window.location.host+"/websocket");
+    } else if ('MozWebSocket' in window) {
+        websocket = new MozWebSocket("ws://"+window.location.host+"/websocket");
+    } else {
+        ws = new SockJS("http://"+window.location.host+"/websocket");
+    }
+    ws.onopen = function () {
+
+    };
+　　//这个事件是接受后端传过来的数据
+    ws.onmessage = function (event) {
+        //根据业务逻辑解析数据
+        console.log("Server:");
+        console.log(event);
+    };
+    ws.onclose = function (event) {
+    	ws_status = false;
+		console.log("Connection closed!");
+    };
+    ws.onopen = function (event){
+    	ws_status = true;
+    	console.log("Connected!");
+    };
+    ws.onerror = function (event){
+    	console.log("Connect error!");
+    };
+    
+}
+
+$("#send").click(function(){
+	ws.send("Hello, server, I am browser.");
+});
+//如果连接失败，每隔两秒尝试重新连接
+setInterval(function(){
+	if(!ws_status){
+		openWebSocket(); 
+	}
+}, 2000);
+
+//页面已加载后加载后台数据
+/* $(function (){
+    $.ajax({
+        cache:false,
+        data:"",
+        type:"post",
+        url:"",
+        success:function(data, textStatus){
+            if(data && data.status === "1"){
+               　//这里可以初始化操作
+                openWebSocket();//websocket连接到后台
+                if(ws){
+                    setTimeout(function (){
+                    	//发送信息到后台，开始有数据跟新就写到前端显示
+                        ws.send("Hello, server, I am browser.");
+                    },3000);
+                }
+            } else {
+                alert("操作失败！");
+            }
+        },
+        error:function(XMLHttpRequest, textStatus, errorThrown){}
+    });
+
+}); */
+</script>
+</html>

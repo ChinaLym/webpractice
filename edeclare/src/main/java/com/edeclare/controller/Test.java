@@ -1,4 +1,4 @@
-package com.edeclare.test;
+package com.edeclare.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.edeclare.entity.User;
 import com.edeclare.service.IUserService;
 /**
-* Type: UserController
-* Description: 与User相关
-* 	不要在Controller层进行数据安全性校验，移步至service层校验
+* Type: Test
+* Description: 测试类
+* （正规方式以Junit启动，这里为了启动速度更快，暂时放这）
 * @author LYM
-* @date Dec 16, 2018
+* @date Dec 18, 2018
  */
 @Controller
-public class UserControllerTest {
+public class Test {
 	
     @Autowired
     private IUserService userService;
 
-    @GetMapping("/index")
+    @GetMapping("/testIndex")
     public String index(@ModelAttribute User user) {
     	return "main";
     }
     
     @ResponseBody
-    @GetMapping("/testuser")
+    @GetMapping("/testUser")
     public String test() {
     	User user = new User();
     	user.setAccount("test");
@@ -38,5 +38,10 @@ public class UserControllerTest {
 			e.printStackTrace();
 		}
     	return "ok";
+    }
+    
+    @GetMapping("/testWebsocket")
+    public String testWebSocket() {
+    	return "test/websocket/websocketTest";
     }
 }
