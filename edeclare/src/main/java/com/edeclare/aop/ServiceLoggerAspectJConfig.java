@@ -13,19 +13,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
-* Type: ServiceLoggerAspectJ
+* Type: ServiceLoggerAspectJConfig
 * Description: 
+* com.edeclare.service.impl中所有以ServiceImpl结尾的类中的所有public方法
+* 或者添加@ServiceLogger注解的方法，都会前后记录日志及异常
 * @author LYM
 * @date Dec 16, 2018
  */
 @Aspect
-@Component("ServiceLoggerAspectJ")
-public class ServiceLoggerAspectJ {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ServiceLoggerAspectJ.class);
+@Component("ServiceLoggerAspectJConfig")
+public class ServiceLoggerAspectJConfig {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ServiceLoggerAspectJConfig.class);
 
-    //定义一个切点
-    @Pointcut("execution(* com.edeclare.service.impl.*ServiceImpl.*(..)) " +
-            "&& @annotation(com.edeclare.annotation.ServiceLogger)")
+    //定义一个切点,代表service下所有public方法或者添加@ServiceLogger注解的方法，都会前后记录日志及异常
+    @Pointcut("execution(public * com.edeclare.service.impl.*ServiceImpl.*(..)) " +
+            "|| @annotation(com.edeclare.annotation.ServiceLogger)")
     public void log() {}
 
     /**
