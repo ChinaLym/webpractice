@@ -21,13 +21,13 @@ public class Test {
     @Autowired
     private IUserService userService;
 
-    @GetMapping("/testIndex")
+    @GetMapping("/testindex")
     public String index(@ModelAttribute User user) {
     	return "main";
     }
     
     @ResponseBody
-    @GetMapping("/testUser")
+    @GetMapping("/testuser")
     public String test() {
     	User user = new User();
     	user.setAccount("test");
@@ -40,7 +40,7 @@ public class Test {
     	return "ok";
     }
     
-    @GetMapping("/testWebsocket")
+    @GetMapping("/testwebsocket")
     public String testWebSocket() {
     	return "test/websocket/websocketTest";
     }

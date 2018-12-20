@@ -22,7 +22,7 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
     useGlobalDataSourceStat: true                   # 合并多个DruidDataSource的监控数据
   jpa:
-    show-sql: false
+    show-sql: true    #开发时打开sql显示
   thymeleaf:
     cache: false      #开发时关闭缓存以查看实时页面
     mode: LEGACYHTML5 #非完全严格检查,严格使用HTML5

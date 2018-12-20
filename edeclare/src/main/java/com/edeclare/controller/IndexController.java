@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /**
 * Type: IndexController
-* Description: Index
+* Description: Index,所有uri路径不允许有大写字母
 * @author LYM
 * @date Dec 16, 2018
  */

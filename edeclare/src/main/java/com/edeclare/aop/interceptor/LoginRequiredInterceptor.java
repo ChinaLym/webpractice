@@ -37,7 +37,7 @@ public class LoginRequiredInterceptor implements HandlerInterceptor{
         		if(user != null) {
         			return true;//放行
         		}else {
-        			request.getRequestDispatcher("/login.jsp").forward(request, response);
+        			request.getRequestDispatcher("login").forward(request, response);
         			return false;
         		}
                 /*

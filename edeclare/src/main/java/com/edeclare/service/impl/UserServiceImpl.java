@@ -5,7 +5,6 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.edeclare.annotation.ServiceLogger;
 import com.edeclare.entity.User;
 import com.edeclare.repository.IUserRepository;
 import com.edeclare.service.IUserService;
@@ -25,14 +24,12 @@ public class UserServiceImpl implements IUserService{
         this.userRepository = userRepositry;
     }
     
-    @ServiceLogger
 	@Override
 	public User login(User user) throws Exception{
 		User u = userRepository.findByAccountAndPassword(user.getAccount(), user.getPassword());
 		return u;
 	}
 
-    @ServiceLogger
 	@Override
 	public User register(User user) throws Exception{
 		try {

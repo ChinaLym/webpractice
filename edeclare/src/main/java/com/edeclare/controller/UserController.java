@@ -55,7 +55,6 @@ public class UserController {
     @PostMapping(value = "/login")
     @ResponseBody
     public BaseResponse login(@ModelAttribute User user, HttpSession session) {
-        System.out.println(user.getName() + "---" + user.getPassword());
         User loginUser = null;
 		try {
 			loginUser = userService.login(user);

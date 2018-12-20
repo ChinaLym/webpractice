@@ -52,10 +52,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- 开发工具 -->
+		<!-- 开发工具（主要为了热部署） -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional><!-- 启用 -->
 		</dependency>
 		<!-- 文件上传组件 -->
 		<dependency>
@@ -117,6 +118,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+			      <fork>true</fork> <!-- 如果没有该配置，devtools不会生效 -->
+			   </configuration>
 			</plugin>
 		</plugins>
 	</build>
