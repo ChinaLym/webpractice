@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edeclare.annotation.LoginRequired;
+import com.edeclare.constant.SessionKey;
 import com.edeclare.constant.responseBody.BaseResponse;
 import com.edeclare.constant.responseBody.enums.URIResponseEnum;
 import com.edeclare.constant.responseBody.enums.UserControllerResponseEnum;
@@ -85,7 +86,7 @@ public class UserController {
     		return "index";
     	} else {
     		// 登录成功
-    		session.setAttribute("user", registerUser);
+    		session.setAttribute(SessionKey.USER, registerUser);
     		return "redirect:/index";
     	}
     }
