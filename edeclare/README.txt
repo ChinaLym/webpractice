@@ -1,24 +1,23 @@
 【运行与使用】编码必看
 获取最新版：
-git clone git@github.com:ChinaLym/webpractice.git
+git clone https://github.com/ChinaLym/webpractice.git
 
-
-The server time zone value '?D1ú±ê×?ê±??' is.....错误解决：
-在mysql
-SHOW VARIABLES LIKE '%time_zone%';
-SET GLOBAL time_zone='+8:00';
----------------------------------------------------
-在IDE中
+项目地址：  https://github.com/ChinaLym/webpractice.git
+ssh地址：   git@github.com:ChinaLym/webpractice.git
+丨运行报错---------------------------------------------------丨
+丨The server time zone value '?D1ú±ê×?ê±??' is.....错误解决：丨
+丨在mysql 中 SET GLOBAL time_zone='+8:00';				        丨
+丨----------------------------------------------------------丨
+【编码环境强制规约】
 
 设置tab变为4个空格，代码中禁止出现 /tab
 设置unix分隔符，换号符禁止/r/n，务必设置为/r
 设置编码为utf-8
 下载阿里规约插件
-eclipse怎么设置：https://blog.csdn.net/qq_35425070/article/details/83829440
 
-后端详细参考，前端thymeleaf模板未提供可靠参考！
+怎么设置上面提到的：https://blog.csdn.net/qq_35425070/article/details/83829440
 
-
+【务必熟悉一下包的分类】
 src
 ├─main
 │  ├─java
@@ -57,6 +56,7 @@ src
                 └─test
 
 
+后端详细参考，前端thymeleaf模板未提供可靠参考！
 
 【框架与技术选型springboot】
 springboot比spring配置更少，约定大于配置
@@ -92,10 +92,6 @@ jdk版本		JDK8		（主流，稳定）
 
 
 
-
-
-
-
 【其他开发插件】
 前端：
 eclipse 安装 ZenCoding(或者直接在eclipse  http://emmet.io/eclipse/updates/)：
@@ -111,23 +107,13 @@ thymeleaf入门：
 	https://blog.csdn.net/huihuilovei/article/details/64466548
 	https://www.cnblogs.com/topwill/p/7434955.html
 	
-	
 
 
 【素材】
 http://sc.chinaz.com/moban/
 	
 
-
-【管理地址】
-Git https://github.com/ChinaLym/webpractice.git
-or  git@github.com:ChinaLym/webpractice.git
-
-
-
-
-
-【代码层的结构】(参考：https://blog.csdn.net/u012675150/article/details/79351990 ）
+【代码层的结构由来】(参考：https://blog.csdn.net/u012675150/article/details/79351990 ）
 
 根目录：com.edeclare ---> com.edeclare
 
