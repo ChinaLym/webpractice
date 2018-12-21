@@ -1,5 +1,8 @@
 /target/
 !.mvn/wrapper/maven-wrapper.jar
+### ECLIPSE ###
+.class
+/target/
 
 ### STS ###
 .apt_generated
