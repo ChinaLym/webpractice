@@ -90,7 +90,7 @@ public class UserController {
     		return "redirect:/index";
     	}
     }
-    //ovfrokcdko
+    //ovfrokcdko2222222
 //    @GetMapping(value = "/User/sbgz")
 //    public String sbgz() {
 //    	return "sbgz";
