@@ -91,9 +91,9 @@ public class UserController {
     	}
     }
     
-    @GetMapping(value = "/User/sbgz")
-    public String sbgz() {
-    	return "sbgz";
-    }
+//    @GetMapping(value = "/User/sbgz")
+//    public String sbgz() {
+//    	return "sbgz";
+//    }
     
 }
