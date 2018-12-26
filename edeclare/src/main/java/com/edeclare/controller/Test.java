@@ -44,4 +44,29 @@ public class Test {
     public String testWebSocket() {
     	return "test/websocket/websocketTest";
     }
+    
+    @GetMapping(value = "/managerLogin")
+    public String managerLogin() {
+    	return "manager/main";
+    }
+    
+    @GetMapping(value = "/toSbgz")
+    public String toSbgz() {
+    	return "manager/shenbaoguize";
+    }
+    
+    @GetMapping(value = "/toXmcs")
+    public String toXmcs() {
+    	return "manager/xiangmuchushen";
+    }
+    
+    @GetMapping(value = "/toFpzj")
+    public String toFpzj() {
+    	return "manager/fenpeizhuanjia";
+    }
+    
+    @GetMapping(value = "/toLx")
+    public String toLx() {
+    	return "manager/lixiang";
+    }
 }
