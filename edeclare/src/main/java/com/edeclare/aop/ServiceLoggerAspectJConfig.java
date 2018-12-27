@@ -69,7 +69,7 @@ public class ServiceLoggerAspectJConfig {
      * @param exception	异常
      */
     @AfterThrowing(value = "log()", throwing = "exception")
-	private void handlerExcetionLog(JoinPoint joinPoint, Exception exception) {
+	public void handlerExcetionLog(JoinPoint joinPoint, Exception exception) {
 		// 获得类名和方法名称
 	    StringBuilder sb = new StringBuilder(joinPoint.getSignature().toShortString());
 	    sb.append("--exception! : ");
