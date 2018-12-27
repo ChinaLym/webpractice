@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<title>登录</title>
 		<meta charset="utf-8">
@@ -16,13 +17,13 @@
 					<div class="head">
 						<img src="../image/user.png" th:src="@{/image/user.png}" alt=""/>
 					</div>
-				<form id="loginform" onsubmit="return false"><!--  onkeyup="this.value=this.value.replace(/\D/g,'')"  -->
-						<input  type="text" class="text" placeholder="学号"  id="id"
+				<form id="loginform" onsubmit="return false" method="POST" th:object="${user}"><!--  onkeyup="this.value=this.value.replace(/\D/g,'')"  -->
+						<input  type="text" class="text" placeholder="学号"  id="account"
 						 	onkeyup="this.value=this.value.replace(/\D/g,'')"
 						 	oninvalid="setCustomValidity('请输入13位学号');"
 						 	pattern="^[0-9]{13}$" maxlength=13 
 						 	oninput="setCustomValidity('')" required
-						 	name="name"
+						 	name="account"
     						 />
 						<input type="password" placeholder="密码" id="password"
 							onkeyup="value=value.replace(/[^\w]/g,'')"
@@ -89,23 +90,25 @@ var contentPath = "/" + location.pathname.split("/")[1];
 			 var param = {"imageValue":value};
 			 $.get(contentPath + "/verify/checkCode",param,function(returnData){
 				 $("#codeCheck").val(returnData);
-				 /* if(returnData=='true')
-					 $("#codeCheck").val('true');
+				 if(returnData=='true')
+// 					 $("#codeCheck").val('true');
+				 	return true;
 				 else 
-					 $("#codeCheck").val('false'); */
+// 					 $("#codeCheck").val('false');
+				 	return false;
 			 });
 		 }
-		 return false;
 	}
 	$("#loginform").submit(function(e){
 		if(hasSubmit == true)
 			return;
 		
-		if('true' == $("#codeCheck").val()){
-			login();
+		if('true' == checkImageCode()){
+// 			login();
 			/* hasSubmit = true;
 			$("#submit").css("background", "#999999");
 			alert('submit'); */
+			return true;
 		}
 		else{
 			alert("CodeError");
@@ -117,7 +120,7 @@ var contentPath = "/" + location.pathname.split("/")[1];
 		}
 	var JSONstr;
 	function login() {
-		//jsObj.account =  $("#name").val();
+		jsObj.account =  $("#account").val();
 		jsObj.password = $("#password").val();
 		JSONstr = JSON.stringify(jsObj);
 		console.log(JSONstr);

@@ -174,7 +174,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             		<span>一级列表</span>
             	</a>
             </li> -->
-            <li class="treeview active">
+           <li class="treeview active">
            		<a href="#">
             		<i class="fa fa-files-o"></i> 
             		<span>申报管理</span> 
@@ -182,8 +182,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             	</a>
             	<ul class="treeview-menu">
               		<li><a href="toSbgz">&nbsp;&nbsp;<i class="fa fa-pencil"></i>设置申报规则</a></li>
-             		<li><a href="toXmcs">&nbsp;&nbsp;<i class="fa fa-check"></i>项目初审</a></li>
-             		<li class="active"><a href="#">&nbsp;&nbsp;<i class="fa fa-user"></i>分配专家</a></li>
+             		<li class="active"><a href="toXmcs">&nbsp;&nbsp;<i class="fa fa-check"></i>项目初审</a></li>
+             		<li><a href="toFpzj">&nbsp;&nbsp;<i class="fa fa-user"></i>分配专家</a></li>
              		<li><a href="toLx">&nbsp;&nbsp;<i class="fa fa-book"></i>立项</a></li>
             	</ul>
             </li>
@@ -256,59 +256,69 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <section class="content">
 
-          <!-- Your Page Content Here -->
-          <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title">Responsive Hover Table</h3>
-                  <div class="box-tools">
-                    <div class="input-group" style="width: 150px;">
-                      <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
-                      <div class="input-group-btn">
-                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                      </div>
-                    </div>
+        <div class="box box-info" style="width: 70%">
+            <div class="box-header with-border">
+              <h3 class="box-title">项目初审</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" action="settingRule" method="POST" th:object=${project}>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for=activityId class="col-sm-2 control-label">所属活动</label>
+
+                  <div class="col-sm-2">
+                    <input type="text" class="form-control" id="activityId" th:value="*{activityId}" name="activityId" disabled="disabled">
                   </div>
-                </div><!-- /.box-header -->
-                <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                    <tbody><tr>
-                      <th>ID</th>
-                      <th>User</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                      <th>Reason</th>
-                    </tr>
-                    <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-success">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>219</td>
-                      <td>Alexander Pierce</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-warning">Pending</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>657</td>
-                      <td>Bob Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-primary">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>175</td>
-                      <td>Mike Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-danger">Denied</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                  </tbody></table>
-                </div><!-- /.box-body -->
+                </div>
+                <div class="form-group">
+                  <label for="name" class="col-sm-2 control-label">名称</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="name" th:value="*{name}" name="name" disabled="disabled">
+                  </div>
+                </div>
+               <div class="form-group">
+                  <label for="director" class="col-sm-2 control-label">负责人</label>
+                  <div class="col-sm-8">
+                  	<input type="text" class="form-control" th:value="*{director}" id="director" name="director" disabled="disabled"></input>
+                  </div>
+                </div>
+                <div class="form-group">
+	              	<label for="level" class="col-sm-2 control-label">级别</label>
+	              	<div class="col-sm-4">
+	              		<input type="text" class="form-control" id="level" name="level" th:value="*{level}" disabled="disabled"/>
+	              	</div>
+              	</div>
+	             
+	              <div class="form-group">
+	              	<label for="domain" class="col-sm-2 control-label">领域</label>
+	              	<div class="col-sm-8">
+                  		<input type="text" class="form-control" th:value="*{domain}" id="domain" name="domain" disabled="disabled"></input>
+                  	</div>
+	              </div>
+	              <div class="form-group">
+	              	<label for="promise" class="col-sm-2 control-label">立项承诺</label>
+	              	<div class="col-sm-8">
+                  		<textarea rows="3" class="form-control" th:text="*{promise}" id="promise" name="promise" disabled="disabled"></textarea>
+                  	</div>
+	              </div>
+	              <div class="form-group">
+	              	<label for="text" class="col-sm-2 control-label">备注</label>
+	              	<div class="col-sm-8">
+                  		<textarea class="form-control" rows="3" th:text="*{text}" id="text" name="text" disabled="disabled"></textarea>
+                  	</div>
+	              </div>
               </div>
+              
+              <!-- /.box-body -->
+              <div class="box-footer" style="padding: 10px 20%">
+                <a href="toXmcs"><button type="button" class="btn btn-default">取消</button></a>
+                <button type="submit" class="btn btn-info pull-right">提交</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->

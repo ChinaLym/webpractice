@@ -58,7 +58,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="starter" class="logo">
+        <a href="managerLogin" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>E-Declare</b></span>
           <!-- logo for regular state and mobile devices -->
@@ -194,8 +194,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             		<i class="fa fa-angle-left pull-right"></i>
             	</a>
             	<ul class="treeview-menu">
-              		<li><a href="#">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
-              		<li><a href="#">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
+              		<li><a href="toZqgz">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
+              		<li><a href="toZqsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
             	</ul>
             </li>
             <li class="treeview">
@@ -205,8 +205,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             		<i class="fa fa-angle-left pull-right"></i>
             	</a>
             	<ul class="treeview-menu">
-              		<li><a href="#">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
-              		<li><a href="#">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
+              		<li><a href="toJtgz">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
+              		<li><a href="toJtsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
             	</ul>
             </li>
             <li class="treeview">
@@ -216,9 +216,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             		<i class="fa fa-angle-left pull-right"></i>
             	</a>
             	<ul class="treeview-menu">
-              		<li><a href="#">&nbsp;&nbsp;<i class="fa fa-info-circle"></i>用户信息管理</a></li>
-              		<li><a href="#">&nbsp;&nbsp;<i class="fa fa-users"></i>用户角色分配</a></li>
-              		<li><a href="#">&nbsp;&nbsp;<i class="fa fa-refresh"></i>密码重置</a></li>
+              		<li><a href="toUserMana">&nbsp;&nbsp;<i class="fa fa-info-circle"></i>用户信息管理</a></li>
+              		<li><a href="toUserRole">&nbsp;&nbsp;<i class="fa fa-users"></i>用户角色分配</a></li>
+              		<li><a href="toResetPass">&nbsp;&nbsp;<i class="fa fa-refresh"></i>密码重置</a></li>
             	</ul>
             </li>
             <li class="treeview">
@@ -228,9 +228,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             		<i class="fa fa-angle-left pull-right"></i>
             	</a>
             	<ul class="treeview-menu">
-              		<li><a href="#">&nbsp;&nbsp;<i class="fa fa-users"></i>角色管理</a></li>
-              		<li><a href="#">&nbsp;&nbsp;<i class="fa fa-bars"></i>菜单管理</a></li>
-              		<li><a href="#">&nbsp;&nbsp;<i class="fa fa-hand-paper-o"></i>角色权限分配</a></li>
+              		<li><a href="toRoleMana">&nbsp;&nbsp;<i class="fa fa-users"></i>角色管理</a></li>
+              		<li><a href="toMenuMana">&nbsp;&nbsp;<i class="fa fa-bars"></i>菜单管理</a></li>
+              		<li><a href="toAssignPer">&nbsp;&nbsp;<i class="fa fa-hand-paper-o"></i>角色权限分配</a></li>
             	</ul>
             </li>
           </ul><!-- /.sidebar-menu -->
@@ -256,10 +256,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <section class="content">
 
-          <!-- Your Page Content Here -->
-          <div class="box">
+         <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Responsive Hover Table</h3>
+                  <h3 class="box-title">项目初审信息</h3>
                   <div class="box-tools">
                     <div class="input-group" style="width: 150px;">
                       <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
@@ -271,43 +270,53 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
-                    <tbody><tr>
-                      <th>ID</th>
-                      <th>User</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                      <th>Reason</th>
-                    </tr>
-                    <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-success">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>219</td>
-                      <td>Alexander Pierce</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-warning">Pending</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>657</td>
-                      <td>Bob Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-primary">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>175</td>
-                      <td>Mike Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-danger">Denied</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                  </tbody></table>
+                  	<thead>
+                  		<tr>
+	                      <th>#</th>
+	                      <th>Activity_ID</th>
+	                      <th>Name</th>
+	                      <th>User_ID</th>
+	                      <th>Level</th>
+	                      <th>Domain</th>
+	                      <th>Promise</th>
+	                      <!-- <th>Remark</th>
+	                      <th>Score</th> -->
+	                      <th>Status</th>
+	                      <th>Text</th>
+	                      <th>Check</th>
+	                    </tr>
+                  	</thead>
+                   	 <tbody th:remove="all-but-first">
+                   		<tr th:each="pro:${projects}">
+                   		  <td th:text="${proStat.count}"></td>
+	                      <td th:text="${pro.activityId}">Activity_ID</td>
+	                      <td th:text="${pro.name}">Name</td>
+	                      <td th:text="${pro.director}">User_ID</td>
+	                      <td th:text="${pro.level}">Level</td>
+	                      <td th:text="${pro.domain}">Domain</td>
+	                      <td th:text="${pro.promise}">Promise</td>
+	                      <!-- <td th:text="${pro.remarks}">Remark</td>
+	                      <td th:text="${pro.score}">Score</td> -->
+	                      <td th:text="${pro.status}">Status</td>
+	                      <td th:text="${pro.text}">Text</td>
+	                      <td>
+	                      	<a th:href="@{/chushen(proName=${pro.name})}">
+	                      		<button type="button" class="btn btn-block btn-primary btn-sm">审核</button>
+	                      	</a>
+	                      </td>
+                   		</tr>
+                 	 </tbody>
+                  </table>
                 </div><!-- /.box-body -->
+                <div class="box-footer clearfix">
+                  <ul class="pagination pagination-sm no-margin pull-right">
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">»</a></li>
+                  </ul>
+                </div>
               </div>
 
         </section><!-- /.content -->
