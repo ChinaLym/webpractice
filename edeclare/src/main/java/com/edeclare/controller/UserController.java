@@ -57,6 +57,7 @@ public class UserController {
     @ResponseBody
     public BaseResponse login(@ModelAttribute User user, HttpSession session) {
         User loginUser = null;
+        System.out.println("login: " + user.getAccount() + ", " + user.getPassword());
 		try {
 			loginUser = userService.login(user);
 		} catch (Exception e) {
@@ -68,9 +69,10 @@ public class UserController {
         } else {
             // 登录成功
             session.setAttribute("user", loginUser);
-            return URIResponseEnum.REDIRECT.setUri("/index");
+            return URIResponseEnum.REDIRECT.setUri("/manager/main");
         }
     }
+    
     @PostMapping(value = "/register")
     public String register(@ModelAttribute User user, HttpSession session, Model model) {
     	//System.out.println(user.getName() + "---" + user.getPassword());

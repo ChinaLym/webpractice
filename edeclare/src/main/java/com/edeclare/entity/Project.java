@@ -39,6 +39,21 @@ public class Project extends BaseEntity implements Serializable {
 	public Project() {
 	}
 
+	public Project(String domain, Integer activityId, Integer director, String level, String name, String promise,
+			String remarks, Integer score, String status, String text) {
+		super();
+		this.domain = domain;
+		this.activityId = activityId;
+		this.director = director;
+		this.level = level;
+		this.name = name;
+		this.promise = promise;
+		this.remarks = remarks;
+		this.score = score;
+		this.status = status;
+		this.text = text;
+	}
+
 	public String getDomain() {
 		return this.domain;
 	}
