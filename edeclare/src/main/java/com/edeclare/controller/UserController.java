@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edeclare.annotation.LoginRequired;
@@ -55,9 +56,8 @@ public class UserController {
     
     @PostMapping(value = "/login")
     @ResponseBody
-    public BaseResponse login(@ModelAttribute User user, HttpSession session) {
+    public BaseResponse login(@RequestBody User user, HttpSession session) {
         User loginUser = null;
-        System.out.println("login: " + user.getAccount() + ", " + user.getPassword());
 		try {
 			loginUser = userService.login(user);
 		} catch (Exception e) {
@@ -74,8 +74,7 @@ public class UserController {
     }
     
     @PostMapping(value = "/register")
-    public String register(@ModelAttribute User user, HttpSession session, Model model) {
-    	//System.out.println(user.getName() + "---" + user.getPassword());
+    public String register(@RequestBody User user, HttpSession session, Model model) {
     	User registerUser = null;
 		try {
 			registerUser = userService.register(user);

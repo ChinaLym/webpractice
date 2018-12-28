@@ -39,6 +39,16 @@ public class Meterial extends BaseEntity implements Serializable {
 
 	private String url;
 
+	private String stage;
+	
+	public String getStage() {
+		return stage;
+	}
+
+	public void setStage(String stage) {
+		this.stage = stage;
+	}
+
 	public Meterial() {
 	}
 

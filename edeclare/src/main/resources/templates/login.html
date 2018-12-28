@@ -83,35 +83,27 @@ var contentPath = "/" + location.pathname.split("/")[1];
 	}
 	/*校验 验证码是否正确*/
 	function checkImageCode() {
-		$("#codeCheck").val(true);
-		return true;
 		 var value =  $("#verificationCode").val();
 		 if(regexVerifyCode()){
 			 var param = {"imageValue":value};
-			 $.get(contentPath + "/verify/checkCode",param,function(returnData){
+			 $.get("/verify/checkCode",param,function(returnData){
 				 $("#codeCheck").val(returnData);
-				 if(returnData=='true')
-// 					 $("#codeCheck").val('true');
-				 	return true;
-				 else 
-// 					 $("#codeCheck").val('false');
-				 	return false;
 			 });
 		 }
 	}
 	$("#loginform").submit(function(e){
-		if(hasSubmit == true)
-			return;
+		/* if(hasSubmit == true)
+			return; */
 		
-		if('true' == checkImageCode()){
-// 			login();
+		if("true" == $("#codeCheck").val()||true == checkImageCode()){
+ 			login();
 			/* hasSubmit = true;
 			$("#submit").css("background", "#999999");
 			alert('submit'); */
 			return true;
 		}
-		else{
-			alert("CodeError");
+		else {
+			alert("CodeError" + $("#codeCheck").val());
 		}
 	});
 	var jsObj = {
@@ -131,11 +123,12 @@ var contentPath = "/" + location.pathname.split("/")[1];
 			   data : JSONstr,
 			   success:function(returnUser){
 				   if("success" == returnUser)
-				   	   location.href="/main";
+				   	   location.href="/managerLogin";
 				   else if("error" == returnUser)
 					   alert("登录失败！");
 				   //returnUser = JSON.parse(returnUser);
 				   //alert(returnUser);
+				   location.href="/managerLogin";
 			   }});
 	}	
 </script>
