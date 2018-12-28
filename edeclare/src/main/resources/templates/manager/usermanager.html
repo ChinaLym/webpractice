@@ -314,7 +314,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                      	</a>
 	                      	&nbsp;&nbsp;
 	                      	<a th:href="@{/userDelete(name=${user.name})}">
-	                      		<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>&nbsp;&nbsp;删除</button>
+	                      		<button type="button" class="btn btn-danger btn-sm userDelete" data-toggle="modal" data-target="#userDelete"><i class="fa fa-trash"></i>&nbsp;&nbsp;删除</button>
 	                      	</a>
 	                      </td>
                    		</tr>
@@ -331,6 +331,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </ul>
                 </div>
               </div>
+              
+              <div class="modal fade" id="userDelete" style="display: none;">
+		          <div class="modal-dialog">
+		            <div class="modal-content">
+		              <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                  <span aria-hidden="true">×</span></button>
+		                <h4 class="modal-title">警告</h4>
+		              </div>
+		              <div class="modal-body">
+		                <p>确认删除该用户信息？</p>
+		              </div>
+		              <div class="modal-footer">
+		                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+		                <button type="button" class="btn btn-primary">确认</button>
+		              </div>
+		            </div>
+		            <!-- /.modal-content -->
+		          </div>
+		          <!-- /.modal-dialog -->
+		       </div>
+              
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
@@ -345,10 +367,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="AdminLTE/bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="AdminLTE/dist/js/app.min.js"></script>
+    <script src="AdminLTE/bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="AdminLTE/dist/js/demo.js"></script>
+    <script src="AdminLTE/dist/js/adminlte.min.js"></script>
 
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
          fixed layout. -->
+         
+     <script type="text/javascript">
+     	$(function(){
+     		$(".userDelete").click(function(){
+//      			var href = $(this).parent().attr("href");
+//      			var flag = confirm("确定删除该用户信息？");
+//      			if(flag){
+//      				window.location.href = href;
+//      			}
+     			return false;
+     		})
+     	})
+     	
+     </script>
   </body>
 </html>

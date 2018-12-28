@@ -268,57 +268,68 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <label for=activityId class="col-sm-2 control-label">所属活动</label>
 
                   <div class="col-sm-2">
-                    <input type="text" class="form-control" id="activityId" th:value="*{activityId}" name="activityId" disabled="disabled">
+                    <input type="text" class="form-control" id="activityId" th:value="*{activityId}" name="activityId" readonly="readonly">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="name" class="col-sm-2 control-label">名称</label>
 
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="name" th:value="*{name}" name="name" disabled="disabled">
+                    <input type="text" class="form-control" id="name" th:value="*{name}" name="name" readonly="readonly">
                   </div>
                 </div>
                <div class="form-group">
                   <label for="director" class="col-sm-2 control-label">负责人</label>
                   <div class="col-sm-8">
-                  	<input type="text" class="form-control" th:value="*{director}" id="director" name="director" disabled="disabled"></input>
+                  	<input type="text" class="form-control" th:value="*{director}" id="director" name="director" readonly="readonly"></input>
                   </div>
                 </div>
                 <div class="form-group">
 	              	<label for="level" class="col-sm-2 control-label">级别</label>
 	              	<div class="col-sm-4">
-	              		<input type="text" class="form-control" id="level" name="level" th:value="*{level}" disabled="disabled"/>
+<!-- 	              		<input type="text" class="form-control" id="level" name="level" th:value="*{level}" readonly="readonly"/> -->
+						<select th:field="*{level}" class="form-control" name="level" disabled="disabled">
+							<option th:each="level:${levels}" th:text="${level.toString()}" th:value="${level.toString()}"></option>
+						</select>
 	              	</div>
               	</div>
 	             
 	              <div class="form-group">
 	              	<label for="domain" class="col-sm-2 control-label">领域</label>
 	              	<div class="col-sm-8">
-                  		<input type="text" class="form-control" th:value="*{domain}" id="domain" name="domain" disabled="disabled"></input>
+                  		<input type="text" class="form-control" th:value="*{domain}" id="domain" name="domain" readonly="readonly"></input>
                   	</div>
 	              </div>
 	              <div class="form-group">
 	              	<label for="score" class="col-sm-2 control-label">专家评分</label>
 	              	<div class="col-sm-8">
-                  		<input type="text" class="form-control" th:value="*{score}" id="score" name="score" disabled="disabled"></input>
+                  		<input type="text" class="form-control" th:value="*{score}" id="score" name="score" readonly="readonly"></input>
                   	</div>
 	              </div>
 	              <div class="form-group">
 	              	<label for="remarks" class="col-sm-2 control-label">专家评语</label>
 	              	<div class="col-sm-8">
-                  		<input type="text" class="form-control" th:value="*{remarks}" id="remarks" name="remarks" disabled="disabled"></input>
+                  		<input type="text" class="form-control" th:value="*{remarks}" id="remarks" name="remarks" readonly="readonly"></input>
                   	</div>
 	              </div>
 	              <div class="form-group">
 	              	<label for="promise" class="col-sm-2 control-label">立项承诺</label>
 	              	<div class="col-sm-8">
-                  		<textarea rows="3" class="form-control" th:text="*{promise}" id="promise" name="promise" disabled="disabled"></textarea>
+                  		<textarea rows="3" class="form-control" th:text="*{promise}" id="promise" name="promise" readonly="readonly"></textarea>
                   	</div>
+	              </div>
+	              <div class="form-group">
+	              	<label for="status" class="col-sm-2 control-label">状态</label>
+	              	<div class="col-sm-4">
+	              		<select th:field="*{status}" class="form-control" name="status" disabled="disabled">
+	              			<option th:each="status:${proStatuses}" th:text="${status.toString()}" th:value="${status.toString()}"></option>
+	              		</select>
+	              	</div>
 	              </div>
 	              <div class="form-group">
 	              	<label for="text" class="col-sm-2 control-label">备注</label>
 	              	<div class="col-sm-8">
-                  		<textarea class="form-control" rows="3" th:text="*{text}" id="text" name="text" disabled="disabled"></textarea>
+                  		<textarea class="form-control" rows="3" th:text="*{text}" id="text" name="text" readonly="readonly"></textarea>
                   	</div>
 	              </div>
               </div>

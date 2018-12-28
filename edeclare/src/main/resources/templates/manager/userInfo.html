@@ -269,69 +269,80 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <label for=account class="col-sm-2 control-label">账号</label>
 
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="account" th:value="*{account}" name="account" disabled="disabled">
+                    <input type="text" class="form-control" id="account" th:value="*{account}" name="account" readonly="readonly">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="name" class="col-sm-2 control-label">名称</label>
 
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="name" th:value="*{name}" name="name" disabled="disabled">
+                    <input type="text" class="form-control" id="name" th:value="*{name}" name="name" readonly="readonly">
                   </div>
                 </div>
                <div class="form-group">
                   <label for="password" class="col-sm-2 control-label">密码</label>
                   <div class="col-sm-8">
-                  	<input type="text" class="form-control" th:value="*{password}" id="password" name="password" disabled="disabled"></input>
+                  	<input type="text" class="form-control" th:value="*{password}" id="password" name="password" readonly="readonly"/>
                   </div>
                 </div>
                 <div class="form-group">
 	              	<label for="sex" class="col-sm-2 control-label">性别</label>
 	              	<div class="col-sm-4">
-	              		<input type="text" class="form-control" id="sex" name="sex" th:value="*{sex}" disabled="disabled"/>
+<!-- 	              		<input type="text" class="form-control" id="sex" name="sex" th:value="*{sex}" readonly="readonly"/> -->
+						<select th:field="*{sex}" class="form-control" data-required="true" disabled="disabled">
+							<option value="">请选择</option>
+	              			<option th:each="sex:${sexes}" th:text="${sex.value}" th:value="${sex.value}"></option>
+	              		</select>
 	              	</div>
               	</div>
 	             
 	              <div class="form-group">
 	              	<label for="phone" class="col-sm-2 control-label">联系电话</label>
 	              	<div class="col-sm-8">
-                  		<input type="text" class="form-control" th:value="*{phone}" id="phone" name="phone" disabled="disabled"></input>
+                  		<input type="text" class="form-control" th:value="*{phone}" id="phone" name="phone" readonly="readonly"/>
                   	</div>
 	              </div>
 	              <div class="form-group">
 	              	<label for="department" class="col-sm-2 control-label">所属部门</label>
 	              	<div class="col-sm-8">
-                  		<input type="text" class="form-control" th:value="*{department}" id="department" name="department" disabled="disabled"></input>
+                  		<input type="text" class="form-control" th:value="*{department}" id="department" name="department" readonly="readonly"/>
                   	</div>
 	              </div>
 	              <div class="form-group">
 	              	<label for="roleId" class="col-sm-2 control-label">所属角色</label>
 	              	<div class="col-sm-4">
-                  		<input type="text" class="form-control" th:value="*{roleId}" id="roleId" name="roleId" disabled="disabled"></input>
+<!--                   		<input type="text" class="form-control" th:value="*{roleId}" id="roleId" name="roleId" readonly="readonly"/> -->
+						<select th:field="*{roleId}" class="form-control" data-required="true" disabled="disabled">
+                  			<option value="">请选择</option>
+                  			<option th:each="role:${roles}" th:text="${role.name}" th:value="${role.id}"></option>
+                  		</select>
                   	</div>
 	              </div>
 	              <div class="form-group">
 	              	<label for="createTime" class="col-sm-2 control-label">创建时间</label>
 	              	<div class="col-sm-4">
-                  		<input class="form-control" th:value="*{createTime.month + 1} + '-' + *{createTime.date} + '-' + *{createTime.year}" id="createTime" name="createTime" disabled="disabled"></input>
+                  		<input class="form-control" th:value="*{createTime.month + 1} + '-' + *{createTime.date} + '-' + *{createTime.year}" id="createTime" name="createTime" readonly="readonly"/>
                   	</div>
 	              </div>
 	              <div class="form-group">
 	              	<label for="updateTime" class="col-sm-2 control-label">更新时间</label>
 	              	<div class="col-sm-4">
-                  		<input class="form-control" th:value="*{updateTime.month + 1} + '-' + *{updateTime.date} + '-' + *{updateTime.year}" id="updateTime" name="updateTime" disabled="disabled"></input>
+                  		<input class="form-control" th:value="*{updateTime.month + 1} + '-' + *{updateTime.date} + '-' + *{updateTime.year}" id="updateTime" name="updateTime" readonly="readonly"/>
                   	</div>
 	              </div>
 	              <div class="form-group">
 	              	<label for="status" class="col-sm-2 control-label">状态</label>
 	              	<div class="col-sm-4">
-                  		<input class="form-control" th:value="*{status}" id="status" name="status" disabled="disabled"></input>
+<!--                   		<input class="form-control" th:value="*{status}" id="status" name="status" readonly="readonly"/> -->
+						<select th:field="*{status}" class="form-control" data-required="true" disabled="disabled">
+                  			<option th:each="status:${statuses}" th:text="${status.toString()}" th:value="${status.toString()}"></option>
+                  		</select>
                   	</div>
 	              </div>
 	              <div class="form-group">
 	              	<label for="text" class="col-sm-2 control-label">备注</label>
 	              	<div class="col-sm-8">
-                  		<textarea class="form-control" rows="3" th:text="*{text}" id="text" name="text" disabled="disabled"></textarea>
+                  		<textarea class="form-control" rows="3" th:text="*{text}" id="text" name="text" readonly="readonly"></textarea>
                   	</div>
 	              </div>
               </div>

@@ -46,6 +46,24 @@ public class User extends BaseEntity implements Serializable {
 
 	public User() {
 	}
+	
+	public User(String account, String password, String name, String sex, String phone, String department,
+			Integer roleId, Date createTime, Date updateTime, String status, String text) {
+		super();
+		this.account = account;
+		this.password = password;
+		this.name = name;
+		this.sex = sex;
+		this.phone = phone;
+		this.department = department;
+		this.roleId = roleId;
+		this.createTime = createTime;
+		this.updateTime = updateTime;
+		this.status = status;
+		this.text = text;
+	}
+
+
 
 	public Date getCreateTime() {
 		return this.createTime;

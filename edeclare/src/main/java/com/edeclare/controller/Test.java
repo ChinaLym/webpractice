@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edeclare.constant.fieldEnum.ActivityLevelEnum;
 import com.edeclare.constant.fieldEnum.ProjectStatusEnum;
+import com.edeclare.constant.fieldEnum.UserSexEnum;
+import com.edeclare.constant.fieldEnum.UserStatusEnum;
 import com.edeclare.entity.Project;
 import com.edeclare.entity.Role;
 import com.edeclare.entity.User;
@@ -57,8 +59,9 @@ public class Test {
     	return "test/websocket/websocketTest";
     }
     
-    @Autowired
     private static List<Project> projects = new ArrayList<Project>();
+    private static List<ActivityLevelEnum> levels = new ArrayList<ActivityLevelEnum>();
+    private static List<ProjectStatusEnum> proStatuses = new ArrayList<ProjectStatusEnum>();
     
     static {
     	projects.add(new Project("计算机", 1, 1, ActivityLevelEnum.SCHOOL_1.toString(), "申报项目一", "立项承诺", "好", 100, ProjectStatusEnum.FIRST_TRIAL_PENDING.toString(), "备注"));
@@ -66,6 +69,23 @@ public class Test {
     	projects.add(new Project("计算机", 3, 3, ActivityLevelEnum.SCHOOL_1.toString(), "申报项目三", "立项承诺", "好", 95, ProjectStatusEnum.FIRST_TRIAL_PENDING.toString(), "备注"));
     	projects.add(new Project("计算机", 4, 4, ActivityLevelEnum.SCHOOL_2.toString(), "申报项目四", "立项承诺", "好", 92, ProjectStatusEnum.FIRST_TRIAL_NOT_PASS.toString(), "备注"));
     	projects.add(new Project("计算机", 5, 5, ActivityLevelEnum.SCHOOL_1.toString(), "申报项目五", "立项承诺", "好", 98, ProjectStatusEnum.FIRST_TRIAL_PENDING.toString(), "备注"));
+    	levels.add(ActivityLevelEnum.SCHOOL_1);
+    	levels.add(ActivityLevelEnum.SCHOOL_2);
+    	proStatuses.add(ProjectStatusEnum.FIRST_TRIAL_PENDING);
+    	proStatuses.add(ProjectStatusEnum.FIRST_TRIAL_PASSED);
+    	proStatuses.add(ProjectStatusEnum.FIRST_TRIAL_NOT_PASS);
+    	
+    	proStatuses.add(ProjectStatusEnum.ESTABLISH_ON_TRIAL);
+    	proStatuses.add(ProjectStatusEnum.ESTABLISHED);
+    	proStatuses.add(ProjectStatusEnum.NO_ESTABLISHMENT);
+    	
+    	proStatuses.add(ProjectStatusEnum.MIDDLE_TRIAL_PENDING);
+    	proStatuses.add(ProjectStatusEnum.MIDDLE_RECTIFICATION);
+    	proStatuses.add(ProjectStatusEnum.MIDDLE_TRIAL_PASSED);
+    	
+    	proStatuses.add(ProjectStatusEnum.FINISHED_PENDING);
+    	proStatuses.add(ProjectStatusEnum.FINAL_RECTIFICATION);
+    	proStatuses.add(ProjectStatusEnum.FINISHED);
     }
     
     @GetMapping(value = "/managerLogin")
@@ -74,7 +94,8 @@ public class Test {
     }
     
     @GetMapping(value = "/toSbgz")
-    public String toSbgz() {
+    public String toSbgz(Map<Object, Object> map) {
+    	map.put("levels", levels);
     	return "manager/shenbaoguize";
     }
     
@@ -87,6 +108,8 @@ public class Test {
     @GetMapping(value = "/chushen")
     public String chushen(Map<Object, Object> map) {
     	map.put("project", projects.get(0));
+    	map.put("levels", levels);
+    	map.put("proStatuses", proStatuses);
     	return "manager/chushen";
     }
     
@@ -104,6 +127,8 @@ public class Test {
     @GetMapping(value = "/lixiang")
     public String lixaing(Map<Object, Object> map) {
     	map.put("project", projects.get(0));
+    	map.put("levels", levels);
+    	map.put("proStatuses", proStatuses);
     	return "manager/lixiangcheck";
     }
     
@@ -120,6 +145,8 @@ public class Test {
     private static List<User> users = new ArrayList<User>();
     private static Date date = new Date();
     private static List<Role> roles = new ArrayList<Role>();
+    private static List<UserSexEnum> sexes = new ArrayList<UserSexEnum>();
+    private static List<UserStatusEnum> statuses = new ArrayList<UserStatusEnum>();
     static {
     	SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
     	try {
@@ -128,15 +155,22 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	users.add(new User("123", "123456", "AA", "male", "15858274273", "教育部", 1, date, date, "NORMAL", "备注"));
-    	users.add(new User("124", "123456", "BB", "female", "15858274273", "教育部", 2, date, date, "NORMAL", "备注"));
-    	users.add(new User("125", "123456", "CC", "female", "15858274273", "教育部", 2, date, date, "NORMAL", "备注"));
-    	users.add(new User("126", "123456", "DD", "male", "15858274273", "教育部", 2, date, date, "NORMAL", "备注"));
-    	users.add(new User("127", "123456", "EE", "female", "15858274273", "教育部", 1, date, date, "NORMAL", "备注"));
-    	users.add(new User("128", "123456", "FF", "male", "15858274273", "教育部", 1, date, date, "NORMAL", "备注"));
-    	roles.add(new Role("1", "NORMAL", "角色一"));
-    	roles.add(new Role("2", "NORMAL", "角色二"));
-    	roles.add(new Role("3", "NORMAL", "角色三"));
+    	users.add(new User("123", "123456", "AA", UserSexEnum.MALE.toString(), "15858274273", "教育部", 1, date, date, UserStatusEnum.NORMAL.toString(), "备注"));
+    	users.add(new User("124", "123456", "BB", UserSexEnum.FEMALE.toString(), "15858274273", "教育部", 2, date, date, UserStatusEnum.FREEZING.toString(), "备注"));
+    	users.add(new User("125", "123456", "CC", UserSexEnum.FEMALE.toString(), "15858274273", "教育部", 2, date, date, UserStatusEnum.NORMAL.toString(), "备注"));
+    	users.add(new User("126", "123456", "DD", UserSexEnum.MALE.toString(), "15858274273", "教育部", 2, date, date, UserStatusEnum.FREEZING.toString(), "备注"));
+    	users.add(new User("127", "123456", "EE", UserSexEnum.MALE.toString(), "15858274273", "教育部", 1, date, date, UserStatusEnum.FREEZING.toString(), "备注"));
+    	users.add(new User("128", "123456", "FF", UserSexEnum.FEMALE.toString(), "15858274273", "教育部", 3, date, date, UserStatusEnum.FREEZING.toString(), "备注"));
+    	roles.add(new Role(1, "角色一", "NORMAL", "吃瓜"));
+    	roles.add(new Role(2, "角色二", "NORMAL", "吃瓜"));
+    	roles.add(new Role(3, "角色三", "NORMAL", "吃瓜"));
+    	sexes.add(UserSexEnum.MALE);
+    	sexes.add(UserSexEnum.FEMALE);
+    	sexes.add(UserSexEnum.SECRET);
+    	statuses.add(UserStatusEnum.NORMAL);
+    	statuses.add(UserStatusEnum.FREEZING);
+    	statuses.add(UserStatusEnum.EXCEPTIONS);
+    	statuses.add(UserStatusEnum.DESTROYED);
     }
     
     @GetMapping(value = "/toUserMana")
@@ -148,13 +182,32 @@ public class Test {
     @GetMapping(value = "/userInfo")
     public String userInfo(Map<Object, Object> map) {
     	map.put("user", users.get(0));
+    	map.put("sexes", sexes);
+    	map.put("roles", roles);
+    	map.put("statuses", statuses);
     	return "manager/userInfo";
     }
     
     @GetMapping(value = "/userEdit")
     public String userEdit(Map<Object, Object> map) {
     	map.put("user", users.get(1));
+    	map.put("sexes", sexes);
     	map.put("roles", roles);
+    	map.put("statuses", statuses);
     	return "manager/userEdit";
+    }
+    
+    @GetMapping(value = "/userInsert")
+    public String userInsert(Map<Object, Object> map) {
+    	map.put("sexes", sexes);
+    	map.put("roles", roles);
+    	map.put("statuses", statuses);
+    	return "manager/userInsert";
+    }
+    
+    @GetMapping(value = "/toResetPass")
+    public String toResetPass(Map<Object, Object> map) {
+    	map.put("users", users);
+    	return "manager/resetPassword";
     }
 }

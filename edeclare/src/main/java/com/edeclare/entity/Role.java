@@ -14,6 +14,8 @@ import javax.persistence.*;
 public class Role extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private Integer id;
+	
 	private String description;
 
 	private String name;
@@ -21,6 +23,22 @@ public class Role extends BaseEntity implements Serializable {
 	private String status;
 
 	public Role() {
+	}
+	
+	public Role(Integer id, String name, String status, String description) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.status = status;
+		this.description = description;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public Integer getId() {
+		return this.id;
 	}
 
 	public String getDescription() {
