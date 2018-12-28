@@ -27,15 +27,17 @@ CREATE TABLE `tb_activity` (
   `content` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '活动内容',
   `level` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '活动级别：[校级一类，校级二类]',
   `update_time` datetime DEFAULT NULL COMMENT '修改/发布时间',
-  `start_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `end_time` datetime DEFAULT NULL COMMENT '结束时间',
+  `start_time` datetime DEFAULT NULL COMMENT '阶段开始时间',
+  `end_time` datetime DEFAULT NULL COMMENT '阶段结束时间',
   `text` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '备注',
+  `birth_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `stage` varchar(30) DEFAULT NULL COMMENT '阶段',
   PRIMARY KEY (`pk_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_activity` */
 
-insert  into `tb_activity`(`pk_id`,`sponsor`,`title`,`content`,`level`,`update_time`,`start_time`,`end_time`,`text`) values (1,2,'第一届大学生JavaWeb大赛','报名者须...','一等','2018-12-15 21:03:39','2018-12-15 21:03:54','2019-01-16 21:03:58','强烈建议大家参与');
+insert  into `tb_activity`(`pk_id`,`sponsor`,`title`,`content`,`level`,`update_time`,`start_time`,`end_time`,`text`,`birth_time`,`stage`) values (1,2,'第一届大学生JavaWeb大赛','报名者须...','一等','2018-12-15 21:03:39','2018-12-15 21:03:54','2019-01-16 21:03:58','强烈建议大家参与',NULL,NULL);
 
 /*Table structure for table `tb_authority` */
 
@@ -90,13 +92,14 @@ CREATE TABLE `tb_meterial` (
   `change_time` datetime DEFAULT NULL COMMENT '修改时间',
   `end_time` datetime DEFAULT NULL COMMENT '最晚提交截止时间',
   `is_commit` tinyint(1) DEFAULT '0' COMMENT '是否提交',
+  `stage` varchar(30) DEFAULT NULL COMMENT '这是哪个阶段提交的材料【FIRST,ESTABLISH,MIDDLE,FINAL】初审、立项、中期、结题',
   PRIMARY KEY (`pk_id`),
   KEY `idx_project_id` (`idx_project_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_meterial` */
 
-insert  into `tb_meterial`(`pk_id`,`idx_project_id`,`name`,`text`,`url`,`create_time`,`change_time`,`end_time`,`is_commit`) values (1,1,'方舟反应炉','也称作常温核反应或者冷核聚变反应堆','D:/test/ArcReactor.jpg','2018-12-16 14:42:07','2018-12-16 14:42:15','2019-01-01 14:42:28',0);
+insert  into `tb_meterial`(`pk_id`,`idx_project_id`,`name`,`text`,`url`,`create_time`,`change_time`,`end_time`,`is_commit`,`stage`) values (1,1,'方舟反应炉','也称作常温核反应或者冷核聚变反应堆','D:/test/ArcReactor.jpg','2018-12-16 14:42:07','2018-12-16 14:42:15','2019-01-01 14:42:28',0,NULL);
 
 /*Table structure for table `tb_project` */
 
@@ -174,7 +177,7 @@ CREATE TABLE `tb_user` (
   PRIMARY KEY (`pk_id`),
   UNIQUE KEY `uk_account` (`uk_account`),
   KEY `idx_phone` (`idx_phone`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_user` */
 
