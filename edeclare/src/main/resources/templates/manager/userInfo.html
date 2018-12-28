@@ -174,7 +174,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             		<span>一级列表</span>
             	</a>
             </li> -->
-            <li class="treeview active">
+            <li class="treeview">
            		<a href="#">
             		<i class="fa fa-files-o"></i> 
             		<span>申报管理</span> 
@@ -184,7 +184,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               		<li><a href="toSbgz">&nbsp;&nbsp;<i class="fa fa-pencil"></i>设置申报规则</a></li>
              		<li><a href="toXmcs">&nbsp;&nbsp;<i class="fa fa-check"></i>项目初审</a></li>
              		<li><a href="toFpzj">&nbsp;&nbsp;<i class="fa fa-user"></i>分配专家</a></li>
-             		<li class="active"><a href="toLx">&nbsp;&nbsp;<i class="fa fa-book"></i>立项</a></li>
+             		<li><a href="toLx">&nbsp;&nbsp;<i class="fa fa-book"></i>立项</a></li>
             	</ul>
             </li>
             <li class="treeview">
@@ -209,14 +209,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               		<li><a href="toJtsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
             	</ul>
             </li>
-            <li class="treeview">
+            <li class="treeview active">
            		<a href="#">
             		<i class="fa fa-user"></i> 
             		<span>用户管理</span> 
             		<i class="fa fa-angle-left pull-right"></i>
             	</a>
             	<ul class="treeview-menu">
-              		<li><a href="toUserMana">&nbsp;&nbsp;<i class="fa fa-info-circle"></i>用户信息管理</a></li>
+              		<li class="active"><a href="toUserMana">&nbsp;&nbsp;<i class="fa fa-info-circle"></i>用户信息管理</a></li>
               		<li><a href="toUserRole">&nbsp;&nbsp;<i class="fa fa-users"></i>用户角色分配</a></li>
               		<li><a href="toResetPass">&nbsp;&nbsp;<i class="fa fa-refresh"></i>密码重置</a></li>
             	</ul>
@@ -256,19 +256,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <section class="content">
 
-        <div class="box box-info" style="width: 70%; margin: 0 auto 20px">
+          <!-- Your Page Content Here -->
+          <div class="box box-info" style="width: 70%; margin: 0 auto 20px">
             <div class="box-header with-border">
-              <h3 class="box-title">立项</h3>
+              <h3 class="box-title">查看用户信息</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" action="settingRule" method="POST" th:object=${project}>
+            <form class="form-horizontal" action="#" method="POST" th:object=${user}>
               <div class="box-body">
                 <div class="form-group">
-                  <label for=activityId class="col-sm-2 control-label">所属活动</label>
+                  <label for=account class="col-sm-2 control-label">账号</label>
 
-                  <div class="col-sm-2">
-                    <input type="text" class="form-control" id="activityId" th:value="*{activityId}" name="activityId" disabled="disabled">
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="account" th:value="*{account}" name="account" disabled="disabled">
                   </div>
                 </div>
                 <div class="form-group">
@@ -279,40 +280,52 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </div>
                 </div>
                <div class="form-group">
-                  <label for="director" class="col-sm-2 control-label">负责人</label>
+                  <label for="password" class="col-sm-2 control-label">密码</label>
                   <div class="col-sm-8">
-                  	<input type="text" class="form-control" th:value="*{director}" id="director" name="director" disabled="disabled"></input>
+                  	<input type="text" class="form-control" th:value="*{password}" id="password" name="password" disabled="disabled"></input>
                   </div>
                 </div>
                 <div class="form-group">
-	              	<label for="level" class="col-sm-2 control-label">级别</label>
+	              	<label for="sex" class="col-sm-2 control-label">性别</label>
 	              	<div class="col-sm-4">
-	              		<input type="text" class="form-control" id="level" name="level" th:value="*{level}" disabled="disabled"/>
+	              		<input type="text" class="form-control" id="sex" name="sex" th:value="*{sex}" disabled="disabled"/>
 	              	</div>
               	</div>
 	             
 	              <div class="form-group">
-	              	<label for="domain" class="col-sm-2 control-label">领域</label>
+	              	<label for="phone" class="col-sm-2 control-label">联系电话</label>
 	              	<div class="col-sm-8">
-                  		<input type="text" class="form-control" th:value="*{domain}" id="domain" name="domain" disabled="disabled"></input>
+                  		<input type="text" class="form-control" th:value="*{phone}" id="phone" name="phone" disabled="disabled"></input>
                   	</div>
 	              </div>
 	              <div class="form-group">
-	              	<label for="score" class="col-sm-2 control-label">专家评分</label>
+	              	<label for="department" class="col-sm-2 control-label">所属部门</label>
 	              	<div class="col-sm-8">
-                  		<input type="text" class="form-control" th:value="*{score}" id="score" name="score" disabled="disabled"></input>
+                  		<input type="text" class="form-control" th:value="*{department}" id="department" name="department" disabled="disabled"></input>
                   	</div>
 	              </div>
 	              <div class="form-group">
-	              	<label for="remarks" class="col-sm-2 control-label">专家评语</label>
-	              	<div class="col-sm-8">
-                  		<input type="text" class="form-control" th:value="*{remarks}" id="remarks" name="remarks" disabled="disabled"></input>
+	              	<label for="roleId" class="col-sm-2 control-label">所属角色</label>
+	              	<div class="col-sm-4">
+                  		<input type="text" class="form-control" th:value="*{roleId}" id="roleId" name="roleId" disabled="disabled"></input>
                   	</div>
 	              </div>
 	              <div class="form-group">
-	              	<label for="promise" class="col-sm-2 control-label">立项承诺</label>
-	              	<div class="col-sm-8">
-                  		<textarea rows="3" class="form-control" th:text="*{promise}" id="promise" name="promise" disabled="disabled"></textarea>
+	              	<label for="createTime" class="col-sm-2 control-label">创建时间</label>
+	              	<div class="col-sm-4">
+                  		<input class="form-control" th:value="*{createTime.month + 1} + '-' + *{createTime.date} + '-' + *{createTime.year}" id="createTime" name="createTime" disabled="disabled"></input>
+                  	</div>
+	              </div>
+	              <div class="form-group">
+	              	<label for="updateTime" class="col-sm-2 control-label">更新时间</label>
+	              	<div class="col-sm-4">
+                  		<input class="form-control" th:value="*{updateTime.month + 1} + '-' + *{updateTime.date} + '-' + *{updateTime.year}" id="updateTime" name="updateTime" disabled="disabled"></input>
+                  	</div>
+	              </div>
+	              <div class="form-group">
+	              	<label for="status" class="col-sm-2 control-label">状态</label>
+	              	<div class="col-sm-4">
+                  		<input class="form-control" th:value="*{status}" id="status" name="status" disabled="disabled"></input>
                   	</div>
 	              </div>
 	              <div class="form-group">
@@ -325,8 +338,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               
               <!-- /.box-body -->
               <div class="box-footer" style="padding: 10px 20%">
-                <a href="toLx"><button type="button" class="btn btn-default">取消</button></a>
-                <button type="submit" class="btn btn-info pull-right">提交</button>
+<!--                 <a href="toLx"><button type="button" class="btn btn-default">取消</button></a> -->
+                <a href="toUserMana"><button type="button" class="btn btn-info btn-lg" style="margin-left: 35%;width: 30%;">确定</button></a>
               </div>
               <!-- /.box-footer -->
             </form>

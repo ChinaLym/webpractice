@@ -1,10 +1,12 @@
 package com.edeclare.controller;
 
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.edeclare.constant.fieldEnum.ActivityLevelEnum;
 import com.edeclare.constant.fieldEnum.ProjectStatusEnum;
 import com.edeclare.entity.Project;
+import com.edeclare.entity.Role;
 import com.edeclare.entity.User;
 import com.edeclare.service.IUserService;
 /**
@@ -112,5 +115,46 @@ public class Test {
     @GetMapping(value = "/toJtgz")
     public String toJtgz() {
     	return "manager/jietiguize";
+    }
+    
+    private static List<User> users = new ArrayList<User>();
+    private static Date date = new Date();
+    private static List<Role> roles = new ArrayList<Role>();
+    static {
+    	SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+    	try {
+			date = sdf.parse("12-27-2018");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	users.add(new User("123", "123456", "AA", "male", "15858274273", "教育部", 1, date, date, "NORMAL", "备注"));
+    	users.add(new User("124", "123456", "BB", "female", "15858274273", "教育部", 2, date, date, "NORMAL", "备注"));
+    	users.add(new User("125", "123456", "CC", "female", "15858274273", "教育部", 2, date, date, "NORMAL", "备注"));
+    	users.add(new User("126", "123456", "DD", "male", "15858274273", "教育部", 2, date, date, "NORMAL", "备注"));
+    	users.add(new User("127", "123456", "EE", "female", "15858274273", "教育部", 1, date, date, "NORMAL", "备注"));
+    	users.add(new User("128", "123456", "FF", "male", "15858274273", "教育部", 1, date, date, "NORMAL", "备注"));
+    	roles.add(new Role("1", "NORMAL", "角色一"));
+    	roles.add(new Role("2", "NORMAL", "角色二"));
+    	roles.add(new Role("3", "NORMAL", "角色三"));
+    }
+    
+    @GetMapping(value = "/toUserMana")
+    public String toUserMana(Map<Object, Object> map) {
+    	map.put("users", users);
+    	return "manager/usermanager";
+    }
+    
+    @GetMapping(value = "/userInfo")
+    public String userInfo(Map<Object, Object> map) {
+    	map.put("user", users.get(0));
+    	return "manager/userInfo";
+    }
+    
+    @GetMapping(value = "/userEdit")
+    public String userEdit(Map<Object, Object> map) {
+    	map.put("user", users.get(1));
+    	map.put("roles", roles);
+    	return "manager/userEdit";
     }
 }
