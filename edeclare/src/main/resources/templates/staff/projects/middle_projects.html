@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>管理员</title>
+    <title>教职工</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -58,7 +58,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="managerLogin" class="logo">
+        <a href="staffLogin" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>E-Declare</b></span>
           <!-- logo for regular state and mobile devices -->
@@ -162,75 +162,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <ul class="sidebar-menu">
             <li class="header">Please Choose</li>
             <!-- Optionally, you can add icons to the links -->
-           <!--  <li class="active">
-            	<a href="#">
-            		<i class="fa fa-hand-o-right"></i> 
-            		<span>一级列表</span>
+           
+           <li>
+            	<a href="toXmxq">
+            		<i class="fa fa-file-text"></i> 
+            		<span>项目详情</span>
             	</a>
             </li>
-            <li>
-            	<a href="#">
-            		<i class="fa fa-hand-o-right"></i> 
-            		<span>一级列表</span>
+             <li>
+            	<a href="toSbxm">
+            		<i class="fa fa-file-word-o"></i> 
+            		<span>申报项目</span>
             	</a>
-            </li> -->
-            <li class="treeview">
-           		<a href="#">
-            		<i class="fa fa-files-o"></i> 
-            		<span>申报管理</span> 
-            		<i class="fa fa-angle-left pull-right"></i>
-            	</a>
-            	<ul class="treeview-menu">
-              		<li><a href="toSbgz">&nbsp;&nbsp;<i class="fa fa-pencil"></i>设置申报规则</a></li>
-             		<li><a href="toXmcs">&nbsp;&nbsp;<i class="fa fa-check"></i>项目初审</a></li>
-             		<li><a href="toFpzj">&nbsp;&nbsp;<i class="fa fa-user"></i>分配专家</a></li>
-             		<li><a href="toLx">&nbsp;&nbsp;<i class="fa fa-book"></i>立项</a></li>
-            	</ul>
-            </li>
-            <li class="treeview">
-           		<a href="#">
-            		<i class="fa fa-files-o"></i> 
-            		<span>中期检查管理</span> 
-            		<i class="fa fa-angle-left pull-right"></i>
-            	</a>
-            	<ul class="treeview-menu">
-              		<li><a href="toZqgz">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
-              		<li><a href="toZqsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
-            	</ul>
-            </li>
-            <li class="treeview">
-           		<a href="#">
-            		<i class="fa fa-files-o"></i> 
-            		<span>结题验收管理</span> 
-            		<i class="fa fa-angle-left pull-right"></i>
-            	</a>
-            	<ul class="treeview-menu">
-              		<li><a href="toJtgz">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
-              		<li><a href="toJtsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
-            	</ul>
             </li>
             <li class="treeview active">
            		<a href="#">
-            		<i class="fa fa-user"></i> 
-            		<span>用户管理</span> 
+            		<i class="fa fa-files-o"></i> 
+            		<span>上传材料</span> 
             		<i class="fa fa-angle-left pull-right"></i>
             	</a>
             	<ul class="treeview-menu">
-              		<li class="active"><a href="#">&nbsp;&nbsp;<i class="fa fa-info-circle"></i>用户信息管理</a></li>
-              		<li><a href="toUserRole">&nbsp;&nbsp;<i class="fa fa-users"></i>用户角色分配</a></li>
-              		<li><a href="toResetPass">&nbsp;&nbsp;<i class="fa fa-refresh"></i>密码重置</a></li>
-            	</ul>
-            </li>
-            <li class="treeview">
-           		<a href="#">
-            		<i class="fa fa-cog"></i> 
-            		<span>系统设置</span> 
-            		<i class="fa fa-angle-left pull-right"></i>
-            	</a>
-            	<ul class="treeview-menu">
-              		<li><a href="toRoleMana">&nbsp;&nbsp;<i class="fa fa-users"></i>角色管理</a></li>
-              		<li><a href="toMenuMana">&nbsp;&nbsp;<i class="fa fa-bars"></i>菜单管理</a></li>
-              		<li><a href="toAssignPer">&nbsp;&nbsp;<i class="fa fa-hand-paper-o"></i>角色权限分配</a></li>
+              		<li class="active"><a href="#">&nbsp;&nbsp;<i class="fa fa-file-text-o"></i>上传中期材料</a></li>
+             		<li><a href="toJtcl">&nbsp;&nbsp;<i class="fa fa-file-text-o"></i>上传结题材料</a></li>
             	</ul>
             </li>
           </ul><!-- /.sidebar-menu -->
@@ -256,12 +209,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <section class="content">
 
+          <!-- Your Page Content Here -->
          <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">用户信息管理</h3>
-                  <a th:href="@{/userInsert}" style="margin-left: 65%">
-                  	<button type="button" class="btn btn-info btn-sm"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;新增</button>
-                  </a>
+                  <h3 class="box-title">项目信息</h3>
                   <div class="box-tools">
                     <div class="input-group" style="width: 150px;">
                       <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
@@ -276,45 +227,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   	<thead>
                   		<tr>
 	                      <th>#</th>
-	                      <th>Account</th>
+	                      <th>Activity_ID</th>
 	                      <th>Name</th>
-	                      <th>Password</th>
-	                      <th>Sex</th>
-	                      <th>Phone</th>
-	                      <th>Department</th>
-	                      <th>Role</th>
-	                      <th>CreateTime</th>
-	                      <th>UpdateTime</th>
+	                      <th>User_ID</th>
+	                      <th>Level</th>
+	                      <th>Domain</th>
+	                      <th>Promise</th>
+	                      <!-- <th>Remark</th>
+	                      <th>Score</th> -->
 	                      <th>Status</th>
 	                      <th>Text</th>
 	                      <th>Operation</th>
 	                    </tr>
                   	</thead>
                    	 <tbody th:remove="all-but-first">
-                   		<tr th:each="user:${users}">
-                   		  <td th:text="${userStat.count}"></td>
-	                      <td th:text="${user.account}">Account</td>
-	                      <td th:text="${user.name}">Name</td>
-	                      <td th:text="${user.password}">Password</td>
-	                      <td th:text="${user.sex}">Sex</td>
-	                      <td th:text="${user.phone}">Phone</td>
-	                      <td th:text="${user.department}">Department</td>
-	                      <td th:text="${user.roleId}">Role</td>
-	                      <td th:text="${user.createTime.month + 1} + '-' + ${user.createTime.date} + '-' + ${user.createTime.year}">CreateTime</td>
-	                      <td th:text="${user.updateTime.month + 1} + '-' + ${user.updateTime.date} + '-' + ${user.updateTime.year}">UpdateTime</td>
-	                      <td th:text="${user.status}">Status</td>
-	                      <td th:text="${user.text}">Text</td>
+                   		<tr th:each="pro:${pros}">
+                   		  <td th:text="${proStat.count}"></td>
+	                      <td th:text="${pro.activityId}">Activity_ID</td>
+	                      <td th:text="${pro.name}">Name</td>
+	                      <td th:text="${pro.director}">User_ID</td>
+	                      <td th:text="${pro.level}">Level</td>
+	                      <td th:text="${pro.domain}">Domain</td>
+	                      <td th:text="${pro.promise}">Promise</td>
+	                      <!-- <td th:text="${pro.remarks}">Remark</td>
+	                      <td th:text="${pro.score}">Score</td> -->
+	                      <td th:text="${pro.status}">Status</td>
+	                      <td th:text="${pro.text}">Text</td>
 	                      <td>
-	                      	<a th:href="@{/userInfo(name=${user.name})}">
-	                      		<button type="button" class="btn btn-info btn-sm"><i class="fa fa-check"></i>&nbsp;&nbsp;查看</button>
-	                      	</a>
-	                      	&nbsp;&nbsp;
-	                      	<a th:href="@{/userEdit(name=${user.name})}">
-	                      		<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>&nbsp;&nbsp;编辑</button>
-	                      	</a>
-	                      	&nbsp;&nbsp;
-	                      	<a th:href="@{/userDelete(name=${user.name})}">
-	                      		<button type="button" class="btn btn-danger btn-sm userDelete" data-toggle="modal" data-target="#userDelete"><i class="fa fa-trash"></i>&nbsp;&nbsp;删除</button>
+	                      	<!-- <a th:if="('ESTABLISHED' eq ${pro.status}) or ('MIDDLE_RECTIFICATION' eq ${pro.status})" th:href="@{/toZqcl}">
+	                      		<button type="button" class="btn btn-primary btn-sm">上传材料</button>
+	                      	</a> -->
+	                      	<!-- <a th:if="'MIDDLE_RECTIFICATION' eq ${pro.status}" th:href="@{/zqcl(proName=${pro.name})}">
+	                      		<button type="button" class="btn btn-primary btn-sm">上传材料</button>
+	                      	</a> -->
+	                      	<!-- <a th:if="('MIDDLE_TRIAL_PASSED' eq ${pro.status}) or ('FINAL_RECTIFICATION' eq ${pro.status})" th:href="@{/toJtcl}">
+	                      		<button type="button" class="btn btn-primary btn-sm">上传材料</button>
+	                      	</a> -->
+	                      	<!-- <a th:if="'FINAL_RECTIFICATION' eq ${pro.status}" th:href="@{/jtcl(proName=${pro.name})}">
+	                      		<button type="button" class="btn btn-primary btn-sm">上传材料</button>
+	                      	</a> -->
+	                      	<a th:href="@{/zqcl(proName=${pro.name})}">
+	                      		<button type="button" class="btn btn-primary btn-sm">上传材料</button>
 	                      	</a>
 	                      </td>
                    		</tr>
@@ -331,28 +284,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </ul>
                 </div>
               </div>
-              
-              <div class="modal fade" id="userDelete" style="display: none;">
-		          <div class="modal-dialog">
-		            <div class="modal-content">
-		              <div class="modal-header">
-		                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		                  <span aria-hidden="true">×</span></button>
-		                <h4 class="modal-title">警告</h4>
-		              </div>
-		              <div class="modal-body">
-		                <p>确认删除该用户信息？</p>
-		              </div>
-		              <div class="modal-footer">
-		                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
-		                <button type="button" class="btn btn-primary">确认</button>
-		              </div>
-		            </div>
-		            <!-- /.modal-content -->
-		          </div>
-		          <!-- /.modal-dialog -->
-		       </div>
-              
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
@@ -367,27 +298,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="AdminLTE/bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="AdminLTE/dist/js/app.min.js"></script>
-    <script src="AdminLTE/bower_components/fastclick/lib/fastclick.js"></script>
-    <script src="AdminLTE/dist/js/demo.js"></script>
-    <script src="AdminLTE/dist/js/adminlte.min.js"></script>
 
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
          fixed layout. -->
-         
-     <script type="text/javascript">
-     	$(function(){
-     		$(".userDelete").click(function(){
-//      			var href = $(this).parent().attr("href");
-//      			var flag = confirm("确定删除该用户信息？");
-//      			if(flag){
-//      				window.location.href = href;
-//      			}
-     			return false;
-     		})
-     	})
-     	
-     </script>
   </body>
 </html>

@@ -72,7 +72,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <span class="sr-only">Toggle navigation</span>
           </a>
           <!-- Navbar Right Menu -->
-          <div class="navbar-custom-menu">
+          <div class="navbar-custom-menu" style="margin-right: 8%;">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu">
@@ -114,7 +114,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- User menu -->
 			<li class="dropdown">
 	             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
-	               User <span class="caret"></span>
+	               <span th:text="${session.username}">User</span><span class="caret"></span>
 	             </a>
 	             <ul class="dropdown-menu">
 	               <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="text-align: center"><i class="fa fa-info-circle"></i>个人信息</a></li>
@@ -141,7 +141,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <img src="AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p th:text="${session.username}">Alexander Pierce</p>
               <!-- Status -->
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -209,26 +209,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
               		<li><a href="toJtsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
             	</ul>
             </li>
-            <li class="treeview active">
+            <li class="treeview">
            		<a href="#">
             		<i class="fa fa-user"></i> 
             		<span>用户管理</span> 
             		<i class="fa fa-angle-left pull-right"></i>
             	</a>
             	<ul class="treeview-menu">
-              		<li class="active"><a href="toUserMana">&nbsp;&nbsp;<i class="fa fa-info-circle"></i>用户信息管理</a></li>
+              		<li><a href="toUserMana">&nbsp;&nbsp;<i class="fa fa-info-circle"></i>用户信息管理</a></li>
               		<li><a href="toUserRole">&nbsp;&nbsp;<i class="fa fa-users"></i>用户角色分配</a></li>
               		<li><a href="toResetPass">&nbsp;&nbsp;<i class="fa fa-refresh"></i>密码重置</a></li>
             	</ul>
             </li>
-            <li class="treeview">
+            <li class="treeview active">
            		<a href="#">
             		<i class="fa fa-cog"></i> 
             		<span>系统设置</span> 
             		<i class="fa fa-angle-left pull-right"></i>
             	</a>
             	<ul class="treeview-menu">
-              		<li><a href="toRoleMana">&nbsp;&nbsp;<i class="fa fa-users"></i>角色管理</a></li>
+              		<li class="active"><a href="#">&nbsp;&nbsp;<i class="fa fa-users"></i>角色管理</a></li>
               		<li><a href="toMenuMana">&nbsp;&nbsp;<i class="fa fa-bars"></i>菜单管理</a></li>
               		<li><a href="toAssignPer">&nbsp;&nbsp;<i class="fa fa-hand-paper-o"></i>角色权限分配</a></li>
             	</ul>
@@ -244,8 +244,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <section class="content-header">
           <h1>
             	欢迎您！
-            <small>User</small>
-<!--             <small th:text="${user.username}">首页</small> -->
+<!--             <small>User</small> -->
+            <small th:text="${session.username}">User</small>
           </h1>
           <!-- <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -256,118 +256,88 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <section class="content">
 
-          <!-- Your Page Content Here -->
-          <div class="box box-info" style="width: 70%; margin: 0 auto 20px">
-            <div class="box-header with-border">
-              <h3 class="box-title">添加用户</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form class="form-horizontal" action="userInsert" method="POST">
-              <div class="box-body">
-                <div class="form-group">
-                  <label for=account class="col-sm-2 control-label">账号</label>
-
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" id="account" name="account" >
+         <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">角色信息管理</h3>
+                  <a th:href="@{/roleInsert}" style="margin-left: 65%">
+                  	<button type="button" class="btn btn-success btn-sm"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;新增</button>
+                  </a>
+                  <div class="box-tools">
+                    <div class="input-group" style="width: 150px;">
+                      <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
+                      <div class="input-group-btn">
+                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
                   </div>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                  	<thead>
+                  		<tr>
+	                      <th>#</th>
+	                      <th>Name</th>
+	                      <th>Description</th>
+	                      <th>Status</th>
+	                      <th>Operation</th>
+	                    </tr>
+                  	</thead>
+                   	 <tbody th:remove="all-but-first">
+                   		<tr th:each="role:${roles}">
+                   		  <td th:text="${roleStat.count}"></td>
+	                      <td th:text="${role.name}">Name</td>
+	                      <td th:text="${role.description}">Description</td>
+	                      <td th:text="${role.status}">Status</td>
+	                      <td>
+	                      	<!-- <a th:href="@{/roleInfo(name=${role.name})}">
+	                      		<button type="button" class="btn btn-info btn-sm"><i class="fa fa-check"></i>&nbsp;&nbsp;查看</button>
+	                      	</a>
+	                      	&nbsp;&nbsp; -->
+	                      	<a th:href="@{/roleEdit(name=${role.name})}">
+	                      		<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>&nbsp;&nbsp;编辑</button>
+	                      	</a>
+	                      	&nbsp;&nbsp;
+	                      	<a th:href="@{/roleDelete(name=${role.name})}"></a>
+	                      		<button type="button" class="btn btn-danger btn-sm userDelete" data-toggle="modal" data-target="#userDelete"><i class="fa fa-trash"></i>&nbsp;&nbsp;删除</button>
+	                      </td>
+                   		</tr>
+                 	 </tbody>
+                  </table>
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix">
+                  <ul class="pagination pagination-sm no-margin pull-right">
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">»</a></li>
+                  </ul>
                 </div>
-                <div class="form-group">
-                  <label for="name" class="col-sm-2 control-label">名称</label>
-
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" id="name" name="name" >
-                  </div>
-                </div>
-               <div class="form-group">
-                  <label for="password" class="col-sm-2 control-label">密码</label>
-                  <div class="col-sm-8">
-                  	<input type="text" class="form-control"  id="password" name="password" ></input>
-                  </div>
-                </div>
-                <div class="form-group">
-	              	<label for="sex" class="col-sm-2 control-label">性别</label>
-	              	<div class="col-sm-4">
-<!-- 	              		<input type="text" class="form-control" id="sex" name="sex" th:value="*{sex}" /> -->
-	              		<select class='form-control' data-required="true" name="sex" id="sex">
-	              			<option value="">请选择</option>
-	              			<option th:each="sex:${sexes}" th:text="${sex.value}" th:value="${sex.value}"></option>
-	              		</select>
-	              	</div>
-              	</div>
-	             
-	              <div class="form-group">
-	              	<label for="phone" class="col-sm-2 control-label">联系电话</label>
-	              	<div class="col-sm-8">
-                  		<input type="text" class="form-control" id="phone" name="phone" ></input>
-                  	</div>
-	              </div>
-	              <div class="form-group">
-	              	<label for="department" class="col-sm-2 control-label">所属部门</label>
-	              	<div class="col-sm-8">
-                  		<input type="text" class="form-control" id="department" name="department" ></input>
-                  	</div>
-	              </div>
-	              <div class="form-group">
-	              	<label for="roleId" class="col-sm-2 control-label">所属角色</label>
-	              	<div class="col-sm-4">
-                  	<select class="form-control" data-required="true" name="roleId" id="roleId">
-                  		<option value="">请选择</option>
-                  		<option th:each="role:${roles}" th:text="${role.name}" th:value="${role.id}"></option>
-                  	</select>
-                  	</div>
-	              </div>
-	              
-	              <div class="form-group">
-	                <label for="createTime" class="col-sm-2 control-label">创建时间</label>
-					<div class="col-sm-4">
-		                <div class="input-group date">
-		                  <div class="input-group-addon">
-		                    <i class="fa fa-calendar"></i>
-		                  </div>
-		                  <input type="text" class="form-control pull-right" id="createTime" name="createTime">
-		                </div>
-	                </div>
-	              </div>
-	              <div class="form-group">
-	                <label for="updateTime" class="col-sm-2 control-label">结束时间</label>
-					<div class="col-sm-4">
-		                <div class="input-group date">
-		                  <div class="input-group-addon">
-		                    <i class="fa fa-calendar"></i>
-		                  </div>
-		                  <input type="text" class="form-control pull-right" id="updateTime" name="updateTime">
-		                </div>
-	                </div>
-	              </div>
-	              
-	              <div class="form-group">
-	              	<label for="status" class="col-sm-2 control-label">状态</label>
-	              	<div class="col-sm-4">
-<!--                   		<input class="form-control"id="status" name="status" ></input> -->
-						<select class="form-control" data-required="true" id="status" name="status">
-							<option value="">请选择</option>
-                  			<option th:each="status:${statuses}" th:text="${status.toString()}" th:value="${status.toString()}"></option>
-                  		</select>
-                  	</div>
-	              </div>
-	              <div class="form-group">
-	              	<label for="text" class="col-sm-2 control-label">备注</label>
-	              	<div class="col-sm-8">
-                  		<textarea class="form-control" rows="3" id="text" name="text" ></textarea>
-                  	</div>
-	              </div>
               </div>
               
-              <!-- /.box-body -->
-              <div class="box-footer" style="padding: 10px 20%">
-                <a href="toUserMana"><button type="button" class="btn btn-default">取消</button></a>
-                <button type="submit" class="btn btn-primary pull-right">确定</button>
-              </div>
-              <!-- /.box-footer -->
-            </form>
-          </div>
 
+              <div class="modal fade" id="userDelete" style="display: none;">
+		          <div class="modal-dialog" style="width: 30%;">
+		            <div class="modal-content">
+		              <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                  <span aria-hidden="true">×</span></button>
+		                <h4 class="modal-title">警告</h4>
+		              </div>
+		              <div class="modal-body">
+		                <p id="deleteName">确认删除该用户信息？</p>
+		              </div>
+		              <div class="modal-footer">
+		                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+		                <button type="button" class="btn btn-primary" id="deleteBtn">确认</button>
+		              </div>
+		            </div>
+		            <!-- /.modal-content -->
+		          </div>
+		          <!-- /.modal-dialog -->
+		       </div>
+		       
+              
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
@@ -375,31 +345,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- REQUIRED JS SCRIPTS -->
 
-       <!-- jQuery 2.1.4 -->
+    <!-- jQuery 2.1.4 -->
     <script src="AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="AdminLTE/bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="AdminLTE/dist/js/app.min.js"></script>
-    <!-- AdminLTE demo -->
+    <script src="AdminLTE/bower_components/fastclick/lib/fastclick.js"></script>
     <script src="AdminLTE/dist/js/demo.js"></script>
-    <!-- DatePicker -->
-    <script src="AdminLTE/bower_components/moment/min/moment.min.js"></script>
-    <script src="AdminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <script src="AdminLTE/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-    <script src="AdminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="AdminLTE/dist/js/adminlte.min.js"></script>
 
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
          fixed layout. -->
-    <script type="text/javascript">
-    	$("#createTime").datepicker({
-    		autoclose: true
-    	})
-    	$("#updateTime").datepicker({
-    		autoclose: true
-    	})
-    </script>
+         
+     <script type="text/javascript">
+     	$(function(){
+     		$(".userDelete").click(function(){
+     			var href = $(this).parent().find("a").eq(2).attr("href");
+     			var deleteName = $(this).parent().parent().find("td").eq(2).text();
+     			$("#deleteBtn").attr("onclick", "deleteUser('"+  href + "')");
+     			$("#deleteName").text("确认删除用户“" + deleteName + "”的信息？");
+     		})
+     	})
+     	function deleteUser(data){
+     		window.location.href = data;
+     	}
+     	
+     </script>
   </body>
 </html>

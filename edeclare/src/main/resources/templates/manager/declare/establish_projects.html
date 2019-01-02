@@ -114,7 +114,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- User menu -->
 			<li class="dropdown">
 	             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
-	               <span th:text="${session.username}">User</span> <span class="caret"></span>
+	               <span th:text="${session.username}">User</span><span class="caret"></span>
 	             </a>
 	             <ul class="dropdown-menu">
 	               <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="text-align: center"><i class="fa fa-info-circle"></i>个人信息</a></li>
@@ -174,7 +174,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             		<span>一级列表</span>
             	</a>
             </li> -->
-            <li class="treeview">
+            <li class="treeview active">
            		<a href="#">
             		<i class="fa fa-files-o"></i> 
             		<span>申报管理</span> 
@@ -184,7 +184,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               		<li><a href="toSbgz">&nbsp;&nbsp;<i class="fa fa-pencil"></i>设置申报规则</a></li>
              		<li><a href="toXmcs">&nbsp;&nbsp;<i class="fa fa-check"></i>项目初审</a></li>
              		<li><a href="toFpzj">&nbsp;&nbsp;<i class="fa fa-user"></i>分配专家</a></li>
-             		<li><a href="toLx">&nbsp;&nbsp;<i class="fa fa-book"></i>立项</a></li>
+             		<li class="active"><a href="#">&nbsp;&nbsp;<i class="fa fa-book"></i>立项</a></li>
             	</ul>
             </li>
             <li class="treeview">
@@ -245,7 +245,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <h1>
             	欢迎您！
 <!--             <small>User</small> -->
-            <small th:text="${session.username}">User</small>
+            <small th:text="${session.username}">首页</small>
           </h1>
           <!-- <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -259,7 +259,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Your Page Content Here -->
           <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Responsive Hover Table</h3>
+                  <h3 class="box-title">立项信息</h3>
                   <div class="box-tools">
                     <div class="input-group" style="width: 150px;">
                       <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
@@ -271,43 +271,53 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
-                    <tbody><tr>
-                      <th>ID</th>
-                      <th>User</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                      <th>Reason</th>
-                    </tr>
-                    <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-success">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>219</td>
-                      <td>Alexander Pierce</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-warning">Pending</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>657</td>
-                      <td>Bob Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-primary">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>175</td>
-                      <td>Mike Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-danger">Denied</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                  </tbody></table>
+                  	<thead>
+                  		<tr>
+	                      <th>#</th>
+	                      <th>Activity_ID</th>
+	                      <th>Name</th>
+	                      <th>User_ID</th>
+	                      <th>Level</th>
+	                      <th>Domain</th>
+	                      <th>Promise</th>
+	                      <th>Remark</th>
+	                      <th>Score</th>
+	                      <th>Status</th>
+	                      <th>Text</th>
+	                      <th>Check</th>
+	                    </tr>
+                  	</thead>
+                   	 <tbody th:remove="all-but-first">
+                   		<tr th:each="pro:${projects}">
+                   		  <td th:text="${proStat.count}"></td>
+	                      <td th:text="${pro.activityId}">Activity_ID</td>
+	                      <td th:text="${pro.name}">Name</td>
+	                      <td th:text="${pro.director}">User_ID</td>
+	                      <td th:text="${pro.level}">Level</td>
+	                      <td th:text="${pro.domain}">Domain</td>
+	                      <td th:text="${pro.promise}">Promise</td>
+	                      <td th:text="${pro.remarks}">Remark</td>
+	                      <td th:text="${pro.score}">Score</td>
+	                      <td th:text="${pro.status}">Status</td>
+	                      <td th:text="${pro.text}">Text</td>
+	                      <td>
+	                      	<a th:href="@{/lixiang(proName=${pro.name})}">
+	                      		<button type="button" class="btn btn-block btn-primary btn-sm">立项</button>
+	                      	</a>
+	                      </td>
+                   		</tr>
+                 	 </tbody>
+                  </table>
                 </div><!-- /.box-body -->
+                <div class="box-footer clearfix">
+                  <ul class="pagination pagination-sm no-margin pull-right">
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">»</a></li>
+                  </ul>
+                </div>
               </div>
 
         </section><!-- /.content -->

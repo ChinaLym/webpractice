@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>管理员</title>
+    <title>教职工</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -58,7 +58,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="managerLogin" class="logo">
+        <a href="staffLogin" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>E-Declare</b></span>
           <!-- logo for regular state and mobile devices -->
@@ -162,75 +162,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <ul class="sidebar-menu">
             <li class="header">Please Choose</li>
             <!-- Optionally, you can add icons to the links -->
-           <!--  <li class="active">
-            	<a href="#">
-            		<i class="fa fa-hand-o-right"></i> 
-            		<span>一级列表</span>
+           
+           <li>
+            	<a href="toXmxq">
+            		<i class="fa fa-file-text"></i> 
+            		<span>项目详情</span>
             	</a>
             </li>
-            <li>
-            	<a href="#">
-            		<i class="fa fa-hand-o-right"></i> 
-            		<span>一级列表</span>
+             <li class="active">
+            	<a href="toSbxm">
+            		<i class="fa fa-file-word-o"></i> 
+            		<span>申报项目</span>
             	</a>
-            </li> -->
-            <li class="treeview">
-           		<a href="#">
-            		<i class="fa fa-files-o"></i> 
-            		<span>申报管理</span> 
-            		<i class="fa fa-angle-left pull-right"></i>
-            	</a>
-            	<ul class="treeview-menu">
-              		<li><a href="toSbgz">&nbsp;&nbsp;<i class="fa fa-pencil"></i>设置申报规则</a></li>
-             		<li><a href="toXmcs">&nbsp;&nbsp;<i class="fa fa-check"></i>项目初审</a></li>
-             		<li><a href="toFpzj">&nbsp;&nbsp;<i class="fa fa-user"></i>分配专家</a></li>
-             		<li><a href="toLx">&nbsp;&nbsp;<i class="fa fa-book"></i>立项</a></li>
-            	</ul>
             </li>
             <li class="treeview">
            		<a href="#">
             		<i class="fa fa-files-o"></i> 
-            		<span>中期检查管理</span> 
+            		<span>上传材料</span> 
             		<i class="fa fa-angle-left pull-right"></i>
             	</a>
             	<ul class="treeview-menu">
-              		<li><a href="toZqgz">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
-              		<li><a href="toZqsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
-            	</ul>
-            </li>
-            <li class="treeview">
-           		<a href="#">
-            		<i class="fa fa-files-o"></i> 
-            		<span>结题验收管理</span> 
-            		<i class="fa fa-angle-left pull-right"></i>
-            	</a>
-            	<ul class="treeview-menu">
-              		<li><a href="toJtgz">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
-              		<li><a href="toJtsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
-            	</ul>
-            </li>
-            <li class="treeview active">
-           		<a href="#">
-            		<i class="fa fa-user"></i> 
-            		<span>用户管理</span> 
-            		<i class="fa fa-angle-left pull-right"></i>
-            	</a>
-            	<ul class="treeview-menu">
-              		<li class="active"><a href="toUserMana">&nbsp;&nbsp;<i class="fa fa-info-circle"></i>用户信息管理</a></li>
-              		<li><a href="toUserRole">&nbsp;&nbsp;<i class="fa fa-users"></i>用户角色分配</a></li>
-              		<li><a href="toResetPass">&nbsp;&nbsp;<i class="fa fa-refresh"></i>密码重置</a></li>
-            	</ul>
-            </li>
-            <li class="treeview">
-           		<a href="#">
-            		<i class="fa fa-cog"></i> 
-            		<span>系统设置</span> 
-            		<i class="fa fa-angle-left pull-right"></i>
-            	</a>
-            	<ul class="treeview-menu">
-              		<li><a href="toRoleMana">&nbsp;&nbsp;<i class="fa fa-users"></i>角色管理</a></li>
-              		<li><a href="toMenuMana">&nbsp;&nbsp;<i class="fa fa-bars"></i>菜单管理</a></li>
-              		<li><a href="toAssignPer">&nbsp;&nbsp;<i class="fa fa-hand-paper-o"></i>角色权限分配</a></li>
+              		<li><a href="toZqcl">&nbsp;&nbsp;<i class="fa fa-file-text-o"></i>上传中期材料</a></li>
+             		<li><a href="toJtcl">&nbsp;&nbsp;<i class="fa fa-file-text-o"></i>上传结题材料</a></li>
             	</ul>
             </li>
           </ul><!-- /.sidebar-menu -->
@@ -256,106 +209,81 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <section class="content">
 
-          <!-- Your Page Content Here -->
-          <div class="box box-info" style="width: 70%; margin: 0 auto 20px">
+           <div class="box box-info" style="width: 70%; margin: 0 auto 20px">
             <div class="box-header with-border">
-              <h3 class="box-title">查看用户信息</h3>
+              <h3 class="box-title">申报项目</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" action="#" method="POST" th:object=${user}>
+            <form class="form-horizontal" action="declareProject" method="POST" id="declareProject">
               <div class="box-body">
                 <div class="form-group">
-                  <label for=account class="col-sm-2 control-label">账号</label>
+                  <label for=activityId class="col-sm-2 control-label">所属活动</label>
 
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" id="account" th:value="*{account}" name="account" readonly="readonly">
+                  <div class="col-sm-2">
+                    <input type="text" class="form-control" id="activityId" name="activityId">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="name" class="col-sm-2 control-label">名称</label>
 
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="name" th:value="*{name}" name="name" readonly="readonly">
+                    <input type="text" class="form-control" id="name" name="name" >
                   </div>
                 </div>
                <div class="form-group">
-                  <label for="password" class="col-sm-2 control-label">密码</label>
+                  <label for="director" class="col-sm-2 control-label">负责人</label>
                   <div class="col-sm-8">
-                  	<input type="text" class="form-control" th:value="*{password}" id="password" name="password" readonly="readonly"/>
+                  	<input type="text" class="form-control" id="director" name="director" ></input>
                   </div>
                 </div>
                 <div class="form-group">
-	              	<label for="sex" class="col-sm-2 control-label">性别</label>
+	              	<label for="level" class="col-sm-2 control-label">级别</label>
 	              	<div class="col-sm-4">
-<!-- 	              		<input type="text" class="form-control" id="sex" name="sex" th:value="*{sex}" readonly="readonly"/> -->
-						<select th:field="*{sex}" class="form-control" data-required="true" disabled="disabled">
+<!-- 	              		<input type="text" class="form-control" id="level" name="level" th:value="*{level}" readonly="readonly"/> -->
+						<select  class="form-control" id="level" name="level">
 							<option value="">请选择</option>
-	              			<option th:each="sex:${sexes}" th:text="${sex.value}" th:value="${sex.value}"></option>
-	              		</select>
+							<option th:each="level:${levels}" th:text="${level.toString()}" th:value="${level.toString()}"></option>
+						</select>
 	              	</div>
               	</div>
 	             
 	              <div class="form-group">
-	              	<label for="phone" class="col-sm-2 control-label">联系电话</label>
+	              	<label for="domain" class="col-sm-2 control-label">领域</label>
 	              	<div class="col-sm-8">
-                  		<input type="text" class="form-control" th:value="*{phone}" id="phone" name="phone" readonly="readonly"/>
+                  		<input type="text" class="form-control" id="domain" name="domain"></input>
                   	</div>
 	              </div>
 	              <div class="form-group">
-	              	<label for="department" class="col-sm-2 control-label">所属部门</label>
+	              	<label for="promise" class="col-sm-2 control-label">立项承诺</label>
 	              	<div class="col-sm-8">
-                  		<input type="text" class="form-control" th:value="*{department}" id="department" name="department" readonly="readonly"/>
-                  	</div>
-	              </div>
-	              <div class="form-group">
-	              	<label for="roleId" class="col-sm-2 control-label">所属角色</label>
-	              	<div class="col-sm-4">
-<!--                   		<input type="text" class="form-control" th:value="*{roleId}" id="roleId" name="roleId" readonly="readonly"/> -->
-						<select th:field="*{roleId}" class="form-control" data-required="true" disabled="disabled">
-                  			<option value="">请选择</option>
-                  			<option th:each="role:${roles}" th:text="${role.name}" th:value="${role.id}"></option>
-                  		</select>
-                  	</div>
-	              </div>
-	              <div class="form-group">
-	              	<label for="createTime" class="col-sm-2 control-label">创建时间</label>
-	              	<div class="col-sm-4">
-                  		<input class="form-control" th:value="*{createTime.month + 1} + '-' + *{createTime.date} + '-' + *{createTime.year}" id="createTime" name="createTime" readonly="readonly"/>
-                  	</div>
-	              </div>
-	              <div class="form-group">
-	              	<label for="updateTime" class="col-sm-2 control-label">更新时间</label>
-	              	<div class="col-sm-4">
-                  		<input class="form-control" th:value="*{updateTime.month + 1} + '-' + *{updateTime.date} + '-' + *{updateTime.year}" id="updateTime" name="updateTime" readonly="readonly"/>
+                  		<textarea rows="3" class="form-control" id="promise" name="promise"></textarea>
                   	</div>
 	              </div>
 	              <div class="form-group">
 	              	<label for="status" class="col-sm-2 control-label">状态</label>
 	              	<div class="col-sm-4">
-<!--                   		<input class="form-control" th:value="*{status}" id="status" name="status" readonly="readonly"/> -->
-						<select th:field="*{status}" class="form-control" data-required="true" disabled="disabled">
-                  			<option th:each="status:${statuses}" th:text="${status.toString()}" th:value="${status.toString()}"></option>
-                  		</select>
-                  	</div>
+	              		<select class="form-control" id="status" name="status" disabled="disabled">
+	              			<option th:each="status:${proStatuses}" th:text="${status.toString()}" th:value="${status.toString()}"></option>
+	              		</select>
+	              	</div>
 	              </div>
 	              <div class="form-group">
 	              	<label for="text" class="col-sm-2 control-label">备注</label>
 	              	<div class="col-sm-8">
-                  		<textarea class="form-control" rows="3" th:text="*{text}" id="text" name="text" readonly="readonly"></textarea>
+                  		<textarea class="form-control" rows="3" id="text" name="text"></textarea>
                   	</div>
 	              </div>
               </div>
               
               <!-- /.box-body -->
               <div class="box-footer" style="padding: 10px 20%">
-<!--                 <a href="toLx"><button type="button" class="btn btn-default">取消</button></a> -->
-                <a href="toUserMana"><button type="button" class="btn btn-info btn-lg" style="margin-left: 35%;width: 30%;">确定</button></a>
+                <button type="reset" class="btn btn-default">重置</button>
+                <button id="submit" type="submit" class="btn btn-info pull-right">提交</button>
               </div>
               <!-- /.box-footer -->
             </form>
           </div>
-
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
@@ -375,4 +303,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
          user experience. Slimscroll is required when using the
          fixed layout. -->
   </body>
+  <script type="text/javascript">
+  	$(function(){
+  		$("#status").attr("disabled", "disabled");
+  		$("#submit").click(function(){
+  			$("#status").removeAttr("disabled");
+  			var val = $("form").serialize();
+			var href = $("#declareProject").attr("action") + "?" + val;
+			window.location.href = href;
+  			return false;
+  		})
+  	})
+  </script>
 </html>

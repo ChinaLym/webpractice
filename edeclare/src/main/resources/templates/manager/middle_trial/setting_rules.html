@@ -72,7 +72,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <span class="sr-only">Toggle navigation</span>
           </a>
           <!-- Navbar Right Menu -->
-          <div class="navbar-custom-menu">
+          <div class="navbar-custom-menu" style="margin-right: 8%;">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu">
@@ -114,7 +114,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- User menu -->
 			<li class="dropdown">
 	             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
-	               User <span class="caret"></span>
+	               <span th:text="${session.username}">User</span><span class="caret"></span>
 	             </a>
 	             <ul class="dropdown-menu">
 	               <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="text-align: center"><i class="fa fa-info-circle"></i>个人信息</a></li>
@@ -141,7 +141,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <img src="AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p th:text="${session.username}">Alexander Pierce</p>
               <!-- Status -->
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -174,7 +174,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             		<span>一级列表</span>
             	</a>
             </li> -->
-            <li class="treeview active">
+            <li class="treeview">
            		<a href="#">
             		<i class="fa fa-files-o"></i> 
             		<span>申报管理</span> 
@@ -182,19 +182,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
             	</a>
             	<ul class="treeview-menu">
               		<li><a href="toSbgz">&nbsp;&nbsp;<i class="fa fa-pencil"></i>设置申报规则</a></li>
-             		<li class="active"><a href="#">&nbsp;&nbsp;<i class="fa fa-check"></i>项目初审</a></li>
+             		<li><a href="toXmcs">&nbsp;&nbsp;<i class="fa fa-check"></i>项目初审</a></li>
              		<li><a href="toFpzj">&nbsp;&nbsp;<i class="fa fa-user"></i>分配专家</a></li>
              		<li><a href="toLx">&nbsp;&nbsp;<i class="fa fa-book"></i>立项</a></li>
             	</ul>
             </li>
-            <li class="treeview">
+            <li class="treeview active">
            		<a href="#">
             		<i class="fa fa-files-o"></i> 
             		<span>中期检查管理</span> 
             		<i class="fa fa-angle-left pull-right"></i>
             	</a>
             	<ul class="treeview-menu">
-              		<li><a href="toZqgz">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
+              		<li class="active"><a href="#">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
               		<li><a href="toZqsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
             	</ul>
             </li>
@@ -244,8 +244,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <section class="content-header">
           <h1>
             	欢迎您！
-            <small>User</small>
-<!--             <small th:text="${user.username}">首页</small> -->
+<!--             <small>User</small> -->
+            <small th:text="${session.username}">首页</small>
           </h1>
           <!-- <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -256,68 +256,52 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <section class="content">
 
-         <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title">项目初审信息</h3>
-                  <div class="box-tools">
-                    <div class="input-group" style="width: 150px;">
-                      <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
-                      <div class="input-group-btn">
-                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                </div><!-- /.box-header -->
-                <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                  	<thead>
-                  		<tr>
-	                      <th>#</th>
-	                      <th>Activity_ID</th>
-	                      <th>Name</th>
-	                      <th>User_ID</th>
-	                      <th>Level</th>
-	                      <th>Domain</th>
-	                      <th>Promise</th>
-	                      <!-- <th>Remark</th>
-	                      <th>Score</th> -->
-	                      <th>Status</th>
-	                      <th>Text</th>
-	                      <th>Check</th>
-	                    </tr>
-                  	</thead>
-                   	 <tbody th:remove="all-but-first">
-                   		<tr th:each="pro:${projects}">
-                   		  <td th:text="${proStat.count}"></td>
-	                      <td th:text="${pro.activityId}">Activity_ID</td>
-	                      <td th:text="${pro.name}">Name</td>
-	                      <td th:text="${pro.director}">User_ID</td>
-	                      <td th:text="${pro.level}">Level</td>
-	                      <td th:text="${pro.domain}">Domain</td>
-	                      <td th:text="${pro.promise}">Promise</td>
-	                      <!-- <td th:text="${pro.remarks}">Remark</td>
-	                      <td th:text="${pro.score}">Score</td> -->
-	                      <td th:text="${pro.status}">Status</td>
-	                      <td th:text="${pro.text}">Text</td>
-	                      <td>
-	                      	<a th:href="@{/chushen(proName=${pro.name})}">
-	                      		<button type="button" class="btn btn-block btn-primary btn-sm">审核</button>
-	                      	</a>
-	                      </td>
-                   		</tr>
-                 	 </tbody>
-                  </table>
-                </div><!-- /.box-body -->
-                <div class="box-footer clearfix">
-                  <ul class="pagination pagination-sm no-margin pull-right">
-                    <li><a href="#">«</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">»</a></li>
-                  </ul>
-                </div>
+        <div class="box box-info" style="width: 70%; margin: 0 auto 20px">
+            <div class="box-header with-border">
+              <h3 class="box-title">设置中期检查时限</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" action="settingRule" method="POST" th:object=${project}>
+              <div class="box-body">
+                <div class="form-group">
+	                <label for="startTime" class="col-sm-2 control-label">开始时间</label>
+					<div class="col-sm-4">
+		                <div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-calendar"></i>
+		                  </div>
+		                  <input type="text" class="form-control pull-right" id="startTime" name="startTime" placeholder="startTime">
+		                </div>
+	                </div>
+	              </div>
+	              <div class="form-group">
+	                <label for="endTime" class="col-sm-2 control-label">结束时间</label>
+					<div class="col-sm-4">
+		                <div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-calendar"></i>
+		                  </div>
+		                  <input type="text" class="form-control pull-right" id="endTime" name="endTime" placeholder="endTime">
+		                </div>
+	                </div>
+	              </div>
+	              <div class="form-group">
+	              	<label for="text" class="col-sm-2 control-label">上传材料说明</label>
+	              	<div class="col-sm-8">
+                  		<textarea class="form-control" rows="3" placeholder="text" id="text" name="text"></textarea>
+                  	</div>
+	              </div>
               </div>
+              
+              <!-- /.box-body -->
+              <div class="box-footer" style="padding: 10px 20%">
+                <button type="reset" class="btn btn-default">重置</button>
+                <button type="submit" class="btn btn-info pull-right">提交</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
@@ -326,16 +310,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- REQUIRED JS SCRIPTS -->
 
-    <!-- jQuery 2.1.4 -->
+        <!-- jQuery 2.1.4 -->
     <script src="AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="AdminLTE/bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="AdminLTE/dist/js/app.min.js"></script>
+    <!-- AdminLTE demo -->
+    <script src="AdminLTE/dist/js/demo.js"></script>
+    <!-- DatePicker -->
+    <script src="AdminLTE/bower_components/moment/min/moment.min.js"></script>
+    <script src="AdminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="AdminLTE/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="AdminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
          fixed layout. -->
+    <script type="text/javascript">
+    	$("#startTime").datepicker({
+    		autoclose: true
+    	})
+    	$("#endTime").datepicker({
+    		autoclose: true
+    	})
+    </script>
   </body>
 </html>

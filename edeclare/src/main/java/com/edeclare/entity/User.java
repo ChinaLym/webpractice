@@ -63,8 +63,6 @@ public class User extends BaseEntity implements Serializable {
 		this.text = text;
 	}
 
-
-
 	public Date getCreateTime() {
 		return this.createTime;
 	}

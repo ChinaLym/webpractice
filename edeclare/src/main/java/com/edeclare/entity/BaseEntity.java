@@ -8,7 +8,7 @@ import javax.persistence.MappedSuperclass;
 
 /**
  * 该类是所有实体类的父类，它不会映射表，但其属性会映射子类的相应字段
- * @author 杨恩雄
+ * @author LYM
  */
 @MappedSuperclass
 public class BaseEntity {
