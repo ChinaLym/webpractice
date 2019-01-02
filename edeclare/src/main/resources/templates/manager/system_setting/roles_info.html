@@ -298,7 +298,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                      	</a>
 	                      	&nbsp;&nbsp;
 	                      	<a th:href="@{/roleDelete(name=${role.name})}"></a>
-	                      		<button type="button" class="btn btn-danger btn-sm userDelete" data-toggle="modal" data-target="#userDelete"><i class="fa fa-trash"></i>&nbsp;&nbsp;删除</button>
+	                      		<button type="button" class="btn btn-danger btn-sm roleDelete" data-toggle="modal" data-target="#roleDelete"><i class="fa fa-trash"></i>&nbsp;&nbsp;删除</button>
 	                      </td>
                    		</tr>
                  	 </tbody>
@@ -316,7 +316,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div>
               
 
-              <div class="modal fade" id="userDelete" style="display: none;">
+              <div class="modal fade" id="roleDelete" style="display: none;">
 		          <div class="modal-dialog" style="width: 30%;">
 		            <div class="modal-content">
 		              <div class="modal-header">
@@ -362,11 +362,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
          
      <script type="text/javascript">
      	$(function(){
-     		$(".userDelete").click(function(){
-     			var href = $(this).parent().find("a").eq(2).attr("href");
-     			var deleteName = $(this).parent().parent().find("td").eq(2).text();
+     		$(".roleDelete").click(function(){
+     			var href = $(this).parent().find("a").eq(1).attr("href");
+     			var deleteName = $(this).parent().parent().find("td").eq(1).text();
      			$("#deleteBtn").attr("onclick", "deleteUser('"+  href + "')");
-     			$("#deleteName").text("确认删除用户“" + deleteName + "”的信息？");
+     			$("#deleteName").text("确认删除角色“" + deleteName + "”的信息？");
      		})
      	})
      	function deleteUser(data){

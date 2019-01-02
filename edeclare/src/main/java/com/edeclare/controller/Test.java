@@ -196,7 +196,7 @@ public class Test {
     	map.put("user", users.get(0));
     	map.put("sexes", sexes);
     	map.put("roles", roles);
-    	map.put("statuses", userStatuses);
+    	map.put("userStatuses", userStatuses);
     	return "manager/user/user_check";
     }
     
@@ -205,7 +205,7 @@ public class Test {
     	map.put("user", users.get(1));
     	map.put("sexes", sexes);
     	map.put("roles", roles);
-    	map.put("statuses", userStatuses);
+    	map.put("userStatuses", userStatuses);
     	return "manager/user/user_edit";
     }
     
