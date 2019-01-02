@@ -335,7 +335,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	              	<div class="col-sm-4">
 <!--                   		<input class="form-control" th:value="*{status}" id="status" name="status" readonly="readonly"/> -->
 						<select th:field="*{status}" class="form-control" data-required="true" disabled="disabled">
-                  			<option th:each="status:${statuses}" th:text="${status.toString()}" th:value="${status.toString()}"></option>
+                  			<option th:each="status:${userStatuses}" th:text="${status.toString()}" th:value="${status.toString()}"></option>
                   		</select>
                   	</div>
 	              </div>
