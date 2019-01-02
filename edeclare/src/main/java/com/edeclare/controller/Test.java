@@ -223,7 +223,7 @@ public class Test {
     	return "manager/user/reset_password";
     }
     
-    @GetMapping(value = "/toRoleMana")
+   /* @GetMapping(value = "/toRoleMana")
     public String toRoleMana(Map<Object, Object> map) {
     	map.put("roles", roles);
     	return "manager/system_setting/roles_info";
@@ -241,7 +241,7 @@ public class Test {
     	map.put("roleStatuses", roleStatuses);
     	return "manager/system_setting/role_insert";
     }
-    
+    */
     
     @GetMapping(value = "/staffLogin")
     public String toXmxq(Map<Object, Object> map) {

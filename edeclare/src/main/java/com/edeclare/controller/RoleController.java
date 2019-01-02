@@ -39,13 +39,13 @@ public class RoleController {
     	List<Role> roles = iRoleSevice.getAllRle();
     	//将角色列表以及对应的权限放入session中
     	model.addAttribute("roles", roles);
-    	return "manager/role_list";
+    	return "manager/system_setting/role_list";
     }
     
     //增加角色
     @RequestMapping("/role_add")
     public String goRoleAddPage() {
-    	return "manager/role_add";
+    	return "manager/system_setting/role_add";
     }
     //异步验证角色名称
     @RequestMapping("/role_cmfirmName")
@@ -84,7 +84,7 @@ public class RoleController {
     	System.out.println(id);
     	Role role = iRoleSevice.getByRoleId(id);
     	model.addAttribute("role", role);
-    	return "manager/role_details";
+    	return "manager/system_setting/role_details";
     }
     
     //执行更新操作
