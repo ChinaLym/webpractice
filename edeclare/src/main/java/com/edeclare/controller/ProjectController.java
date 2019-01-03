@@ -84,7 +84,7 @@ public class ProjectController {
  	@GetMapping(value = "/toXmcs")
     public String toXmcs(Map<Object, Object> map) {
  		List<Project> projectList = projectService.findAllProject();
-		map.put("pros", projectList);
+		map.put("projects", projectList);
 		List<User> list=userService.findAll();
 		Map<Object,Object> idAndName = new HashMap<Object,Object>();
 		for (User user : list) {
