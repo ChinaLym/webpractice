@@ -13,14 +13,14 @@
 	 <!-----start-main---->
 	 <div class="main">
 		<div class="login-form">
-			<h1>学生登陆</h1>
+			<h1>用户登陆</h1>
 					<div class="head">
 						<img src="../image/user.png" th:src="@{/image/user.png}" alt=""/>
 					</div>
-				<form id="loginform" onsubmit="return false" method="POST" th:object="${user}"><!--  onkeyup="this.value=this.value.replace(/\D/g,'')"  -->
-						<input  type="text" class="text" placeholder="学号"  id="account"
+				<form id="loginform"  method="post" th:object="${user}" action="/loginconfirm"><!--  onkeyup="this.value=this.value.replace(/\D/g,'')"  -->
+						<input  type="text" class="text" placeholder="账号 "  id="account"
 						 	onkeyup="this.value=this.value.replace(/\D/g,'')"
-						 	oninvalid="setCustomValidity('请输入13位学号');"
+						 	oninvalid="setCustomValidity('请输入13位账号');"
 						 	pattern="^[0-9]{13}$" maxlength=13 
 						 	oninput="setCustomValidity('')" required
 						 	name="account"
@@ -32,13 +32,13 @@
 						 	oninput="setCustomValidity('')" required
 						 	name="password"
 						 	/>
-						<input type="verificationCode" id="verificationCode" placeholder="验证码"
+						<!-- <input type="verificationCode" id="verificationCode" placeholder="验证码"
 						onkeyup="value=value.replace(/[^\w]/g,'')"  onblur = "checkImageCode()"
     					maxlength="4" required>
     					<span style="color:#999;"  id = "verificationCodeTip"></span>
 						<img src="verify/getImage" style="width:40%;margin-bottom: -5%;float:right;border-radius: 5px;" alt="验证码"
     						width="103" height="38" onclick="changeImage();" id="image"/>
-    					<br>
+    					<br> -->
 						
 						<!-- <input type="checkbox" checked="checked" />下次自动登录<br> -->
 						
@@ -58,7 +58,7 @@
 </body>
 
 <script type="text/javascript">
-
+/* 
 var hasSubmit = false;
 var contentPath = "/" + location.pathname.split("/")[1];
 	
@@ -112,6 +112,7 @@ var contentPath = "/" + location.pathname.split("/")[1];
 		}
 	var JSONstr;
 	function login() {
+		alert("666");
 		jsObj.account =  $("#account").val();
 		jsObj.password = $("#password").val();
 		JSONstr = JSON.stringify(jsObj);
@@ -122,15 +123,15 @@ var contentPath = "/" + location.pathname.split("/")[1];
 			   contentType:"application/json;charset=utf-8",
 			   data : JSONstr,
 			   success:function(returnUser){
-				   if("success" == returnUser)
-				   	   location.href="/managerLogin";
+				   if("success" == returnUser)					   
+				   	   //location.href="/managerLogin";
 				   else if("error" == returnUser)
 					   alert("登录失败！");
-				   //returnUser = JSON.parse(returnUser);
-				   //alert(returnUser);
-				   location.href="/managerLogin";
+				  		 //returnUser = JSON.parse(returnUser);
+				   		//alert(returnUser);
+				   		//location.href="/managerLogin";
 			   }});
-	}	
+	} */	
 </script>
 
 

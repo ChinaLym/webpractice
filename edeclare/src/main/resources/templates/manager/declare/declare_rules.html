@@ -264,12 +264,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.box-header -->
             <!-- form start -->
             <form class="form-horizontal" action="settingRule" method="POST">
+              <input type="text" name="pk_id" value="2" hidden="hidden">
               <div class="box-body">
-                <div class="form-group">
+                <div class="form-group" hidden="hidden">
                   <label for="sponsor" class="col-sm-2 control-label">创建者</label>
 
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" id="sponsor" placeholder="sponsor" name="sponsor">
+                    <input type="text" class="form-control" id="sponsor" placeholder="sponsor" name="sponsor" value="1" readonly >
                   </div>
                 </div>
                 <div class="form-group">
@@ -288,10 +289,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="form-group">
 	              	<label for="level" class="col-sm-2 control-label">级别</label>
 	              	<div class="col-sm-4">
-<!-- 	              		<input type="text" class="form-control" id="level" name="level" placeholder="level"/> -->
-						<select class="form-control" id="level" name="level">
-							<option value="">请选择</option>
-							<option th:each="level:${levels}" th:text="${level.toString()}" th:value="${level.toString()}"></option>
+						<select class="form-control" id="level" name="level">						
+							<option value="校类一级" selected="selected">校类一级</option>
+							<option value="校类二级">校类二级</option>
 						</select>
 	              	</div>
               	</div>

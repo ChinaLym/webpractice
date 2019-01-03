@@ -39,7 +39,7 @@ public class UserController {
     }
     
     public UserController() {
-		System.out.println("\n           /:::,'.               |::::@'       /::::/##            ++++++++'         ·/++++++++#+  \n          /:::#@@.               \\:::::@+    /::,:#@@:           ;::::::,+@:      ./::::::,;#@#; \n         /:::#@@,                 \\::::@@.__::::/#@#·           ;:::::::,+@;     ·::::::::::#@@;  \n        /::::@@'                   \\:::#@,:::::#@@;            ;::::::::,+@;    /:::':::::+@@+;\n       /::::@@#`                    \\ :::::::#@@+`            ;::,+',::,++@+-./:::##++::::@@#; \n      /::::#@@.                      \\::::,'#@+,             ;::,+##':::'@;,·:::+##+::::,#@#;  \n     /::::#@,                        /::::/#@@,             ;:::;#@#+·|:,'+,:::##@, ::::@##; \n    /::::@@'                        /:::@/@#,              ;:::,#@@:  ·+::,:,'#@@| .::+@@#; \n   /:::::@±±±±±±&&&                /:::#/@@.              ;:::,+@@;   ·|:,:##@@:   ;::@@#;  \n  @±±±±±±±±±±±±±/#@#;             /:::/@@#.              ;:::,+#@'     ++,'#@@;   ;::#@@+  \n  |''''''''''''|#@/+`            /±±±|@@/:              +±±±±@#@+`     '_@@.     ;±±#@#; \n  |------------|./               |±±±±|/;               |±±±±|#                  |±±±|;   \n " );
+		//System.out.println("\n           /:::,'.               |::::@'       /::::/##            ++++++++'         ·/++++++++#+  \n          /:::#@@.               \\:::::@+    /::,:#@@:           ;::::::,+@:      ./::::::,;#@#; \n         /:::#@@,                 \\::::@@.__::::/#@#·           ;:::::::,+@;     ·::::::::::#@@;  \n        /::::@@'                   \\:::#@,:::::#@@;            ;::::::::,+@;    /:::':::::+@@+;\n       /::::@@#`                    \\ :::::::#@@+`            ;::,+',::,++@+-./:::##++::::@@#; \n      /::::#@@.                      \\::::,'#@+,             ;::,+##':::'@;,·:::+##+::::,#@#;  \n     /::::#@,                        /::::/#@@,             ;:::;#@#+·|:,'+,:::##@, ::::@##; \n    /::::@@'                        /:::@/@#,              ;:::,#@@:  ·+::,:,'#@@| .::+@@#; \n   /:::::@±±±±±±&&&                /:::#/@@.              ;:::,+@@;   ·|:,:##@@:   ;::@@#;  \n  @±±±±±±±±±±±±±/#@#;             /:::/@@#.              ;:::,+#@'     ++,'#@@;   ;::#@@+  \n  |''''''''''''|#@/+`            /±±±|@@/:              +±±±±@#@+`     '_@@.     ;±±#@#; \n  |------------|./               |±±±±|/;               |±±±±|#                  |±±±|;   \n " );
 	}
 
     @GetMapping(value = "/login")
@@ -54,9 +54,8 @@ public class UserController {
     
     
     
-    @PostMapping(value = "/login")
-    @ResponseBody
-    public BaseResponse login(@RequestBody User user, HttpSession session) {
+    @PostMapping(value = "/loginconfirm")    
+    public String loginconfirm(User user, HttpSession session) {
         User loginUser = null;
 		try {
 			loginUser = userService.login(user);
@@ -65,11 +64,25 @@ public class UserController {
 		}
         if(loginUser == null) {
             // 登录失败，返回登录界面
-            return UserControllerResponseEnum.FAIL;
+        	 System.out.println("login false");
+        	return "redirect:/login";
         } else {
-            // 登录成功
+            // 登录成功,判断用户角色
             session.setAttribute("user", loginUser);
-            return URIResponseEnum.REDIRECT.setUri("/manager/main");
+            System.out.println("login success");
+            if(loginUser.getRoleId()==1||loginUser.getRoleId()==2) {
+            	return "/manager/main";
+            }else if(loginUser.getRoleId()==3) {
+            	//专家
+            	return "/professor/main";
+            }else if(loginUser.getRoleId()==4) {
+            	//教职工
+            	return "/staff/main";
+            }else {
+            	System.out.println("未找到对应角色，将返回登录页面。");
+            	return "redirect:/login";
+            }
+            
         }
     }
     

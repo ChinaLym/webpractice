@@ -96,17 +96,17 @@ public class Test {
     	proStatuses.add(ProjectStatusEnum.FINISHED);
     }
     
-    @GetMapping(value = "/managerLogin")
+    /*@GetMapping(value = "/managerLogin")
     public String managerLogin(HttpServletRequest req) {
     	req.getSession().setAttribute("username", "用户Test");
     	return "manager/main";
-    }
+    }*/
     
-    @GetMapping(value = "/toSbgz")
+   /* @GetMapping(value = "/toSbgz")
     public String toSbgz(Map<Object, Object> map) {
     	map.put("levels", levels);
     	return "manager/declare/declare_rules";
-    }
+    }*/
     
     @GetMapping(value = "/toXmcs")
     public String toXmcs(Map<Object, Object> map) {
@@ -243,13 +243,13 @@ public class Test {
     }
     */
     
-    @GetMapping(value = "/staffLogin")
+   /* @GetMapping(value = "/staffLogin")
     public String toXmxq(Map<Object, Object> map) {
     	
     	map.put("pros", projects);
     	
     	return "staff/main";
-    }
+    }*/
     
     @GetMapping(value = "/toSbxm")
     public String toSbxm(Map<Object, Object> map) {

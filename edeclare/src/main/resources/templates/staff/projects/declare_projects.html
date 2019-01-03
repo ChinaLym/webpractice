@@ -243,7 +243,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- 	              		<input type="text" class="form-control" id="level" name="level" th:value="*{level}" readonly="readonly"/> -->
 						<select  class="form-control" id="level" name="level">
 							<option value="">请选择</option>
-							<option th:each="level:${levels}" th:text="${level.toString()}" th:value="${level.toString()}"></option>
+							<option th:value="校级一类" selected="selected"></option>
+							<option th:value="校级二类" ></option>
 						</select>
 	              	</div>
               	</div>
