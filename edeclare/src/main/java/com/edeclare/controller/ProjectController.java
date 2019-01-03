@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.edeclare.constant.fieldEnum.ActivityLevelEnum;
 import com.edeclare.constant.fieldEnum.ProjectStatusEnum;
+import com.edeclare.entity.Activity;
 import com.edeclare.entity.Project;
 import com.edeclare.entity.User;
 import com.edeclare.service.IActivityService;
@@ -48,7 +49,7 @@ public class ProjectController {
 	@GetMapping(value = "/toSbxm")
     public String toSbxm(Map<Object, Object> map) {    	
     	map.put("proStatuses", proStatuses);
-    	List activityList=activityService.getAllActivity();
+    	List<Activity> activityList = activityService.getAllActivity();
     	map.put("activityList", activityList);
     	return "staff/projects/declare_projects";
     }
@@ -57,6 +58,9 @@ public class ProjectController {
 	@GetMapping(value="/declareProject")
 	private String declareProject(Project project) {
 		//System.out.println("declareProject begin");
+		Integer acitivityId = project.getActivityId();
+		Activity activity = activityService.getById(acitivityId);
+		project.setLevel(activity.getLevel());
 		projectService.saveProject(project);
 		return "redirect:/toStaffMain";
 	}
