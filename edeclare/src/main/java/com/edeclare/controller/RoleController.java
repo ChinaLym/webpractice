@@ -1,16 +1,13 @@
 package com.edeclare.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,7 +28,11 @@ import com.edeclare.service.IRoleSevice;
 public class RoleController {
 	@Autowired
 	private IRoleSevice iRoleSevice;
-	
+	private static List<RoleStatusEnum> roleStatuses = new ArrayList<RoleStatusEnum>();
+	static {
+		roleStatuses.add(RoleStatusEnum.NORMAL);
+    	roleStatuses.add(RoleStatusEnum.PROHIBIT);
+	}
 	
 	//查询全部用角色
     @GetMapping(value = "/toRoleMana")
@@ -81,9 +82,9 @@ public class RoleController {
     //根据roleId进行查找其详细信息
     @RequestMapping("/roleEdit")
     public String roleUpdate(@RequestParam(name="id") int id, Model model) {
-    	System.out.println(id);
     	Role role = iRoleSevice.getByRoleId(id);
     	model.addAttribute("role", role);
+    	model.addAttribute("roleStatuses", roleStatuses);
     	return "manager/system_setting/role/role_details";
     }
     
