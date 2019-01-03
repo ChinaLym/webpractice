@@ -9,13 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edeclare.annotation.LoginRequired;
 import com.edeclare.constant.SessionKey;
-import com.edeclare.constant.responseBody.BaseResponse;
-import com.edeclare.constant.responseBody.enums.URIResponseEnum;
-import com.edeclare.constant.responseBody.enums.UserControllerResponseEnum;
 import com.edeclare.entity.User;
 import com.edeclare.service.IUserService;
 /**

@@ -24,16 +24,6 @@ public class Activity extends BaseEntity implements Serializable {
 
 	private String level;
 	
-	private String stage;
-
-	public String getStage() {
-		return stage;
-	}
-
-	public void setStage(String stage) {
-		this.stage = stage;
-	}
-
 	@Column(name="sponsor")
 	private int sponsor;
 
