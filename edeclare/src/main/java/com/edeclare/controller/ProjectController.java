@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.edeclare.constant.fieldEnum.ActivityLevelEnum;
 import com.edeclare.constant.fieldEnum.ProjectStatusEnum;
@@ -73,6 +74,15 @@ public class ProjectController {
 		List<Project> projectList=projectService.findByDirector(user.getId());
 		map.put("pros", projectList);
 		return "staff/projects/projects_info";
+	}
+	
+	//项目初审
+	@GetMapping(value = "/chushen")
+	public String chushen(@RequestParam(value = "id")Integer id) {
+		Project pro = projectService.findById(id);
+		pro.setStatus(ProjectStatusEnum.FIRST_TRIAL_PASSED.toString());
+		
+		return "manager/declare/first_trial_check";
 	}
 	
 }

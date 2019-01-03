@@ -10,4 +10,7 @@ public interface IProjectService {
 	
 	//根据用户id查找project
 	List<Project> findByDirector(Integer director);
+	
+	//根据id查询project
+	Project findById(Integer id);
 }
