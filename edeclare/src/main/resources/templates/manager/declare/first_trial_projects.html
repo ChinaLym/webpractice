@@ -292,7 +292,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                    		  <td th:text="${proStat.count}"></td>
 <!-- 	                      <td th:text="${pro.activityId}">Activity_ID</td> -->
 	                      <td th:text="${pro.name}">Name</td>
-	                      <td th:text="${session.user.name}">Director</td>
+	                      <td th:text="${idAndName.get(${pro.id})}">Director</td>
 	                      <td th:text="${pro.level}">Level</td>
 	                      <td th:text="${pro.domain}">Domain</td>
 	                      <td th:text="${pro.promise}">Promise</td>

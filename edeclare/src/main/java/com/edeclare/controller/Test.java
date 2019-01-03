@@ -108,19 +108,19 @@ public class Test {
     	return "manager/declare/declare_rules";
     }*/
     
-    @GetMapping(value = "/toXmcs")
+    /*@GetMapping(value = "/toXmcs")
     public String toXmcs(Map<Object, Object> map) {
     	map.put("projects", projects);
     	return "manager/declare/first_trial_projects";
-    }
+    }*/
     
-    @GetMapping(value = "/chushen")
+    /*@GetMapping(value = "/chushen")
     public String chushen(Map<Object, Object> map) {
     	map.put("project", projects.get(0));
     	map.put("levels", levels);
     	map.put("proStatuses", proStatuses);
     	return "manager/declare/first_trial_check";
-    }
+    }*/
     
     @GetMapping(value = "/toFpzj")
     public String toFpzj() {
