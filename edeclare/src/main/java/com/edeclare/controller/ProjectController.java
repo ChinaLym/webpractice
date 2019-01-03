@@ -113,6 +113,26 @@ public class ProjectController {
 		map.put("project", pro);
 		return "manager/declare/first_trial_check";
 	}
+	
+	
+	@GetMapping(value = "/toShxm")
+	public String toShxm(Map<Object, Object> map) {
+		List<Project> projectList = projectService.findAllProject();
+		if(projectList== null || projectList.size() == 0) {
+	    	return "professor/projects_info";			
+		}
+		List<ProjectDTO> projectDTOList = new ArrayList<ProjectDTO>();
+		ProjectDTO proDTO = new ProjectDTO();
+		User u = new User();
+		for (Project pro : projectList) {
+			u = userService.findById(pro.getDirector());
+			proDTO.setProject(pro);
+			proDTO.setUserName(u.getName());
+			projectDTOList.add(proDTO);
+		}
+		map.put("projectDTOList", projectDTOList);
+		return "professor/projects_info";
+	}
 
 	
 }

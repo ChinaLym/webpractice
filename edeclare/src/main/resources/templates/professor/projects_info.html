@@ -174,8 +174,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             		<span>一级列表</span>
             	</a>
             </li> -->
-            <li>
-            	<a href="toShxm">
+            <li class="active">
+            	<a href="#">
             		<i class="fa fa-file-text"></i> 
             		<span>审核项目</span>
             	</a>
@@ -204,8 +204,69 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <section class="content">
 
           <!-- Your Page Content Here -->
-          <h2>Welcome to E-Declare System!</h2>
-
+			<div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">项目详情</h3>
+                  <div class="box-tools">
+                    <div class="input-group" style="width: 150px;">
+                      <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
+                      <div class="input-group-btn">
+                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                  	<thead>
+                  		<tr>
+	                      <th>#</th>
+<!-- 	                      <th>Activity_ID</th> -->
+	                      <th>Name</th>
+	                      <th>Director</th>
+	                      <th>Level</th>
+	                      <th>Domain</th>
+	                      <th>Promise</th>
+	                      <th>Remark</th>
+	                      <th>Score</th>
+	                      <th>Status</th>
+	                      <th>Text</th>
+<!-- 	                      <th>Operation</th> -->
+	                      <th>Check</th>
+	                    </tr>
+                  	</thead>
+                   	 <tbody th:remove="all-but-first">
+                   		<tr th:each="proDTO:${projectDTOList}">
+                   		  <td th:text="${proDTOStat.count}"></td>
+<!-- 	                      <td th:text="${pro.activityId}">Activity_ID</td> -->
+	                      <td th:text="${proDTO.project.name}">Name</td>
+	                      <td th:text="${proDTO.userName}">Director</td>
+	                      <td th:text="${proDTO.project.level}">Level</td>
+	                      <td th:text="${proDTO.project.domain}">Domain</td>
+	                      <td th:text="${proDTO.project.promise}">Promise</td>
+	                      <td th:text="${proDTO.project.remarks} ? ${pro.remarks} : '空'">Remark</td>
+	                      <td th:text="${proDTO.project.score} ? ${pro.score} : '空'">Score</td>
+	                      <td th:text="${proDTO.project.status}">Status</td>
+	                      <td th:text="${proDTO.project.text}">Text</td>
+	                      <td>
+	                      	<a th:href="@{/shenhe(id=${proDTO.project.id})}">
+	                      		<button type="button" class="btn btn-primary btn-sm">审核</button>
+	                      	</a>
+	                      </td>
+                   		</tr>
+                 	 </tbody>
+                  </table>
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix">
+                  <ul class="pagination pagination-sm no-margin pull-right">
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">»</a></li>
+                  </ul>
+                </div>
+              </div>
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
