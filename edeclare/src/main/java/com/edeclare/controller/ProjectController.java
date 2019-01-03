@@ -53,9 +53,16 @@ public class ProjectController {
 	//教职工staff申报项目
 	@GetMapping(value="/declareProject")
 	private String declareProject(Project project) {
-		System.out.println("declareProject begin");
+		//System.out.println("declareProject begin");
 		projectService.saveProject(project);
 		return "redirect:/toStaffMain";
+	}
+	
+	//项目详情
+	@GetMapping(value="/toXmxq")
+	private String toXmxq(Integer id) {
+		System.out.println("project_info!!!!!!!!");
+		return "staff/projects/declare_info";
 	}
 	
 }
