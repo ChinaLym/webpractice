@@ -22,6 +22,8 @@ import com.edeclare.annotation.LoginRequired;
 import com.edeclare.config.WebMvcConfig;
 import com.edeclare.constant.fieldEnum.ProjectStatusEnum;
 import com.edeclare.constant.responseBody.BaseResponse;
+import com.edeclare.constant.responseBody.enums.BaseResponseEnum;
+import com.edeclare.constant.responseBody.enums.URIResponseEnum;
 import com.edeclare.entity.Meterial;
 import com.edeclare.entity.Project;
 import com.edeclare.service.IMeterialService;
@@ -66,14 +68,6 @@ public class MeterialController {
     	return "manager/system_setting/role/role_list";
     }
     
-/*
-    待开发
-    @GetMapping(value = "/zqcl")
-    public String zqcl(@RequestParam(value = "project")Project project) {
-    	meterialService.getMeterialByProjectIdAndStage(project.getId());
-    	return "staff/material/middle_material";
-    
-    }*/
     @GetMapping(value = "/zqcl")
     public String zqcl(@RequestParam(value = "projectId")Integer projectId, Model model) {
     	Project project = projectService.findById(projectId);
@@ -126,4 +120,17 @@ public class MeterialController {
     		return new BaseResponse().setMessage("exceeds  maximum");
 		}
     }
+    
+  //下载
+    @GetMapping(value = "/meterial/download")
+    @ResponseBody
+    public BaseResponse downloadMeterialById(Integer meterialId) throws Exception {
+    	Meterial meterial= meterialService.findById(meterialId);
+    	if (meterial.getCommit()) {
+    		String uri = WebMvcConfig.VIRTUL_DIR + meterial.getUrl();
+    		return URIResponseEnum.REDIRECT.setUri(uri);
+		}
+    	return BaseResponseEnum.NON_EXISTENT;
+    }
+    
 }

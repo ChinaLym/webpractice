@@ -25,4 +25,15 @@ public class BaseResponseEnum {
 	public void setResponse(BaseResponse response) {
 		this.response = response;
 	}
+	
+	public static final BaseResponse SUCCESS = 
+			new BaseResponse("成功");
+	public static final BaseResponse FAIL = 
+			new BaseResponse("失败");
+	public static final BaseResponse ERROR = 
+			new BaseResponse("错误");
+	public static final BaseResponse EXITS = 
+			new BaseResponse("已存在");
+	public static final BaseResponse NON_EXISTENT = 
+			new BaseResponse("不存在");
 }
