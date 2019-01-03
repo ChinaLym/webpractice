@@ -36,4 +36,9 @@ public class ProjectServiceImpl implements IProjectService {
 	}
 
 
+	@Override
+	public Project findById(Integer id) {
+		return projectRepository.getOne(id);
+	}
+
 }

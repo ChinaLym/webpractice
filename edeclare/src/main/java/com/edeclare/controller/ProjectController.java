@@ -10,6 +10,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 import com.edeclare.constant.fieldEnum.ProjectStatusEnum;
 import com.edeclare.entity.Activity;
@@ -77,6 +80,7 @@ public class ProjectController {
 		return "staff/projects/projects_info";
 	}
 	
+
  	@GetMapping(value = "/toXmcs")
     public String toXmcs(Map<Object, Object> map) {
  		List<Project> projectList = projectService.findAllProject();
@@ -90,6 +94,15 @@ public class ProjectController {
     	return "manager/declare/first_trial_projects";
     }
     
+
+
+	//项目初审
+	@GetMapping(value = "/chushen")
+	public String chushen(@RequestParam(value = "id")Integer id ,Map<Object, Object> map) {
+		Project pro = projectService.findById(id);
+		map.put("project", pro);
+		return "manager/declare/first_trial_check";
+	}
 
 	
 }
