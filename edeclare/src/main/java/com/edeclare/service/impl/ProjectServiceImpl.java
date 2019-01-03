@@ -49,4 +49,13 @@ public class ProjectServiceImpl implements IProjectService {
 		projectRepository.save(project);
 		return project;
 	}
+
+	//立项通过
+	@Override
+	public Project updateStatelixiang(Integer id) {
+		Project project = projectRepository.getOne(id);
+		project.setStatus(ProjectStatusEnum.FINISHED_PENDING.toString());
+		projectRepository.save(project);
+		return project;
+	}
 }

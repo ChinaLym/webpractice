@@ -101,13 +101,6 @@ public class ProjectController {
 		return "manager/declare/first_trial_check";
 	}
 	
-	//初审通过
-	@GetMapping(value="/firstCheck")
-	public String tosettingRule(@RequestParam(value = "id")Integer id) {
-		projectService.updateState(id);
-		return "manager/declare/first_trial_projects";
-	}
-	
 	
 
 	
