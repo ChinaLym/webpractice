@@ -1,6 +1,7 @@
 package com.edeclare.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,13 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.edeclare.constant.fieldEnum.ActivityLevelEnum;
+
 import com.edeclare.constant.fieldEnum.ProjectStatusEnum;
 import com.edeclare.entity.Activity;
 import com.edeclare.entity.Project;
 import com.edeclare.entity.User;
 import com.edeclare.service.IActivityService;
 import com.edeclare.service.IProjectService;
+import com.edeclare.service.IUserService;
 
 @Controller
 public class ProjectController {
@@ -26,6 +28,8 @@ public class ProjectController {
 	private IProjectService projectService;
 	@Autowired
 	private IActivityService activityService;
+	@Autowired
+    private IUserService userService;
 	
 	private static List<ProjectStatusEnum> proStatuses = new ArrayList<ProjectStatusEnum>();
     
@@ -76,13 +80,29 @@ public class ProjectController {
 		return "staff/projects/projects_info";
 	}
 	
+
+ 	@GetMapping(value = "/toXmcs")
+    public String toXmcs(Map<Object, Object> map) {
+ 		List<Project> projectList = projectService.findAllProject();
+		map.put("pros", projectList);
+		List<User> list=userService.findAll();
+		Map<Object,Object> idAndName = new HashMap<Object,Object>();
+		for (User user : list) {
+			idAndName.put(user.getId(), user.getName());
+		}
+		map.put("idAndName", idAndName);
+    	return "manager/declare/first_trial_projects";
+    }
+    
+
+
 	//项目初审
 	@GetMapping(value = "/chushen")
-	public String chushen(@RequestParam(value = "id")Integer id) {
+	public String chushen(@RequestParam(value = "id")Integer id ,Map<Object, Object> map) {
 		Project pro = projectService.findById(id);
-		pro.setStatus(ProjectStatusEnum.FIRST_TRIAL_PASSED.toString());
-		
+		map.put("project", pro);
 		return "manager/declare/first_trial_check";
 	}
+
 	
 }
