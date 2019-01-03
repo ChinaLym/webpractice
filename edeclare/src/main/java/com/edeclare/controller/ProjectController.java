@@ -91,7 +91,7 @@ public class ProjectController {
 		if(projectList== null || projectList.size() == 0) {
 	    	return "manager/declare/first_trial_projects";			
 		}
-		List<ProjectDTO> projectDTOList = new ArrayList<ProjectDTO>();
+		List<ProjectDTO> projectDTOList = new ArrayList<ProjectDTO>();	
 		User u = new User();
 		for (Project pro : projectList) {
 			if(pro.getStatus().equals(ProjectStatusEnum.FIRST_TRIAL_PENDING.toString())) {
@@ -123,6 +123,7 @@ public class ProjectController {
 		return "redirect:/toXmcs";
 	}
 	
+
 	//审核项目详情
 	@GetMapping(value = "/toShxm")
 	public String toShxm(Map<Object, Object> map) {
@@ -169,6 +170,35 @@ public class ProjectController {
 		projectService.saveProject(pro);
 		return "redirect:/toShxm";
 	}
+	
+	//去立项列表
+	@GetMapping(value = "/toLx")
+    public String toLx(Map<Object, Object> map) {
+ 		List<Project> projectList = projectService.findAllProject();
+		if(projectList== null || projectList.size() == 0) {
+	    	return "manager/declare/establist_projects";			
+		}
+		List<ProjectDTO> projectDTOList = new ArrayList<ProjectDTO>();	
+		User u = new User();
+		for (Project pro : projectList) {
+			ProjectDTO proDTO = new ProjectDTO();
+			u = userService.findById(pro.getDirector());
+			proDTO.setProject(pro);
+			proDTO.setUserName(u.getName());
+			projectDTOList.add(proDTO);
+		}
+		map.put("projectDTOList", projectDTOList);
+    	return "manager/declare/establist_projects";
+    }
+	
+	//立项通过
+	@GetMapping(value="/establistCheck")
+	public String establistCheck(@RequestParam(value = "id")Integer id) {
+		projectService.updateStatelixiang(id);
+		return "manager/declare/first_trial_projects";
+	}
+	
+	
 	
 	
 }

@@ -125,11 +125,11 @@ public class Test {
     	return "manager/declare/assigned_experto";
     }
     
-    @GetMapping(value = "/toLx")
+/*    @GetMapping(value = "/toLx")
     public String toLx(Map<Object, Object> map) {
     	map.put("projects", projects);
     	return "manager/declare/establish_projects";
-    }
+    }*/
     
     @GetMapping(value = "/lixiang")
     public String lixaing(Map<Object, Object> map) {
