@@ -9,15 +9,13 @@ public class FileUtil {
      * 将 content 写到file中
      * @param file
      * @param content
+     * @throws Exception 
      */
-    public static void writeFile(File file, byte[] content) {
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(content);
-            fos.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static void writeFile(File file, byte[] content) throws Exception {
+    	FileOutputStream fos = new FileOutputStream(file);
+        fos.write(content);
+        fos.close();
+            
     }
     
     /**

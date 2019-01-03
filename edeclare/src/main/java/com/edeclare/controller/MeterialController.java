@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.edeclare.annotation.LoginRequired;
 import com.edeclare.config.WebMvcConfig;
 import com.edeclare.constant.responseBody.BaseResponse;
 import com.edeclare.entity.Meterial;
@@ -61,7 +62,10 @@ public class MeterialController {
     }
     
     @RequestMapping("/meterial/upload")
-    public void upload(@RequestParam("cover") MultipartFile uploadFile,
+    @LoginRequired
+    @ResponseBody
+    public BaseResponse upload(@RequestParam("cover") MultipartFile uploadFile,
+    		@RequestParam("meterialId") Integer meterialId,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         byte[] content = uploadFile.getBytes();
@@ -80,6 +84,10 @@ public class MeterialController {
         file.createNewFile();
         // 写到服务器文件
         FileUtil.writeFile(file, content);
-        response.getWriter().write("/upload/" + file.getName());
+        if(!meterialService.uploadMeterial(meterialId, file.getName())) {
+        	file.deleteOnExit();
+        	return new BaseResponse().setMessage("fail");
+        }
+        return new BaseResponse().setMessage("success");
     }
 }

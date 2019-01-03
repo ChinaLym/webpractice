@@ -12,4 +12,6 @@ public interface IMeterialService{
 
 	Meterial save(Meterial meterial);
 
+	boolean uploadMeterial(Integer meterialId, String fileName);
+
 }

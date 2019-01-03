@@ -1,7 +1,7 @@
 package com.edeclare.service.impl;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -47,5 +47,18 @@ public class MeterialServiceImpl implements IMeterialService{
 	@Override
 	public Meterial save(Meterial meterial) {
 		return meterialRepository.save(meterial);
+	}
+
+	@Override
+	public boolean uploadMeterial(Integer meterialId, String fileName) {
+		try {
+			Meterial meterial = meterialRepository.getOne(meterialId);
+			meterial.setCommit(true);
+			meterial.setChangeTime(new Date());
+			meterial.setUrl(fileName);
+			return meterialRepository.save(meterial) != null;
+		}catch (Exception e) {
+			return false;
+		}
 	}
 }
