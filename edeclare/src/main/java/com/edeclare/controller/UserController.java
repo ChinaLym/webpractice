@@ -68,13 +68,13 @@ public class UserController {
             session.setAttribute("username", loginUser.getName());
             System.out.println("login success");
             if(loginUser.getRoleId()==1||loginUser.getRoleId()==2) {
-            	return "/manager/main";
+            	return "redirect:/toManaMain";
             }else if(loginUser.getRoleId()==3) {
             	//专家
-            	return "/professor/main";
+            	return "redirect:/toProMain";
             }else if(loginUser.getRoleId()==4) {
             	//教职工
-            	return "/staff/main";
+            	return "redirect:/toStaffMain";
             }else {
             	System.out.println("未找到对应角色，将返回登录页面。");
             	return "redirect:/login";
@@ -106,5 +106,20 @@ public class UserController {
 //    public String sbgz() {
 //    	return "sbgz";
 //    }
+    
+    @GetMapping(value = "/toManaMain")
+    public String toManaMain() {
+    	return "manager/main";
+    }
+    
+    @GetMapping(value = "/toStaffMain")
+    public String toStaffMain() {
+    	return "staff/main";
+    }
+    
+    @GetMapping(value = "/toProMain")
+    public String toProMain() {
+    	return "professor/main";
+    }
     
 }

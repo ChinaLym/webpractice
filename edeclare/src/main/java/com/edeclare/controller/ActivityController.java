@@ -32,7 +32,7 @@ public class ActivityController {
 		System.out.println(activity.getUpdateTime());
 		System.out.println(activity.toString());
 		activityService.saveActivity(activity);
-		return "manager/main";	
+		return "redirect:/toManaMain";	
 	}
 	
 	

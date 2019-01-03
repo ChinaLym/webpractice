@@ -264,13 +264,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.box-header -->
             <!-- form start -->
             <form class="form-horizontal" action="settingRule" method="POST">
-              <input type="text" name="pk_id" value="2" hidden="hidden">
               <div class="box-body">
-                <div class="form-group" hidden="hidden">
-                  <label for="sponsor" class="col-sm-2 control-label">创建者</label>
+              	<input type="hidden" name="sponsor" id="sponsor" th:value="${session.user.id}"/>
+                <div class="form-group">
+                  <label for="sponsorName" class="col-sm-2 control-label">创建者</label>
 
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" id="sponsor" placeholder="sponsor" name="sponsor" value="1" readonly >
+                    <input type="text" class="form-control" id="sponsor" th:value="${session.user.name}" readonly >
                   </div>
                 </div>
                 <div class="form-group">
