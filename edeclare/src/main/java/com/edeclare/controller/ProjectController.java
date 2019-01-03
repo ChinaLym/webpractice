@@ -1,6 +1,7 @@
 package com.edeclare.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,15 +10,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import com.edeclare.constant.fieldEnum.ActivityLevelEnum;
 import com.edeclare.constant.fieldEnum.ProjectStatusEnum;
 import com.edeclare.entity.Activity;
 import com.edeclare.entity.Project;
 import com.edeclare.entity.User;
 import com.edeclare.service.IActivityService;
 import com.edeclare.service.IProjectService;
+import com.edeclare.service.IUserService;
 
 @Controller
 public class ProjectController {
@@ -25,6 +25,8 @@ public class ProjectController {
 	private IProjectService projectService;
 	@Autowired
 	private IActivityService activityService;
+	@Autowired
+    private IUserService userService;
 	
 	private static List<ProjectStatusEnum> proStatuses = new ArrayList<ProjectStatusEnum>();
     
@@ -74,5 +76,20 @@ public class ProjectController {
 		map.put("pros", projectList);
 		return "staff/projects/projects_info";
 	}
+	
+ 	@GetMapping(value = "/toXmcs")
+    public String toXmcs(Map<Object, Object> map) {
+ 		List<Project> projectList = projectService.findAllProject();
+		map.put("pros", projectList);
+		List<User> list=userService.findAll();
+		Map<Object,Object> idAndName = new HashMap<Object,Object>();
+		for (User user : list) {
+			idAndName.put(user.getId(), user.getName());
+		}
+		map.put("idAndName", idAndName);
+    	return "manager/declare/first_trial_projects";
+    }
+    
+
 	
 }

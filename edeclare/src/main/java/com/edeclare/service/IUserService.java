@@ -1,5 +1,7 @@
 package com.edeclare.service;
 
+import java.util.List;
+
 import com.edeclare.entity.User;
 /**
 * Type: IUserService
@@ -23,4 +25,5 @@ public interface IUserService {
 
 	User register(User user) throws Exception;
 
+	List<User> findAll();
 }
