@@ -42,7 +42,7 @@ public class RoleServiceImpl implements IRoleSevice {
 	@Override
 	public int saveRole(Role role) {
 		
-		Role role2 = roleRepository.save(role);
+		roleRepository.save(role);
 		return 1;
 	}
 

@@ -28,6 +28,7 @@ public enum ProjectStatusEnum {
 	FIRST_TRIAL_NOT_PASS,			//初审不通过
 	
 	ESTABLISH_ON_TRIAL,				//立项评审中
+	ESTABLISH_FINISHED,				//立项评审完成
 	ESTABLISHED,					//立项通过
 	NO_ESTABLISHMENT,				//不立项
 	

@@ -17,5 +17,10 @@ public interface IProjectService {
 
 	//根据id查询project
 	Project findById(Integer id);
+	
+	//初审通过
+	Project updateState(Integer id);
 
+	//立项通过
+	Project updateStatelixiang(Integer id);
 }

@@ -8,8 +8,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -127,19 +125,19 @@ public class Test {
     	return "manager/declare/assigned_experto";
     }
     
-    @GetMapping(value = "/toLx")
+/*    @GetMapping(value = "/toLx")
     public String toLx(Map<Object, Object> map) {
     	map.put("projects", projects);
     	return "manager/declare/establish_projects";
-    }
+    }*/
     
-    @GetMapping(value = "/lixiang")
+    /*@GetMapping(value = "/lixiang")
     public String lixaing(Map<Object, Object> map) {
     	map.put("project", projects.get(0));
     	map.put("levels", levels);
     	map.put("proStatuses", proStatuses);
     	return "manager/declare/establish_check";
-    }
+    }*/
     
     @GetMapping(value = "/toZqgz")
     public String toZqgz() {

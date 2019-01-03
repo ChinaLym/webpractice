@@ -1,5 +1,9 @@
 package com.edeclare.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.edeclare.annotation.LoginRequired;
 import com.edeclare.constant.SessionKey;
+import com.edeclare.entity.Project;
 import com.edeclare.entity.User;
+import com.edeclare.entity.dto.ProjectDTO;
+import com.edeclare.service.IProjectService;
 import com.edeclare.service.IUserService;
 /**
 * Type: UserController
@@ -108,18 +115,63 @@ public class UserController {
     	return "redirect:/login";
     }
     
+    @Autowired
+    private IProjectService projectService;
+    
     @GetMapping(value = "/toManaMain")
-    public String toManaMain() {
+    public String toManaMain(Map<Object, Object> map) {
+    	List<Project> projectList = projectService.findAllProject();
+		if(projectList== null || projectList.size() == 0) {
+	    	return "manager/main";			
+		}
+		List<ProjectDTO> projectDTOList = new ArrayList<ProjectDTO>();	
+		User u = new User();
+		for (Project pro : projectList) {
+			ProjectDTO proDTO = new ProjectDTO();
+			u = userService.findById(pro.getDirector());
+			proDTO.setProject(pro);
+			proDTO.setUserName(u.getName());
+			projectDTOList.add(proDTO);
+		}
+		map.put("projectDTOList", projectDTOList);
     	return "manager/main";
     }
     
     @GetMapping(value = "/toStaffMain")
-    public String toStaffMain() {
+    public String toStaffMain(Map<Object, Object> map) {
+    	List<Project> projectList = projectService.findAllProject();
+		if(projectList== null || projectList.size() == 0) {
+	    	return "staff/main";			
+		}
+		List<ProjectDTO> projectDTOList = new ArrayList<ProjectDTO>();	
+		User u = new User();
+		for (Project pro : projectList) {
+			ProjectDTO proDTO = new ProjectDTO();
+			u = userService.findById(pro.getDirector());
+			proDTO.setProject(pro);
+			proDTO.setUserName(u.getName());
+			projectDTOList.add(proDTO);
+		}
+		map.put("projectDTOList", projectDTOList);
     	return "staff/main";
     }
     
     @GetMapping(value = "/toProMain")
-    public String toProMain() {
+    public String toProMain(Map<Object, Object> map) {
+    	List<Project> projectList = projectService.findAllProject();
+		if(projectList== null || projectList.size() == 0) {
+	    	return "professor/main";			
+		}
+		List<ProjectDTO> projectDTOList = new ArrayList<ProjectDTO>();	
+		User u = new User();
+		for (Project pro : projectList) {
+			ProjectDTO proDTO = new ProjectDTO();
+			u = userService.findById(pro.getDirector());
+			proDTO.setProject(pro);
+			proDTO.setUserName(u.getName());
+			projectDTOList.add(proDTO);
+		}
+		map.put("projectDTOList", projectDTOList);
     	return "professor/main";
     }
     

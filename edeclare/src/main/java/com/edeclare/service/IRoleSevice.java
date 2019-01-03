@@ -3,7 +3,6 @@ package com.edeclare.service;
 import java.util.List;
 
 import com.edeclare.entity.Role;
-import com.edeclare.entity.User;
 /**
 * Type: IRoleSevice
 * Description: 接口，包含 role 的所用功能，接口命名以 I 开头

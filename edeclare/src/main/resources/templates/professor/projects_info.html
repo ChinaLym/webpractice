@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>管理员</title>
+    <title>专家</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -58,7 +58,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="toManaMain" class="logo">
+        <a href="toProMain" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>E-Declare</b></span>
           <!-- logo for regular state and mobile devices -->
@@ -174,64 +174,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             		<span>一级列表</span>
             	</a>
             </li> -->
-           <li class="treeview active">
-           		<a href="#">
-            		<i class="fa fa-files-o"></i> 
-            		<span>申报管理</span> 
-            		<i class="fa fa-angle-left pull-right"></i>
+            <li class="active">
+            	<a href="#">
+            		<i class="fa fa-file-text"></i> 
+            		<span>审核项目</span>
             	</a>
-            	<ul class="treeview-menu">
-              		<li><a href="toSbgz">&nbsp;&nbsp;<i class="fa fa-pencil"></i>设置申报规则</a></li>
-             		<li class="active"><a href="toXmcs">&nbsp;&nbsp;<i class="fa fa-check"></i>项目初审</a></li>
-             		<li><a href="toFpzj">&nbsp;&nbsp;<i class="fa fa-user"></i>分配专家</a></li>
-             		<li><a href="toLx">&nbsp;&nbsp;<i class="fa fa-book"></i>立项</a></li>
-            	</ul>
-            </li>
-            <li class="treeview">
-           		<a href="#">
-            		<i class="fa fa-files-o"></i> 
-            		<span>中期检查管理</span> 
-            		<i class="fa fa-angle-left pull-right"></i>
-            	</a>
-            	<ul class="treeview-menu">
-              		<li><a href="toZqgz">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
-              		<li><a href="toZqsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
-            	</ul>
-            </li>
-            <li class="treeview">
-           		<a href="#">
-            		<i class="fa fa-files-o"></i> 
-            		<span>结题验收管理</span> 
-            		<i class="fa fa-angle-left pull-right"></i>
-            	</a>
-            	<ul class="treeview-menu">
-              		<li><a href="toJtgz">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
-              		<li><a href="toJtsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
-            	</ul>
-            </li>
-            <li class="treeview">
-           		<a href="#">
-            		<i class="fa fa-user"></i> 
-            		<span>用户管理</span> 
-            		<i class="fa fa-angle-left pull-right"></i>
-            	</a>
-            	<ul class="treeview-menu">
-              		<li><a href="toUserMana">&nbsp;&nbsp;<i class="fa fa-info-circle"></i>用户信息管理</a></li>
-              		<li><a href="toUserRole">&nbsp;&nbsp;<i class="fa fa-users"></i>用户角色分配</a></li>
-              		<li><a href="toResetPass">&nbsp;&nbsp;<i class="fa fa-refresh"></i>密码重置</a></li>
-            	</ul>
-            </li>
-            <li class="treeview">
-           		<a href="#">
-            		<i class="fa fa-cog"></i> 
-            		<span>系统设置</span> 
-            		<i class="fa fa-angle-left pull-right"></i>
-            	</a>
-            	<ul class="treeview-menu">
-              		<li><a href="toRoleMana">&nbsp;&nbsp;<i class="fa fa-users"></i>角色管理</a></li>
-              		<li><a href="toMenuMana">&nbsp;&nbsp;<i class="fa fa-bars"></i>菜单管理</a></li>
-              		<li><a href="toAssignPer">&nbsp;&nbsp;<i class="fa fa-hand-paper-o"></i>角色权限分配</a></li>
-            	</ul>
             </li>
           </ul><!-- /.sidebar-menu -->
         </section>
@@ -245,7 +192,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <h1>
             	欢迎您！
 <!--             <small>User</small> -->
-            <small th:text="${session.username}">首页</small>
+            <small th:text="${session.username}">User</small>
           </h1>
           <!-- <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -256,82 +203,70 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <section class="content">
 
-        <div class="box box-info" style="width: 70%; margin: 0 auto 20px">
-            <div class="box-header with-border">
-              <h3 class="box-title">项目初审</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form class="form-horizontal" action="firstCheck" method="POST" th:object=${project}>
-              <div class="box-body">
-              	<input hidden="hidden" name="id" th:value="*{id}">
-                <!-- <div class="form-group">
-                  <label for=activityId class="col-sm-2 control-label">所属活动</label>
-
-                  <div class="col-sm-2">
-                    <input type="text" class="form-control" id="activityId" th:value="*{activityId}" name="activityId" readonly="readonly">
+          <!-- Your Page Content Here -->
+			<div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">项目详情</h3>
+                  <div class="box-tools">
+                    <div class="input-group" style="width: 150px;">
+                      <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
+                      <div class="input-group-btn">
+                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
                   </div>
-                </div> -->
-                <div class="form-group">
-                  <label for="name" class="col-sm-2 control-label">名称</label>
-
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" id="name" th:value="*{name}" name="name" readonly="readonly">
-                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                  	<thead>
+                  		<tr>
+	                      <th>#</th>
+<!-- 	                      <th>Activity_ID</th> -->
+	                      <th>Name</th>
+	                      <th>Director</th>
+	                      <th>Level</th>
+	                      <th>Domain</th>
+	                      <th>Promise</th>
+	                      <th>Remark</th>
+	                      <th>Score</th>
+	                      <th>Status</th>
+	                      <th>Text</th>
+<!-- 	                      <th>Operation</th> -->
+	                      <th>Check</th>
+	                    </tr>
+                  	</thead>
+                   	 <tbody th:remove="all-but-first">
+                   		<tr th:each="proDTO:${projectDTOList}">
+                   		  <td th:text="${proDTOStat.count}"></td>
+<!-- 	                      <td th:text="${pro.activityId}">Activity_ID</td> -->
+	                      <td th:text="${proDTO.project.name}">Name</td>
+	                      <td th:text="${proDTO.userName}">Director</td>
+	                      <td th:text="${proDTO.project.level}">Level</td>
+	                      <td th:text="${proDTO.project.domain}">Domain</td>
+	                      <td th:text="${proDTO.project.promise}">Promise</td>
+	                      <td th:text="${proDTO.project.remarks} ? ${proDTO.project.remarks} : '空'">Remark</td>
+	                      <td th:text="${proDTO.project.score} ? ${proDTO.project.score} : '空'">Score</td>
+	                      <td th:text="${proDTO.project.status}">Status</td>
+	                      <td th:text="${proDTO.project.text}">Text</td>
+	                      <td>
+	                      	<a th:href="@{/shenhe(id=${proDTO.project.id})}">
+	                      		<button type="button" class="btn btn-primary btn-sm">审核</button>
+	                      	</a>
+	                      </td>
+                   		</tr>
+                 	 </tbody>
+                  </table>
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix">
+                  <ul class="pagination pagination-sm no-margin pull-right">
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">»</a></li>
+                  </ul>
                 </div>
-               <div class="form-group">
-                  <label for="director" class="col-sm-2 control-label">负责人</label>
-                  <div class="col-sm-8">
-                  	<input type="text" class="form-control" th:value="*{director}" id="director" name="director" readonly="readonly"></input>
-                  </div>
-                </div>
-                <div class="form-group">
-	              	<label for="level" class="col-sm-2 control-label">级别</label>
-	              	<div class="col-sm-4">
-<!-- 	              		<input type="text" class="form-control" id="level" name="level" th:value="*{level}" readonly="readonly"/> -->
-						<select th:field="*{level}" class="form-control" name="level" disabled="disabled">
-							<option th:each="level:${levels}" th:text="${level.toString()}" th:value="${level.toString()}"></option>
-						</select>
-	              	</div>
-              	</div>
-	             
-	              <div class="form-group">
-	              	<label for="domain" class="col-sm-2 control-label">领域</label>
-	              	<div class="col-sm-8">
-                  		<input type="text" class="form-control" th:value="*{domain}" id="domain" name="domain" readonly="readonly"></input>
-                  	</div>
-	              </div>
-	              <div class="form-group">
-	              	<label for="promise" class="col-sm-2 control-label">立项承诺</label>
-	              	<div class="col-sm-8">
-                  		<textarea rows="3" class="form-control" th:text="*{promise}" id="promise" name="promise" readonly="readonly"></textarea>
-                  	</div>
-	              </div>
-	              <div class="form-group">
-	              	<label for="status" class="col-sm-2 control-label">状态</label>
-	              	<div class="col-sm-4">
-	              		<select th:field="*{status}" class="form-control" name="status" disabled="disabled">
-	              			<option th:each="status:${proStatuses}" th:text="${status.toString()}" th:value="${status.toString()}"></option>
-	              		</select>
-	              	</div>
-	              </div>
-	              <div class="form-group">
-	              	<label for="text" class="col-sm-2 control-label">备注</label>
-	              	<div class="col-sm-8">
-                  		<textarea class="form-control" rows="3" th:text="*{text}" id="text" name="text" readonly="readonly"></textarea>
-                  	</div>
-	              </div>
               </div>
-              
-              <!-- /.box-body -->
-              <div class="box-footer" style="padding: 10px 20%">
-                <a href="toXmcs"><button type="button" class="btn btn-default">取消</button></a>
-                <button type="submit" class="btn btn-info pull-right">提交</button>
-              </div>
-              <!-- /.box-footer -->
-            </form>
-          </div>
-
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
@@ -351,5 +286,4 @@ scratch. This page gets rid of all links and provides the needed markup only.
          user experience. Slimscroll is required when using the
          fixed layout. -->
   </body>
-  
 </html>

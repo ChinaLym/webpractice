@@ -40,7 +40,7 @@ public class ActivityController {
 	@PostMapping(value="/settingRule")
 	private String settingRule(Activity activity) {
 		System.out.println("settingRule!!!!!!");
-		System.out.println(activity.getUpdateTime());
+		//System.out.println(activity.getUpdateTime());
 		//System.out.println(activity.toString());
 		activityService.saveActivity(activity);
 		return "redirect:/toManaMain";	
