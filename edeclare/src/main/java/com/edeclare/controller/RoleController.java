@@ -61,22 +61,17 @@ public class RoleController {
      }
     //执行增加角色操作
     @RequestMapping("/Role/save")
-    @ResponseBody
     public String roleSave(Role role) {
-    	role.setName("ROOT");
     	role.setStatus(RoleStatusEnum.NORMAL.toString());
-    	role.setDescription("测试");
     	iRoleSevice.saveRole(role);
-    	System.out.println("oooooook");
-    	return "success";
+    	return "redirect:/toRoleMana";
     }
     
     //删除角色
     @RequestMapping("/Role/del")
-    @ResponseBody
-    public String roleDel(Integer roleId) {
+    public String roleDel(@RequestParam(name="id")Integer roleId) {
     	iRoleSevice.deleteRoleById(roleId);
-    	return "success";
+    	return "redirect:/toRoleMana";
     }
     
     //根据roleId进行查找其详细信息
@@ -91,11 +86,9 @@ public class RoleController {
     //执行更新操作
     	//在执行更新的时候需要判断用户输入的新角色名称是否已经存在
     @RequestMapping("/Role/do_update")
-    @ResponseBody
     public String roleDoUpdate(Role role) {
-    	/*Role role = iRoleSevice.getByRoleId(roleId);
-    	model.addAttribute("role", role);*/
-    	return "success";
+    	iRoleSevice.roleDoUpdate(role);
+    	return "redirect:/toRoleMana";
     }
     
 }

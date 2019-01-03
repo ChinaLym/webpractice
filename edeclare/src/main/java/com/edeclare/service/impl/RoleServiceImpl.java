@@ -50,16 +50,17 @@ public class RoleServiceImpl implements IRoleSevice {
 		//只是将角色的状态修改
 	@Override
 	public int deleteRoleById(Integer roleId) {
-		Role role = this.getByRoleId(roleId);
+		roleRepository.deleteById(roleId);
+		/*Role role = this.getByRoleId(roleId);
 		role.setStatus(RoleStatusEnum.PROHIBIT.toString());
-		roleRepository.saveAndFlush(role);
+		roleRepository.saveAndFlush(role);*/
 		return 0;
 	}
 	
 	//修改角色的一些基本信息（角色名称、角色描述）
 	@Override
 	public int roleDoUpdate(Role role) {
-		// TODO Auto-generated method stub
+		roleRepository.saveAndFlush(role);
 		return 0;
 	}
 
@@ -72,10 +73,6 @@ public class RoleServiceImpl implements IRoleSevice {
 		else
 			return true;
 	}
-	
-	//更新验证角色名称
-	/*public boolean is*/
-
 }
 
 

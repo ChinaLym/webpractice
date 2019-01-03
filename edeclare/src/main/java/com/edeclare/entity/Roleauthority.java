@@ -23,11 +23,11 @@ public class Roleauthority extends BaseEntity implements Serializable {
 	public Roleauthority() {
 	}
 
-	public Integer getauthorityId() {
+	public Integer getAuthorityId() {
 		return this.authorityId;
 	}
 
-	public void setauthorityId(Integer authorityId) {
+	public void setAuthorityId(Integer authorityId) {
 		this.authorityId = authorityId;
 	}
 
