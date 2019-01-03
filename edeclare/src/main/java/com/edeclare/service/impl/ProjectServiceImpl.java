@@ -1,5 +1,7 @@
 package com.edeclare.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,13 @@ public class ProjectServiceImpl implements IProjectService {
 	public Project saveProject(Project project) {
 		Project p=projectRepository.save(project);
 		return p;
+	}
+
+	//根据用户id查找project		
+	@Override
+	public List<Project> findByDirector(Integer director) {
+		List<Project> list=projectRepository.findByDirector(director);
+		return list;
 	}
 
 }
