@@ -1,6 +1,6 @@
 /*
-SQLyog v10.2 
-MySQL - 5.7.20 : Database - e_declare
+SQLyog Ultimate v12.09 (64 bit)
+MySQL - 5.5.61 : Database - e_declare
 *********************************************************************
 */
 
@@ -27,17 +27,15 @@ CREATE TABLE `tb_activity` (
   `content` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '活动内容',
   `level` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '活动级别：[校级一类，校级二类]',
   `update_time` datetime DEFAULT NULL COMMENT '修改/发布时间',
-  `start_time` datetime DEFAULT NULL COMMENT '阶段开始时间',
-  `end_time` datetime DEFAULT NULL COMMENT '阶段结束时间',
+  `start_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `end_time` datetime DEFAULT NULL COMMENT '结束时间',
   `text` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '备注',
-  `birth_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `stage` varchar(30) DEFAULT NULL COMMENT '阶段',
   PRIMARY KEY (`pk_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_activity` */
 
-insert  into `tb_activity`(`pk_id`,`sponsor`,`title`,`content`,`level`,`update_time`,`start_time`,`end_time`,`text`,`birth_time`,`stage`) values (1,2,'第一届大学生JavaWeb大赛','报名者须...','一等','2018-12-15 21:03:39','2018-12-15 21:03:54','2019-01-16 21:03:58','强烈建议大家参与',NULL,NULL);
+insert  into `tb_activity`(`pk_id`,`sponsor`,`title`,`content`,`level`,`update_time`,`start_time`,`end_time`,`text`) values (1,2,'第一届大学生JavaWeb大赛','报名者须...','一等','2018-12-15 21:03:39','2018-12-15 21:03:54','2019-01-16 21:03:58','强烈建议大家参与');
 
 /*Table structure for table `tb_authority` */
 
@@ -92,14 +90,13 @@ CREATE TABLE `tb_meterial` (
   `change_time` datetime DEFAULT NULL COMMENT '修改时间',
   `end_time` datetime DEFAULT NULL COMMENT '最晚提交截止时间',
   `is_commit` tinyint(1) DEFAULT '0' COMMENT '是否提交',
-  `stage` varchar(30) DEFAULT NULL COMMENT '这是哪个阶段提交的材料【FIRST,ESTABLISH,MIDDLE,FINAL】初审、立项、中期、结题',
   PRIMARY KEY (`pk_id`),
   KEY `idx_project_id` (`idx_project_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_meterial` */
 
-insert  into `tb_meterial`(`pk_id`,`idx_project_id`,`name`,`text`,`url`,`create_time`,`change_time`,`end_time`,`is_commit`,`stage`) values (1,1,'方舟反应炉','也称作常温核反应或者冷核聚变反应堆','D:/test/ArcReactor.jpg','2018-12-16 14:42:07','2018-12-16 14:42:15','2019-01-01 14:42:28',0,NULL);
+insert  into `tb_meterial`(`pk_id`,`idx_project_id`,`name`,`text`,`url`,`create_time`,`change_time`,`end_time`,`is_commit`) values (1,1,'方舟反应炉','也称作常温核反应或者冷核聚变反应堆','D:/test/ArcReactor.jpg','2018-12-16 14:42:07','2018-12-16 14:42:15','2019-01-01 14:42:28',0);
 
 /*Table structure for table `tb_project` */
 
@@ -177,11 +174,11 @@ CREATE TABLE `tb_user` (
   PRIMARY KEY (`pk_id`),
   UNIQUE KEY `uk_account` (`uk_account`),
   KEY `idx_phone` (`idx_phone`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_user` */
 
-insert  into `tb_user`(`pk_id`,`uk_account`,`password`,`name`,`sex`,`idx_phone`,`department`,`role_id`,`create_time`,`update_time`,`status`,`text`) values (1,'1111111111111','123456','ROOT','男','11111111111','部门',1,'2018-12-15 18:56:46','2018-12-15 18:56:51','NORMAL','至高无上的ROOT'),(2,'2015000000001','000000','张三','男','15888888888','总指挥部',2,'2018-12-15 19:15:56','2018-12-15 19:15:58','测试','就爱管项目');
+insert  into `tb_user`(`pk_id`,`uk_account`,`password`,`name`,`sex`,`idx_phone`,`department`,`role_id`,`create_time`,`update_time`,`status`,`text`) values (1,'1111111111111','123456','ROOT','男','11111111111','部门',1,'2018-12-15 18:56:46','2018-12-15 18:56:51','NORMAL','至高无上的ROOT'),(2,'2015000000001','000000','张三','男','15888888888','总指挥部',2,'2018-12-15 19:15:56','2018-12-15 19:15:58','测试','就爱管项目'),(3,'2222222222222','123456','staff','女','15858158585','教职工部',4,'2019-01-03 13:49:44','2019-01-03 13:49:47','NORMAL','教职工'),(4,'4444444444444','123456','professor','男','15858155555','专家',3,'2019-01-03 13:51:44','2019-01-03 13:51:46','NORMAL','专家');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

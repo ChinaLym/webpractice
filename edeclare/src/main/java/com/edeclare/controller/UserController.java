@@ -9,13 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edeclare.annotation.LoginRequired;
 import com.edeclare.constant.SessionKey;
-import com.edeclare.constant.responseBody.BaseResponse;
-import com.edeclare.constant.responseBody.enums.URIResponseEnum;
-import com.edeclare.constant.responseBody.enums.UserControllerResponseEnum;
 import com.edeclare.entity.User;
 import com.edeclare.service.IUserService;
 /**
@@ -39,7 +35,7 @@ public class UserController {
     }
     
     public UserController() {
-		System.out.println("\n           /:::,'.               |::::@'       /::::/##            ++++++++'         ·/++++++++#+  \n          /:::#@@.               \\:::::@+    /::,:#@@:           ;::::::,+@:      ./::::::,;#@#; \n         /:::#@@,                 \\::::@@.__::::/#@#·           ;:::::::,+@;     ·::::::::::#@@;  \n        /::::@@'                   \\:::#@,:::::#@@;            ;::::::::,+@;    /:::':::::+@@+;\n       /::::@@#`                    \\ :::::::#@@+`            ;::,+',::,++@+-./:::##++::::@@#; \n      /::::#@@.                      \\::::,'#@+,             ;::,+##':::'@;,·:::+##+::::,#@#;  \n     /::::#@,                        /::::/#@@,             ;:::;#@#+·|:,'+,:::##@, ::::@##; \n    /::::@@'                        /:::@/@#,              ;:::,#@@:  ·+::,:,'#@@| .::+@@#; \n   /:::::@±±±±±±&&&                /:::#/@@.              ;:::,+@@;   ·|:,:##@@:   ;::@@#;  \n  @±±±±±±±±±±±±±/#@#;             /:::/@@#.              ;:::,+#@'     ++,'#@@;   ;::#@@+  \n  |''''''''''''|#@/+`            /±±±|@@/:              +±±±±@#@+`     '_@@.     ;±±#@#; \n  |------------|./               |±±±±|/;               |±±±±|#                  |±±±|;   \n " );
+		//System.out.println("\n           /:::,'.               |::::@'       /::::/##            ++++++++'         ·/++++++++#+  \n          /:::#@@.               \\:::::@+    /::,:#@@:           ;::::::,+@:      ./::::::,;#@#; \n         /:::#@@,                 \\::::@@.__::::/#@#·           ;:::::::,+@;     ·::::::::::#@@;  \n        /::::@@'                   \\:::#@,:::::#@@;            ;::::::::,+@;    /:::':::::+@@+;\n       /::::@@#`                    \\ :::::::#@@+`            ;::,+',::,++@+-./:::##++::::@@#; \n      /::::#@@.                      \\::::,'#@+,             ;::,+##':::'@;,·:::+##+::::,#@#;  \n     /::::#@,                        /::::/#@@,             ;:::;#@#+·|:,'+,:::##@, ::::@##; \n    /::::@@'                        /:::@/@#,              ;:::,#@@:  ·+::,:,'#@@| .::+@@#; \n   /:::::@±±±±±±&&&                /:::#/@@.              ;:::,+@@;   ·|:,:##@@:   ;::@@#;  \n  @±±±±±±±±±±±±±/#@#;             /:::/@@#.              ;:::,+#@'     ++,'#@@;   ;::#@@+  \n  |''''''''''''|#@/+`            /±±±|@@/:              +±±±±@#@+`     '_@@.     ;±±#@#; \n  |------------|./               |±±±±|/;               |±±±±|#                  |±±±|;   \n " );
 	}
 
     @GetMapping(value = "/login")
@@ -54,9 +50,8 @@ public class UserController {
     
     
     
-    @PostMapping(value = "/login")
-    @ResponseBody
-    public BaseResponse login(@RequestBody User user, HttpSession session) {
+    @PostMapping(value = "/loginconfirm")    
+    public String loginconfirm(User user, HttpSession session) {
         User loginUser = null;
 		try {
 			loginUser = userService.login(user);
@@ -65,11 +60,26 @@ public class UserController {
 		}
         if(loginUser == null) {
             // 登录失败，返回登录界面
-            return UserControllerResponseEnum.FAIL;
+        	 System.out.println("login false");
+        	return "redirect:/login";
         } else {
-            // 登录成功
+            // 登录成功,判断用户角色
             session.setAttribute("user", loginUser);
-            return URIResponseEnum.REDIRECT.setUri("/manager/main");
+            session.setAttribute("username", loginUser.getName());
+            System.out.println("login success");
+            if(loginUser.getRoleId()==1||loginUser.getRoleId()==2) {
+            	return "redirect:/toManaMain";
+            }else if(loginUser.getRoleId()==3) {
+            	//专家
+            	return "redirect:/toProMain";
+            }else if(loginUser.getRoleId()==4) {
+            	//教职工
+            	return "redirect:/toStaffMain";
+            }else {
+            	System.out.println("未找到对应角色，将返回登录页面。");
+            	return "redirect:/login";
+            }
+            
         }
     }
     
@@ -96,5 +106,20 @@ public class UserController {
 //    public String sbgz() {
 //    	return "sbgz";
 //    }
+    
+    @GetMapping(value = "/toManaMain")
+    public String toManaMain() {
+    	return "manager/main";
+    }
+    
+    @GetMapping(value = "/toStaffMain")
+    public String toStaffMain() {
+    	return "staff/main";
+    }
+    
+    @GetMapping(value = "/toProMain")
+    public String toProMain() {
+    	return "professor/main";
+    }
     
 }

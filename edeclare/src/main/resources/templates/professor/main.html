@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>教职工</title>
+    <title>专家</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -58,7 +58,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="toStaffMain" class="logo">
+        <a href="toProMain" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>E-Declare</b></span>
           <!-- logo for regular state and mobile devices -->
@@ -72,7 +72,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <span class="sr-only">Toggle navigation</span>
           </a>
           <!-- Navbar Right Menu -->
-          <div class="navbar-custom-menu">
+          <div class="navbar-custom-menu" style="margin-right: 8%;">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu">
@@ -162,28 +162,75 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <ul class="sidebar-menu">
             <li class="header">Please Choose</li>
             <!-- Optionally, you can add icons to the links -->
-           
-           <li>
+           <!--  <li class="active">
             	<a href="#">
-            		<i class="fa fa-file-text"></i> 
-            		<span>项目详情</span>
+            		<i class="fa fa-hand-o-right"></i> 
+            		<span>一级列表</span>
             	</a>
             </li>
-             <li>
-            	<a href="toSbxm">
-            		<i class="fa fa-file-word-o"></i> 
-            		<span>申报项目</span>
+            <li>
+            	<a href="#">
+            		<i class="fa fa-hand-o-right"></i> 
+            		<span>一级列表</span>
             	</a>
+            </li> -->
+            <li class="treeview">
+           		<a href="#">
+            		<i class="fa fa-files-o"></i> 
+            		<span>申报管理</span> 
+            		<i class="fa fa-angle-left pull-right"></i>
+            	</a>
+            	<ul class="treeview-menu">
+              		<li><a href="toSbgz">&nbsp;&nbsp;<i class="fa fa-pencil"></i>设置申报规则</a></li>
+             		<li><a href="toXmcs">&nbsp;&nbsp;<i class="fa fa-check"></i>项目初审</a></li>
+             		<li><a href="toFpzj">&nbsp;&nbsp;<i class="fa fa-user"></i>分配专家</a></li>
+             		<li><a href="toLx">&nbsp;&nbsp;<i class="fa fa-book"></i>立项</a></li>
+            	</ul>
             </li>
             <li class="treeview">
            		<a href="#">
             		<i class="fa fa-files-o"></i> 
-            		<span>上传材料</span> 
+            		<span>中期检查管理</span> 
             		<i class="fa fa-angle-left pull-right"></i>
             	</a>
             	<ul class="treeview-menu">
-              		<li><a href="toZqcl">&nbsp;&nbsp;<i class="fa fa-file-text-o"></i>上传中期材料</a></li>
-             		<li><a href="toJtcl">&nbsp;&nbsp;<i class="fa fa-file-text-o"></i>上传结题材料</a></li>
+              		<li><a href="toZqgz">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
+              		<li><a href="toZqsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
+            	</ul>
+            </li>
+            <li class="treeview">
+           		<a href="#">
+            		<i class="fa fa-files-o"></i> 
+            		<span>结题验收管理</span> 
+            		<i class="fa fa-angle-left pull-right"></i>
+            	</a>
+            	<ul class="treeview-menu">
+              		<li><a href="toJtgz">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
+              		<li><a href="toJtsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
+            	</ul>
+            </li>
+            <li class="treeview">
+           		<a href="#">
+            		<i class="fa fa-user"></i> 
+            		<span>用户管理</span> 
+            		<i class="fa fa-angle-left pull-right"></i>
+            	</a>
+            	<ul class="treeview-menu">
+              		<li><a href="toUserMana">&nbsp;&nbsp;<i class="fa fa-info-circle"></i>用户信息管理</a></li>
+              		<li><a href="toUserRole">&nbsp;&nbsp;<i class="fa fa-users"></i>用户角色分配</a></li>
+              		<li><a href="toResetPass">&nbsp;&nbsp;<i class="fa fa-refresh"></i>密码重置</a></li>
+            	</ul>
+            </li>
+            <li class="treeview">
+           		<a href="#">
+            		<i class="fa fa-cog"></i> 
+            		<span>系统设置</span> 
+            		<i class="fa fa-angle-left pull-right"></i>
+            	</a>
+            	<ul class="treeview-menu">
+              		<li><a href="toRoleMana">&nbsp;&nbsp;<i class="fa fa-users"></i>角色管理</a></li>
+              		<li><a href="toMenuMana">&nbsp;&nbsp;<i class="fa fa-bars"></i>菜单管理</a></li>
+              		<li><a href="toAssignPer">&nbsp;&nbsp;<i class="fa fa-hand-paper-o"></i>角色权限分配</a></li>
             	</ul>
             </li>
           </ul><!-- /.sidebar-menu -->
@@ -198,7 +245,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <h1>
             	欢迎您！
 <!--             <small>User</small> -->
-            <small th:text="${session.username}">首页</small>
+            <small th:text="${session.username}">User</small>
           </h1>
           <!-- <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -211,6 +258,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           <!-- Your Page Content Here -->
           <h2>Welcome to E-Declare System!</h2>
+
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
 

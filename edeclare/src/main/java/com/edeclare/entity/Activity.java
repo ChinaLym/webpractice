@@ -21,30 +21,9 @@ public class Activity extends BaseEntity implements Serializable {
 	@Column(name="end_time")
 	private Date endTime;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="birth_time")
-	private Date birthTime;
 
 	private String level;
 	
-	private String stage;
-
-	public Date getBirthTime() {
-		return birthTime;
-	}
-
-	public void setBirthTime(Date birthTime) {
-		this.birthTime = birthTime;
-	}
-
-	public String getStage() {
-		return stage;
-	}
-
-	public void setStage(String stage) {
-		this.stage = stage;
-	}
-
 	@Column(name="sponsor")
 	private int sponsor;
 

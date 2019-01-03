@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>教职工</title>
+    <title>管理员</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -58,7 +58,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="toStaffMain" class="logo">
+        <a href="toManaMain" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>E-Declare</b></span>
           <!-- logo for regular state and mobile devices -->
@@ -72,7 +72,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <span class="sr-only">Toggle navigation</span>
           </a>
           <!-- Navbar Right Menu -->
-          <div class="navbar-custom-menu">
+          <div class="navbar-custom-menu" style="margin-right: 8%;">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu">
@@ -141,7 +141,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <img src="AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p th:text="${session.username}">Alexander Pierce</p>
+              <p th:text="${session.username}">>Alexander Pierce</p>
               <!-- Status -->
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -162,28 +162,75 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <ul class="sidebar-menu">
             <li class="header">Please Choose</li>
             <!-- Optionally, you can add icons to the links -->
-           
-           <li>
+           <!--  <li class="active">
             	<a href="#">
-            		<i class="fa fa-file-text"></i> 
-            		<span>项目详情</span>
+            		<i class="fa fa-hand-o-right"></i> 
+            		<span>一级列表</span>
             	</a>
             </li>
-             <li>
-            	<a href="toSbxm">
-            		<i class="fa fa-file-word-o"></i> 
-            		<span>申报项目</span>
+            <li>
+            	<a href="#">
+            		<i class="fa fa-hand-o-right"></i> 
+            		<span>一级列表</span>
             	</a>
+            </li> -->
+            <li class="treeview">
+           		<a href="#">
+            		<i class="fa fa-files-o"></i> 
+            		<span>申报管理</span> 
+            		<i class="fa fa-angle-left pull-right"></i>
+            	</a>
+            	<ul class="treeview-menu">
+              		<li><a href="toSbgz">&nbsp;&nbsp;<i class="fa fa-pencil"></i>设置申报规则</a></li>
+             		<li><a href="toXmcs">&nbsp;&nbsp;<i class="fa fa-check"></i>项目初审</a></li>
+             		<li><a href="toFpzj">&nbsp;&nbsp;<i class="fa fa-user"></i>分配专家</a></li>
+             		<li><a href="toLx">&nbsp;&nbsp;<i class="fa fa-book"></i>立项</a></li>
+            	</ul>
             </li>
             <li class="treeview">
            		<a href="#">
             		<i class="fa fa-files-o"></i> 
-            		<span>上传材料</span> 
+            		<span>中期检查管理</span> 
             		<i class="fa fa-angle-left pull-right"></i>
             	</a>
             	<ul class="treeview-menu">
-              		<li><a href="toZqcl">&nbsp;&nbsp;<i class="fa fa-file-text-o"></i>上传中期材料</a></li>
-             		<li><a href="toJtcl">&nbsp;&nbsp;<i class="fa fa-file-text-o"></i>上传结题材料</a></li>
+              		<li><a href="toZqgz">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
+              		<li><a href="toZqsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
+            	</ul>
+            </li>
+            <li class="treeview">
+           		<a href="#">
+            		<i class="fa fa-files-o"></i> 
+            		<span>结题验收管理</span> 
+            		<i class="fa fa-angle-left pull-right"></i>
+            	</a>
+            	<ul class="treeview-menu">
+              		<li><a href="toJtgz">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
+              		<li><a href="toJtsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
+            	</ul>
+            </li>
+            <li class="treeview active">
+           		<a href="#">
+            		<i class="fa fa-user"></i> 
+            		<span>用户管理</span> 
+            		<i class="fa fa-angle-left pull-right"></i>
+            	</a>
+            	<ul class="treeview-menu">
+              		<li class="active"><a href="toUserMana">&nbsp;&nbsp;<i class="fa fa-info-circle"></i>用户信息管理</a></li>
+              		<li><a href="toUserRole">&nbsp;&nbsp;<i class="fa fa-users"></i>用户角色分配</a></li>
+              		<li><a href="toResetPass">&nbsp;&nbsp;<i class="fa fa-refresh"></i>密码重置</a></li>
+            	</ul>
+            </li>
+            <li class="treeview">
+           		<a href="#">
+            		<i class="fa fa-cog"></i> 
+            		<span>系统设置</span> 
+            		<i class="fa fa-angle-left pull-right"></i>
+            	</a>
+            	<ul class="treeview-menu">
+              		<li><a href="toRoleMana">&nbsp;&nbsp;<i class="fa fa-users"></i>角色管理</a></li>
+              		<li><a href="toMenuMana">&nbsp;&nbsp;<i class="fa fa-bars"></i>菜单管理</a></li>
+              		<li><a href="toAssignPer">&nbsp;&nbsp;<i class="fa fa-hand-paper-o"></i>角色权限分配</a></li>
             	</ul>
             </li>
           </ul><!-- /.sidebar-menu -->
@@ -198,7 +245,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <h1>
             	欢迎您！
 <!--             <small>User</small> -->
-            <small th:text="${session.username}">首页</small>
+            <small th:text="${session.username}">User</small>
           </h1>
           <!-- <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -210,7 +257,106 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <section class="content">
 
           <!-- Your Page Content Here -->
-          <h2>Welcome to E-Declare System!</h2>
+          <div class="box box-info" style="width: 70%; margin: 0 auto 20px">
+            <div class="box-header with-border">
+              <h3 class="box-title">查看用户信息</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" action="#" method="POST" th:object=${session.user}>
+            	<input type="hidden" name="id" id="id" th:value="*{id}"/>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for=account class="col-sm-2 control-label">账号</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="account" th:value="*{account}" name="account" readonly="readonly">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="name" class="col-sm-2 control-label">名称</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="name" th:value="*{name}" name="name" readonly="readonly">
+                  </div>
+                </div>
+               <div class="form-group">
+                  <label for="password" class="col-sm-2 control-label">密码</label>
+                  <div class="col-sm-8">
+                  	<input type="text" class="form-control" th:value="*{password}" id="password" name="password" readonly="readonly"/>
+                  </div>
+                </div>
+                <div class="form-group">
+	              	<label for="sex" class="col-sm-2 control-label">性别</label>
+	              	<div class="col-sm-4">
+<!-- 	              		<input type="text" class="form-control" id="sex" name="sex" th:value="*{sex}" readonly="readonly"/> -->
+						<select th:field="*{sex}" class="form-control" data-required="true" disabled="disabled">
+							<option value="">请选择</option>
+	              			<option th:each="sex:${sexes}" th:text="${sex.value}" th:value="${sex.value}"></option>
+	              		</select>
+	              	</div>
+              	</div>
+	             
+	              <div class="form-group">
+	              	<label for="phone" class="col-sm-2 control-label">联系电话</label>
+	              	<div class="col-sm-8">
+                  		<input type="text" class="form-control" th:value="*{phone}" id="phone" name="phone" readonly="readonly"/>
+                  	</div>
+	              </div>
+	              <div class="form-group">
+	              	<label for="department" class="col-sm-2 control-label">所属部门</label>
+	              	<div class="col-sm-8">
+                  		<input type="text" class="form-control" th:value="*{department}" id="department" name="department" readonly="readonly"/>
+                  	</div>
+	              </div>
+	              <div class="form-group">
+	              	<label for="roleId" class="col-sm-2 control-label">所属角色</label>
+	              	<div class="col-sm-4">
+<!--                   		<input type="text" class="form-control" th:value="*{roleId}" id="roleId" name="roleId" readonly="readonly"/> -->
+						<select th:field="*{roleId}" class="form-control" data-required="true" disabled="disabled">
+                  			<option value="">请选择</option>
+                  			<option th:each="role:${roles}" th:text="${role.name}" th:value="${role.id}"></option>
+                  		</select>
+                  	</div>
+	              </div>
+	              <div class="form-group">
+	              	<label for="createTime" class="col-sm-2 control-label">创建时间</label>
+	              	<div class="col-sm-4">
+                  		<input class="form-control" th:value="*{createTime.month + 1} + '-' + *{createTime.date} + '-' + *{createTime.year}" id="createTime" name="createTime" readonly="readonly"/>
+                  	</div>
+	              </div>
+	              <div class="form-group">
+	              	<label for="updateTime" class="col-sm-2 control-label">更新时间</label>
+	              	<div class="col-sm-4">
+                  		<input class="form-control" th:value="*{updateTime.month + 1} + '-' + *{updateTime.date} + '-' + *{updateTime.year}" id="updateTime" name="updateTime" readonly="readonly"/>
+                  	</div>
+	              </div>
+	              <div class="form-group">
+	              	<label for="status" class="col-sm-2 control-label">状态</label>
+	              	<div class="col-sm-4">
+<!--                   		<input class="form-control" th:value="*{status}" id="status" name="status" readonly="readonly"/> -->
+						<select th:field="*{status}" class="form-control" data-required="true" disabled="disabled">
+                  			<option th:each="status:${userStatuses}" th:text="${status.toString()}" th:value="${status.toString()}"></option>
+                  		</select>
+                  	</div>
+	              </div>
+	              <div class="form-group">
+	              	<label for="text" class="col-sm-2 control-label">备注</label>
+	              	<div class="col-sm-8">
+                  		<textarea class="form-control" rows="3" th:text="*{text}" id="text" name="text" readonly="readonly"></textarea>
+                  	</div>
+	              </div>
+              </div>
+              
+              <!-- /.box-body -->
+              <div class="box-footer" style="padding: 10px 20%">
+<!--                 <a href="toLx"><button type="button" class="btn btn-default">取消</button></a> -->
+                <a href="toUserMana"><button type="button" class="btn btn-info btn-lg" style="margin-left: 35%;width: 30%;">确定</button></a>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
