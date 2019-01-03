@@ -3,7 +3,7 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/e_declare?characterEncoding=UTF-8
     username: root
-    password: root
+    password: 123456
     tomcat-jdbc: com.alibaba.datasource.pool.DruidDataSource
     initialSize: 20                                #初始化连接大小
     minIdle: 5                                     #最小连接池数量
