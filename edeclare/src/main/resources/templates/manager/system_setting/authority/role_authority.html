@@ -266,7 +266,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" action="" method="POST" >
+            <form class="form-horizontal" action="/roleAuthority/update" method="POST" >
               <div class="box-body">
                 <div class="form-group">
                   <label for="name" class="col-sm-2 control-label">请选择角色</label>
@@ -279,11 +279,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="form-group">
                 <div class="col-sm-12">
                      <div class="col-sm-3"  th:each="authority:${authoritys}" >
-                                  <input th:type="checkbox"   th:value="${authority.id}"  th:checked="${roleAuthoritys.contains(authority.id)}"/>
+                                  <input th:type="checkbox" th:name="authority"  th:value="${authority.id}"  th:checked="${roleAuthoritys.contains(authority.id)}"/>
 		                          <span th:text="${authority.name}"></span>
                       </div>
                 </div>
                 </div>
+                
+              </div>
+              <div class="box-footer" style="padding: 10px 20%">
+                <button type="reset" class="btn btn-default">重置</button>
+                <button type="submit" class="btn btn-info pull-right">提交</button>
               </div>
             </form>
           </div>

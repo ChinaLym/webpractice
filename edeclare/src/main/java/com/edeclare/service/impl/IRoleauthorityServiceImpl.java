@@ -17,6 +17,8 @@ public class IRoleauthorityServiceImpl implements IRoleauthorityService {
 	
 	@Autowired
 	private IAuthorityRepository iAuthorityRepository;
+	
+
 	@Autowired
 	private IRoleauthorityRepository iRoleauthorityRepository;
 	
@@ -33,4 +35,18 @@ public class IRoleauthorityServiceImpl implements IRoleauthorityService {
 		return iRoleauthorityRepository.findAll(example);
 	}
 
+	@Override
+	public int saveRoleAuthorityByList(List<Roleauthority> lists) {
+		this.delByRoleId(lists.get(0).getRoleId());
+		for(Roleauthority roleAuthority: lists) {
+			iRoleauthorityRepository.save(roleAuthority);
+		}
+		return 0;
+	}
+	
+	//通过RoleId删除
+	@Override
+	public void delByRoleId(Integer roleId) {
+		iRoleauthorityRepository.delByRoleId(roleId);
+	}
 }

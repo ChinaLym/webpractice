@@ -3,6 +3,8 @@ package com.edeclare.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,5 +44,25 @@ public class RoleAuthorityController {
 		return "manager/system_setting/authority/role_authority";
 	}
 	
-	
+	@RequestMapping("/roleAuthority/update")
+	public String updateRoleAuthority(Integer id, HttpServletRequest req) {
+		String[] values = req.getParameterValues("authority");
+		if(values != null) {
+			List<Integer> ids = new ArrayList<>();
+			for (String string : values) {
+				ids.add(Integer.parseInt(string));
+			}
+			List<Roleauthority> lists = new ArrayList<>();//用于存放Roleauthority对象
+			for(Integer authorityId: ids) {
+				Roleauthority au = new Roleauthority();
+				au.setRoleId(id);
+				au.setAuthorityId(authorityId);
+				lists.add(au);
+			}
+			iRoleauthorityService.saveRoleAuthorityByList(lists);
+		}else {
+			iRoleauthorityService.delByRoleId(id);
+		}
+		return "redirect:/toAssignPer";
+	}
 }

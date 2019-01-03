@@ -9,4 +9,6 @@ import com.edeclare.entity.Roleauthority;
 public interface IRoleauthorityService {
 	List<Authority> getAllAuthority();
 	List<Roleauthority> listByRoleId(Integer roleId);
+	int saveRoleAuthorityByList(List<Roleauthority> lists);
+	void delByRoleId(Integer roleId);
 }

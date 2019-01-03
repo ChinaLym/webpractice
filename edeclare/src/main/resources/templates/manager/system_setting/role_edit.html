@@ -264,6 +264,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.box-header -->
             <!-- form start -->
             <form class="form-horizontal" action="roleUpdate" method="POST" th:object=${role}>
+             <input type="text" class="form-control" id="sponsor" name="id" th:value="${role.id}" style="visibility: hidden;" >
               <div class="box-body">
                 <div class="form-group">
                   <label for="name" class="col-sm-2 control-label">名称</label>
@@ -281,14 +282,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="form-group">
 	              	<label for="status" class="col-sm-2 control-label">状态</label>
 	              	<div class="col-sm-4">
-	              		<select th:field="*{status}" class="form-control" data-required="true">
-	              			<option th:each="status:${roleStatuses}" th:text="${status.toString()}" th:value="${status.toString()}" ></option>
+	              		<select  th:field="*{status}" class="form-control" data-required="true">
+	              			<option  th:each="status:${roleStatuses}" th:text="${status.toString()}" th:value="${status.toString()}" ></option>
 	              		</select>
 	              	</div>
               	</div>
-	             
               </div>
-              
               <!-- /.box-body -->
               <div class="box-footer" style="padding: 10px 20%">
                 <a href="toRoleMana"><button type="button" class="btn btn-default">取消</button></a>
