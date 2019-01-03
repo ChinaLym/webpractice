@@ -36,6 +36,11 @@ public class ActivityServiceImpl implements IActivityService{
 		List<Activity> list=activityRepository.findAll();
 		return list;
 	}
+
+	@Override
+	public Activity getById(Integer id) {
+		return activityRepository.getOne(id);
+	}
 	
 	
 	

@@ -10,4 +10,7 @@ public interface IActivityService {
 	
 	//获取全部活动列表
 	List<Activity> getAllActivity();
+	
+	//根据ID获取单个活动
+	Activity getById(Integer id);
 }

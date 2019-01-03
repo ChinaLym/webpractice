@@ -101,11 +101,12 @@ public class UserController {
     		return "redirect:/index";
     	}
     }
-    //测试000
-//    @GetMapping(value = "/User/sbgz")
-//    public String sbgz() {
-//    	return "sbgz";
-//    }
+
+
+    @GetMapping(value = "/logout")
+    public String logout() {
+    	return "redirect:/login";
+    }
     
     @GetMapping(value = "/toManaMain")
     public String toManaMain() {
