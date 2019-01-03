@@ -134,4 +134,12 @@ public class Project extends BaseEntity implements Serializable {
 		this.text = text;
 	}
 
+	@Override
+	public String toString() {
+		return "Project [domain=" + domain + ", activityId=" + activityId + ", director=" + director + ", level="
+				+ level + ", name=" + name + ", promise=" + promise + ", remarks=" + remarks + ", score=" + score
+				+ ", status=" + status + ", text=" + text + "]";
+	}
+	
+
 }
