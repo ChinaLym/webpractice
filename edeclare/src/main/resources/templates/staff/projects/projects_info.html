@@ -58,7 +58,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="staffLogin" class="logo">
+        <a href="toStaffMain" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>E-Declare</b></span>
           <!-- logo for regular state and mobile devices -->
@@ -114,7 +114,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- User menu -->
 			<li class="dropdown">
 	             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
-	               User <span class="caret"></span>
+	               <span th:text="${session.username}"></span><span class="caret"></span>
 	             </a>
 	             <ul class="dropdown-menu">
 	               <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="text-align: center"><i class="fa fa-info-circle"></i>个人信息</a></li>
@@ -141,7 +141,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <img src="AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p th:text="${session.username}">Alexander Pierce</p>
               <!-- Status -->
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -197,8 +197,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <section class="content-header">
           <h1>
             	欢迎您！
-            <small>User</small>
-<!--             <small th:text="${user.username}">首页</small> -->
+<!--             <small>User</small> -->
+            <small th:text="${session.username}">首页</small>
           </h1>
           <!-- <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -233,8 +233,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                      <th>Level</th>
 	                      <th>Domain</th>
 	                      <th>Promise</th>
-	                      <!-- <th>Remark</th>
-	                      <th>Score</th> -->
+	                      <th>Remark</th>
+	                      <th>Score</th>
 	                      <th>Status</th>
 	                      <th>Text</th>
 <!-- 	                      <th>Operation</th> -->
@@ -249,8 +249,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                      <td th:text="${pro.level}">Level</td>
 	                      <td th:text="${pro.domain}">Domain</td>
 	                      <td th:text="${pro.promise}">Promise</td>
-	                      <!-- <td th:text="${pro.remarks}">Remark</td>
-	                      <td th:text="${pro.score}">Score</td> -->
+	                      <td th:text="${pro.remarks}">Remark</td>
+	                      <td th:text="${pro.score}">Score</td>
 	                      <td th:text="${pro.status}">Status</td>
 	                      <td th:text="${pro.text}">Text</td>
 	                      <td>

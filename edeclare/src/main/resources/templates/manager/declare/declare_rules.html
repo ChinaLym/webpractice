@@ -290,8 +290,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	              	<label for="level" class="col-sm-2 control-label">级别</label>
 	              	<div class="col-sm-4">
 						<select class="form-control" id="level" name="level">						
-							<option value="校类一级" selected="selected">校类一级</option>
-							<option value="校类二级">校类二级</option>
+							<!-- <option value="校类一级" selected="selected">校类一级</option>
+							<option value="校类二级">校类二级</option> -->
+							<option value="">请选择</option>
+							<option th:each="level:${levels}" th:value="${level.toString()}" th:text="${level.toString()}"></option>
 						</select>
 	              	</div>
               	</div>

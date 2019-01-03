@@ -1,5 +1,9 @@
 package com.edeclare.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 /**
 *Type: ActivityController
@@ -12,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.edeclare.constant.fieldEnum.ActivityLevelEnum;
 import com.edeclare.entity.Activity;
 import com.edeclare.service.IActivityService;
 
@@ -19,9 +24,15 @@ import com.edeclare.service.IActivityService;
 public class ActivityController {
 	@Autowired
 	private IActivityService activityService;
+	private static List<ActivityLevelEnum> levels = new ArrayList<ActivityLevelEnum>();
+	static {
+		levels.add(ActivityLevelEnum.SCHOOL_1);
+    	levels.add(ActivityLevelEnum.SCHOOL_2);
+	}
 	
 	@GetMapping(value = "/toSbgz")
-    public String toSbgz() {    	
+    public String toSbgz(Map<Object, Object> map) {    	
+		map.put("levels", levels);
     	return "manager/declare/declare_rules";
     }
 	
