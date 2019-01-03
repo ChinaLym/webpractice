@@ -93,8 +93,6 @@ public class ProjectController {
     	return "manager/declare/first_trial_projects";
     }
     
-
-
 	//项目初审
 	@GetMapping(value = "/chushen")
 	public String chushen(@RequestParam(value = "id")Integer id ,Map<Object, Object> map) {
@@ -102,6 +100,15 @@ public class ProjectController {
 		map.put("project", pro);
 		return "manager/declare/first_trial_check";
 	}
+	
+	//初审通过
+	@GetMapping(value="/firstCheck")
+	public String tosettingRule(@RequestParam(value = "id")Integer id) {
+		projectService.updateState(id);
+		return "manager/declare/first_trial_projects";
+	}
+	
+	
 
 	
 }
