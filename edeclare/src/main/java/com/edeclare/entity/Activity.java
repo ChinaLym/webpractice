@@ -106,4 +106,11 @@ public class Activity extends BaseEntity implements Serializable {
 		this.updateTime = updateTime;
 	}
 
+	@Override
+	public String toString() {
+		return "Activity [content=" + content + ", endTime=" + endTime + ", level=" + level + ", sponsor=" + sponsor
+				+ ", startTime=" + startTime + ", text=" + text + ", title=" + title + ", updateTime=" + updateTime
+				+ "]";
+	}
+	
 }

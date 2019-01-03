@@ -1,7 +1,6 @@
 package com.edeclare.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,13 +9,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+import com.edeclare.constant.fieldEnum.ActivityLevelEnum;
 import com.edeclare.constant.fieldEnum.ProjectStatusEnum;
 import com.edeclare.entity.Activity;
 import com.edeclare.entity.Project;
 import com.edeclare.entity.User;
+import com.edeclare.entity.dto.ProjectDTO;
 import com.edeclare.service.IActivityService;
 import com.edeclare.service.IProjectService;
 import com.edeclare.service.IUserService;
@@ -31,13 +32,17 @@ public class ProjectController {
     private IUserService userService;
 	
 	private static List<ProjectStatusEnum> proStatuses = new ArrayList<ProjectStatusEnum>();
+	private static List<ActivityLevelEnum> levels = new ArrayList<ActivityLevelEnum>();
     
     static {
+    	levels.add(ActivityLevelEnum.SCHOOL_1);
+    	levels.add(ActivityLevelEnum.SCHOOL_2);
     	proStatuses.add(ProjectStatusEnum.FIRST_TRIAL_PENDING);
     	proStatuses.add(ProjectStatusEnum.FIRST_TRIAL_PASSED);
     	proStatuses.add(ProjectStatusEnum.FIRST_TRIAL_NOT_PASS);
     	
     	proStatuses.add(ProjectStatusEnum.ESTABLISH_ON_TRIAL);
+    	proStatuses.add(ProjectStatusEnum.ESTABLISH_FINISHED);
     	proStatuses.add(ProjectStatusEnum.ESTABLISHED);
     	proStatuses.add(ProjectStatusEnum.NO_ESTABLISHMENT);
     	
@@ -79,17 +84,24 @@ public class ProjectController {
 		return "staff/projects/projects_info";
 	}
 	
-
+	
  	@GetMapping(value = "/toXmcs")
     public String toXmcs(Map<Object, Object> map) {
  		List<Project> projectList = projectService.findAllProject();
-		map.put("projects", projectList);
-		List<User> list=userService.findAll();
-		Map<Object,Object> idAndName = new HashMap<Object,Object>();
-		for (User user : list) {
-			idAndName.put(user.getId(), user.getName());
+		if(projectList== null || projectList.size() == 0) {
+	    	return "manager/declare/first_trial_projects";			
 		}
-		map.put("idAndName", idAndName);
+		List<ProjectDTO> projectDTOList = new ArrayList<ProjectDTO>();
+		
+		User u = new User();
+		for (Project pro : projectList) {
+			ProjectDTO proDTO = new ProjectDTO();
+			u = userService.findById(pro.getDirector());
+			proDTO.setProject(pro);
+			proDTO.setUserName(u.getName());
+			projectDTOList.add(proDTO);
+		}
+		map.put("projectDTOList", projectDTOList);
     	return "manager/declare/first_trial_projects";
     }
     
@@ -97,11 +109,65 @@ public class ProjectController {
 	@GetMapping(value = "/chushen")
 	public String chushen(@RequestParam(value = "id")Integer id ,Map<Object, Object> map) {
 		Project pro = projectService.findById(id);
+		map.put("levels", levels);
+    	map.put("proStatuses", proStatuses);
 		map.put("project", pro);
 		return "manager/declare/first_trial_check";
 	}
 	
+
+	//审核项目详情
+	@GetMapping(value = "/toShxm")
+	public String toShxm(Map<Object, Object> map) {
+		List<Project> projectList = projectService.findAllProject();
+		if(projectList== null || projectList.size() == 0) {
+	    	return "professor/projects_info";			
+		}
+		List<ProjectDTO> projectDTOList = new ArrayList<ProjectDTO>();
+		ProjectDTO proDTO = new ProjectDTO();
+		User u = new User();
+		for (Project pro : projectList) {
+			u = userService.findById(pro.getDirector());
+			if(u != null) {
+				proDTO.setProject(pro);
+				proDTO.setUserName(u.getName());
+				projectDTOList.add(proDTO);
+			}
+		}
+		System.out.println(projectDTOList);
+		map.put("projectDTOList", projectDTOList);
+		return "professor/projects_info";
+	}
+	//初审通过
+	@GetMapping(value="/firstCheck")
+	public String tosettingRule(@RequestParam(value = "id")Integer id) {
+		projectService.updateState(id);
+		return "manager/declare/first_trial_projects";
+	}
+	
 	
 
+	//审核项目
+	@GetMapping(value = "/shenhe")
+	public String shenhe(@RequestParam(value = "id") Integer id, Map<Object, Object> map) {
+		Project pro = projectService.findById(id);
+		map.put("levels", levels);
+    	map.put("proStatuses", proStatuses);
+		map.put("project", pro);
+		return "professor/check_project";
+	}
+	
+	//审核完成
+	@PostMapping(value = "/proCheck")
+	public String proCheck(Project project) {
+		Project pro = projectService.findById(project.getId());
+		System.out.println(project.getScore() + ", " + pro.getRemarks());
+		pro.setRemarks(project.getRemarks());
+		pro.setScore(project.getScore());
+		pro.setStatus(ProjectStatusEnum.ESTABLISH_FINISHED.toString());
+		projectService.saveProject(pro);
+		return "redirect:/toShxm";
+	}
+	
 	
 }
