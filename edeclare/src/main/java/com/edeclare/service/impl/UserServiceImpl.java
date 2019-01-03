@@ -53,4 +53,14 @@ public class UserServiceImpl implements IUserService{
 		List<User> list = userRepository.findAll();
 		return list;
 	}
+
+	@Override
+	public List<User> findListByIds(List<Integer> ids) {
+		return userRepository.findAllById(ids);
+	}
+
+	@Override
+	public User findById(Integer id) {
+		return userRepository.getOne(id);
+	}
 }

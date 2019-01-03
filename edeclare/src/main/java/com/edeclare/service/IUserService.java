@@ -26,4 +26,8 @@ public interface IUserService {
 	User register(User user) throws Exception;
 
 	List<User> findAll();
+	
+	List<User> findListByIds(List<Integer> ids);
+	
+	User findById(Integer id);
 }
