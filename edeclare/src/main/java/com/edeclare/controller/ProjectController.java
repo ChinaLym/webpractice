@@ -96,7 +96,6 @@ public class ProjectController {
 		User u = new User();
 		for (Project pro : projectList) {
 			u = userService.findById(pro.getDirector());
-			System.out.println(pro.toString());
 			proDTO.setProject(pro);
 			proDTO.setUserName(u.getName());
 			projectDTOList.add(proDTO);
@@ -135,6 +134,7 @@ public class ProjectController {
 				projectDTOList.add(proDTO);
 			}
 		}
+		System.out.println(projectDTOList);
 		map.put("projectDTOList", projectDTOList);
 		return "professor/projects_info";
 	}

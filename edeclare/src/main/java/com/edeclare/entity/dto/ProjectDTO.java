@@ -33,7 +33,11 @@ public class ProjectDTO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "ProjectDTO [project=" + project + ", userName=" + userName + "]";
+	}
 	
 	
 }
