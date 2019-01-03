@@ -92,13 +92,15 @@ public class ProjectController {
 	    	return "manager/declare/first_trial_projects";			
 		}
 		List<ProjectDTO> projectDTOList = new ArrayList<ProjectDTO>();
-		ProjectDTO proDTO = new ProjectDTO();
 		User u = new User();
 		for (Project pro : projectList) {
-			u = userService.findById(pro.getDirector());
-			proDTO.setProject(pro);
-			proDTO.setUserName(u.getName());
-			projectDTOList.add(proDTO);
+			if(pro.getStatus().equals(ProjectStatusEnum.FIRST_TRIAL_PENDING.toString())) {
+				ProjectDTO proDTO = new ProjectDTO();
+				u = userService.findById(pro.getDirector());
+				proDTO.setProject(pro);
+				proDTO.setUserName(u.getName());
+				projectDTOList.add(proDTO);
+			}
 		}
 		map.put("projectDTOList", projectDTOList);
     	return "manager/declare/first_trial_projects";
@@ -114,6 +116,13 @@ public class ProjectController {
 		return "manager/declare/first_trial_check";
 	}
 	
+	//初审通过
+	@PostMapping(value="/firstCheck")
+	public String tosettingRule(Project project) {
+		projectService.updateState(project.getId());
+		return "redirect:/toXmcs";
+	}
+	
 	//审核项目详情
 	@GetMapping(value = "/toShxm")
 	public String toShxm(Map<Object, Object> map) {
@@ -122,28 +131,22 @@ public class ProjectController {
 	    	return "professor/projects_info";			
 		}
 		List<ProjectDTO> projectDTOList = new ArrayList<ProjectDTO>();
-		ProjectDTO proDTO = new ProjectDTO();
 		User u = new User();
 		for (Project pro : projectList) {
-			u = userService.findById(pro.getDirector());
-			if(u != null) {
-				proDTO.setProject(pro);
-				proDTO.setUserName(u.getName());
-				projectDTOList.add(proDTO);
+			if(pro.getStatus().equals(ProjectStatusEnum.FIRST_TRIAL_PASSED.toString())) {
+				ProjectDTO proDTO = new ProjectDTO();
+				u = userService.findById(pro.getDirector());
+				if(u != null) {
+					proDTO.setProject(pro);
+					proDTO.setUserName(u.getName());
+					projectDTOList.add(proDTO);
+				}
 			}
 		}
 		System.out.println(projectDTOList);
 		map.put("projectDTOList", projectDTOList);
 		return "professor/projects_info";
 	}
-	//初审通过
-	@GetMapping(value="/firstCheck")
-	public String tosettingRule(@RequestParam(value = "id")Integer id) {
-		projectService.updateState(id);
-		return "manager/declare/first_trial_projects";
-	}
-	
-	
 
 	//审核项目
 	@GetMapping(value = "/shenhe")
