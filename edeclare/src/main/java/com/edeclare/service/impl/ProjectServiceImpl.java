@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.edeclare.constant.fieldEnum.ProjectStatusEnum;
 import com.edeclare.entity.Project;
 import com.edeclare.repository.IProjectRepository;
 import com.edeclare.service.IProjectService;
@@ -40,4 +41,12 @@ public class ProjectServiceImpl implements IProjectService {
 		return projectRepository.getOne(id);
 	}
 
+	//初审通过
+	@Override
+	public Project updateState(Integer id) {
+		Project project = projectRepository.getOne(id);
+		project.setStatus(ProjectStatusEnum.FIRST_TRIAL_PASSED.toString());
+		projectRepository.save(project);
+		return project;
+	}
 }
