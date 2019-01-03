@@ -313,7 +313,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   		$("#status").attr("disabled", "disabled");
   		$("#submit").click(function(){
   			$("#status").removeAttr("disabled");
-  			var val = $("form").serialize();
+  			var val = $("#declareProject").serialize();
 			var href = $("#declareProject").attr("action") + "?" + val;
 			window.location.href = href;
   			return false;

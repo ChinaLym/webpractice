@@ -51,8 +51,9 @@ public class ProjectController {
     }
 	
 	//教职工staff申报项目
-	@PostMapping(value="/declareProject")
+	@GetMapping(value="/declareProject")
 	private String declareProject(Project project) {
+		System.out.println("declareProject begin");
 		projectService.saveProject(project);
 		return "redirect:/toStaffMain";
 	}
