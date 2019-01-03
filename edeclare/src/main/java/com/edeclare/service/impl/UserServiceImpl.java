@@ -1,6 +1,7 @@
 package com.edeclare.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,5 +46,11 @@ public class UserServiceImpl implements IUserService{
 		} catch (Exception e) {
 			throw e;
 		}
+	}
+
+	@Override
+	public List<User> findAll() {
+		List<User> list = userRepository.findAll();
+		return list;
 	}
 }

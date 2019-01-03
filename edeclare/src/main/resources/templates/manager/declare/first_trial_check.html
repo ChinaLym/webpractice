@@ -264,6 +264,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- form start -->
             <form class="form-horizontal" action="settingRule" method="POST" th:object=${project}>
               <div class="box-body">
+              	<input hidden="hidden" name="id" th:value="*{id}">
                 <div class="form-group">
                   <label for=activityId class="col-sm-2 control-label">所属活动</label>
 
