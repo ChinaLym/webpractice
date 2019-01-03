@@ -8,6 +8,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.edeclare.entity.Meterial;
+import com.edeclare.entity.Project;
 import com.edeclare.repository.IMeterialRepository;
 import com.edeclare.service.IMeterialService;
 /**
@@ -50,15 +51,15 @@ public class MeterialServiceImpl implements IMeterialService{
 	}
 
 	@Override
-	public boolean uploadMeterial(Integer meterialId, String fileName) {
+	public Meterial uploadMeterial(Integer meterialId, String fileName) {
 		try {
 			Meterial meterial = meterialRepository.getOne(meterialId);
 			meterial.setCommit(true);
 			meterial.setChangeTime(new Date());
 			meterial.setUrl(fileName);
-			return meterialRepository.save(meterial) != null;
+			return meterialRepository.save(meterial);
 		}catch (Exception e) {
-			return false;
+			return null;
 		}
 	}
 	//错误，未开发
@@ -66,5 +67,38 @@ public class MeterialServiceImpl implements IMeterialService{
 	public Meterial getMeterialByProjectIdAndStage(Integer projectId) {
 		Meterial meterial = meterialRepository.getOne(projectId);
 		return meterial==null?null:meterial;
+	}
+
+	@Override
+	public Meterial getMeterialByProject(Project project) {
+		Meterial meterial = new Meterial();
+    	meterial.setProjectId(project.getId());
+    	Example<Meterial> example = Example.of(meterial);
+    	List<Meterial> list = meterialRepository.findAll(example);
+    	if (list != null && list.size() != 0) {
+    		if("ESTABLISHED".equals(project.getStatus())||
+					"MIDDLE_RECTIFICATION".equals(project.getStatus()))
+    			return list.get(0);
+    		else {
+    			for(Meterial item : list) {
+    				if("FINAL".equals(item.getStage()))
+    					return item;
+    			}
+    			return createNewMeterial(meterial, project.getStatus());
+    		}
+		}else {
+			return createNewMeterial(meterial, project.getStatus());
+		}	
+	}
+	private Meterial createNewMeterial(Meterial meterial, String projectStatus) {
+		meterial.setCreateTime(new Date());
+		meterial.setChangeTime(new Date());
+		meterial.setCommit(false);
+		if("ESTABLISHED".equals(projectStatus)||
+				"MIDDLE_RECTIFICATION".equals(projectStatus))
+			meterial.setStage("MID");
+		else
+			meterial.setStage("FINAL");
+		return meterialRepository.save(meterial);
 	}
 }

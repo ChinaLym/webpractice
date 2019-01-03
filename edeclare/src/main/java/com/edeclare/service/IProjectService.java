@@ -25,4 +25,6 @@ public interface IProjectService {
 	Project updateStatelixiang(Integer id);
 
 	List<Project> listProjectByDirectorIdAndNeedUploadMeterial(Integer id);
+
+	Project updateStatusToById(Integer projectId, String newStatus);
 }

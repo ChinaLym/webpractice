@@ -43,7 +43,7 @@ public class ProjectServiceImpl implements IProjectService {
 		return projectRepository.getOne(id);
 	}
 
-	//初审通过
+	//初审通过，该方法必须重写
 	@Override
 	public Project updateState(Integer id) {
 		Project project = projectRepository.getOne(id);
@@ -79,5 +79,12 @@ public class ProjectServiceImpl implements IProjectService {
 			}
 		}
 		return returnlist;
+	}
+
+	@Override
+	public Project updateStatusToById(Integer projectId, String newStatus) {
+		Project project = projectRepository.getOne(projectId);
+		project.setStatus(newStatus);
+		return projectRepository.save(project);
 	}
 }

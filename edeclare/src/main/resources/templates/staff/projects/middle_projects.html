@@ -266,8 +266,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                      	<!-- <a th:if="'FINAL_RECTIFICATION' eq ${pro.status}" th:href="@{/jtcl(proName=${pro.name})}">
 	                      		<button type="button" class="btn btn-primary btn-sm">上传材料</button>
 	                      	</a> -->
-	                      	<a th:href="@{/zqcl(project=${pro})}">
-	                      		<button type="button" class="btn btn-primary btn-sm">上传材料</button>
+	                      	<a th:href="@{/zqcl(projectId=${pro.id})}">
+	                      		<button type="button" id="uploadMeterial" class="btn btn-primary btn-sm">上传材料</button>
 	                      	</a>
 	                      </td>
                    		</tr>
@@ -304,4 +304,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
          user experience. Slimscroll is required when using the
          fixed layout. -->
   </body>
+  <script>
+/* $("#uploadMeterial").click(function() {
+	$.ajax({
+		 url:'/meterial/zqcl',
+		 data:"123",
+		 type:'POST',
+		 contentType:false,
+		 processData:false,
+		 success: function(obj){
+			alert("上传成功！");
+		 }
+	});
+}); */
+</script>
 </html>

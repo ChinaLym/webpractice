@@ -216,6 +216,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             <!-- /.box-header -->
             <!-- form start -->
+            <input type="hidden" th:value="${meterial.id}" id="meterialId">
             <form role="form" class="form-horizontal" action="uploadMiddleMaterial" method="POST">
               <div class="box-body">
                 <div class="form-group">
@@ -236,7 +237,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               <div class="box-footer" style="padding: 10px 20%">
                 <button type="reset" class="btn btn-default">重置</button>
-                <button type="submit" class="btn btn-info pull-right">提交</button>
+                <button type="button" id = "uploadButton" class="btn btn-info pull-right">提交</button>
               </div>
             </form>
           </div>
@@ -254,7 +255,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="AdminLTE/bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="AdminLTE/dist/js/app.min.js"></script>
-
+  <script>
+  $("#uploadButton").click(function() {
+      var formData = new FormData();
+      var uploadFile = $("#uploadFile")[0].files[0];
+      formData.append("uploadFile", uploadFile);
+      var meterialId = $("#meterialId").val();
+      formData.append("meterialId", meterialId);
+      $.ajax({
+          url:'meterial/upload',
+          data: formData,
+          type: 'POST',
+          contentType: false,
+          processData: false,
+          success: function(obj){
+             alert("上传成功");
+          }
+      });
+  });
+</script>
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the

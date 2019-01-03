@@ -8,6 +8,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.FileUploadBase.FileSizeLimitExceededException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +20,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.edeclare.annotation.LoginRequired;
 import com.edeclare.config.WebMvcConfig;
+import com.edeclare.constant.fieldEnum.ProjectStatusEnum;
 import com.edeclare.constant.responseBody.BaseResponse;
 import com.edeclare.entity.Meterial;
 import com.edeclare.entity.Project;
 import com.edeclare.service.IMeterialService;
+import com.edeclare.service.IProjectService;
 import com.edeclare.utils.FileUtil;
 /**
 * Type: UserController
@@ -36,7 +39,8 @@ public class MeterialController {
 	
     @Autowired
     private IMeterialService meterialService;
-    
+	@Autowired
+	private IProjectService projectService;
     //新建材料
     @RequestMapping("/meterial/save")
     @ResponseBody
@@ -71,8 +75,10 @@ public class MeterialController {
     
     }*/
     @GetMapping(value = "/zqcl")
-    public String zqcl(@RequestParam(value = "project")Project project) {
-    	meterialService.getMeterialByProjectIdAndStage(project.getId());
+    public String zqcl(@RequestParam(value = "projectId")Integer projectId, Model model) {
+    	Project project = projectService.findById(projectId);
+    	Meterial meterial = meterialService.getMeterialByProject(project);
+    	model.addAttribute("meterial",meterial);
     	return "staff/material/middle_material";
     }
     
@@ -86,10 +92,11 @@ public class MeterialController {
     @RequestMapping("/meterial/upload")
     @LoginRequired
     @ResponseBody
-    public BaseResponse upload(@RequestParam("cover") MultipartFile uploadFile,
+    public BaseResponse upload(@RequestParam("uploadFile") MultipartFile uploadFile,
     		@RequestParam("meterialId") Integer meterialId,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+    	try {
         byte[] content = uploadFile.getBytes();
         // 保存文件到具体目录，此处为D:/book/upload
         String path = WebMvcConfig.FILE_DIR;
@@ -106,10 +113,17 @@ public class MeterialController {
         file.createNewFile();
         // 写到服务器文件
         FileUtil.writeFile(file, content);
-        if(!meterialService.uploadMeterial(meterialId, file.getName())) {
-        	file.deleteOnExit();
-        	return new BaseResponse().setMessage("fail");
+        Meterial meterial = meterialService.uploadMeterial(meterialId, file.getName());
+        if( meterial != null ) {
+        	Project project = projectService.updateStatusToById(meterial.getProjectId(), ProjectStatusEnum.MIDDLE_TRIAL_PENDING.toString());
+        	if(project != null) {
+        		return new BaseResponse().setMessage("success");
+        	}
         }
-        return new BaseResponse().setMessage("success");
+        file.deleteOnExit();
+        return new BaseResponse().setMessage("fail");
+    	}catch (FileSizeLimitExceededException e) {
+    		return new BaseResponse().setMessage("exceeds  maximum");
+		}
     }
 }
