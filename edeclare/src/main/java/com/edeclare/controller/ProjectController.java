@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.edeclare.annotation.LoginRequired;
+import com.edeclare.constant.SessionKey;
 import com.edeclare.constant.fieldEnum.ActivityLevelEnum;
 import com.edeclare.constant.fieldEnum.ProjectStatusEnum;
 import com.edeclare.entity.Activity;
@@ -211,4 +213,23 @@ public class ProjectController {
 		return "redirect:/toShxm";
 	}
 	
+	@LoginRequired
+    @GetMapping(value = "/toZqcl")
+    public String toZqcl(Map<Object, Object> map, HttpSession session) {
+    	List<Project> pros = new ArrayList<Project>();
+    	User sessionUser = (User)session.getAttribute(SessionKey.USER);
+    	pros = projectService.listProjectByDirectorIdAndNeedUploadMeterial(sessionUser.getId());
+    	map.put("pros", pros);
+    	return "staff/projects/middle_projects";
+    }
+	
+	@LoginRequired
+    @GetMapping(value = "/toJtcl")
+    public String toJtcl(Map<Object, Object> map, HttpSession session) {
+		List<Project> pros = new ArrayList<Project>();
+    	User sessionUser = (User)session.getAttribute(SessionKey.USER);
+    	pros = projectService.listProjectByDirectorIdAndNeedUploadMeterial(sessionUser.getId());
+    	map.put("pros", pros);
+    	return "staff/projects/final_projects";
+    }
 }

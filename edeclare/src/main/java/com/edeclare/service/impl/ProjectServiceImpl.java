@@ -1,8 +1,10 @@
 package com.edeclare.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.edeclare.constant.fieldEnum.ProjectStatusEnum;
@@ -49,7 +51,7 @@ public class ProjectServiceImpl implements IProjectService {
 		projectRepository.save(project);
 		return project;
 	}
-
+	
 	//立项通过
 	@Override
 	public Project updateStatelixiang(Integer id) {
@@ -57,5 +59,25 @@ public class ProjectServiceImpl implements IProjectService {
 		project.setStatus(ProjectStatusEnum.FINISHED_PENDING.toString());
 		projectRepository.save(project);
 		return project;
+	}
+
+	@Override
+	public List<Project> listProjectByDirectorIdAndNeedUploadMeterial(Integer id) {
+		Project project = new Project();
+		project.setDirector(id);
+	    Example<Project> example = Example.of(project);
+		List<Project> list = projectRepository.findAll(example);
+		if(list == null || list.size() == 0)
+			return null;
+		List<Project> returnlist = new ArrayList<Project>(list.size()>>1);
+		for (Project item : list) {
+			if("ESTABLISHED".equals(item.getStatus())||
+				"MIDDLE_RECTIFICATION".equals(item.getStatus())||
+				"MIDDLE_TRIAL_PASSED".equals(item.getStatus())||
+				"FINAL_RECTIFICATION".equals(item.getStatus())) {
+				returnlist.add(item);
+			}
+		}
+		return returnlist;
 	}
 }

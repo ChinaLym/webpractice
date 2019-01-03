@@ -266,7 +266,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                      	<!-- <a th:if="'FINAL_RECTIFICATION' eq ${pro.status}" th:href="@{/jtcl(proName=${pro.name})}">
 	                      		<button type="button" class="btn btn-primary btn-sm">上传材料</button>
 	                      	</a> -->
-	                      	<a th:href="@{/zqcl(proName=${pro.name})}">
+	                      	<a th:href="@{/zqcl(project=${pro})}">
 	                      		<button type="button" class="btn btn-primary btn-sm">上传材料</button>
 	                      	</a>
 	                      </td>

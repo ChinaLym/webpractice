@@ -255,7 +255,7 @@ public class Test {
     	map.put("proStatuses", proStatuses);
     	return "staff/projects/declare_projects";
     }*/
-    @GetMapping(value = "/toZqcl")
+/*    @GetMapping(value = "/toZqcl")
     public String toZqcl(Map<Object, Object> map) {
     	List<Project> pros = new ArrayList<Project>();
     	pros.add(projects.get(5));
@@ -281,7 +281,7 @@ public class Test {
     @GetMapping(value = "/jtcl")
     public String jtcl() {
     	return "staff/material/final_material";
-    }
+    }*/
     
 
 }

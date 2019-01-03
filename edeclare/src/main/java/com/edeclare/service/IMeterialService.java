@@ -14,4 +14,6 @@ public interface IMeterialService{
 
 	boolean uploadMeterial(Integer meterialId, String fileName);
 
+	Meterial getMeterialByProjectIdAndStage(Integer projectId);
+
 }

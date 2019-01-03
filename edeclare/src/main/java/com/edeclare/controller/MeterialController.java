@@ -21,6 +21,7 @@ import com.edeclare.annotation.LoginRequired;
 import com.edeclare.config.WebMvcConfig;
 import com.edeclare.constant.responseBody.BaseResponse;
 import com.edeclare.entity.Meterial;
+import com.edeclare.entity.Project;
 import com.edeclare.service.IMeterialService;
 import com.edeclare.utils.FileUtil;
 /**
@@ -59,6 +60,27 @@ public class MeterialController {
     	Meterial meterial = meterialService.findById(id);
     	model.addAttribute("meterial", meterial);
     	return "manager/system_setting/role/role_list";
+    }
+    
+/*
+    待开发
+    @GetMapping(value = "/zqcl")
+    public String zqcl(@RequestParam(value = "project")Project project) {
+    	meterialService.getMeterialByProjectIdAndStage(project.getId());
+    	return "staff/material/middle_material";
+    
+    }*/
+    @GetMapping(value = "/zqcl")
+    public String zqcl(@RequestParam(value = "project")Project project) {
+    	meterialService.getMeterialByProjectIdAndStage(project.getId());
+    	return "staff/material/middle_material";
+    }
+    
+
+    
+    @GetMapping(value = "/jtcl")
+    public String jtcl() {
+    	return "staff/material/final_material";
     }
     
     @RequestMapping("/meterial/upload")

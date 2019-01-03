@@ -23,4 +23,6 @@ public interface IProjectService {
 
 	//立项通过
 	Project updateStatelixiang(Integer id);
+
+	List<Project> listProjectByDirectorIdAndNeedUploadMeterial(Integer id);
 }

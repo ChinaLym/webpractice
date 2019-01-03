@@ -61,4 +61,10 @@ public class MeterialServiceImpl implements IMeterialService{
 			return false;
 		}
 	}
+	//错误，未开发
+	@Override
+	public Meterial getMeterialByProjectIdAndStage(Integer projectId) {
+		Meterial meterial = meterialRepository.getOne(projectId);
+		return meterial==null?null:meterial;
+	}
 }
