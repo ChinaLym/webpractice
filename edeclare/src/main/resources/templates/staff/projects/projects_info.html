@@ -227,7 +227,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   	<thead>
                   		<tr>
 	                      <th>#</th>
-	                      <th>Activity_ID</th>
+<!-- 	                      <th>Activity_ID</th> -->
 	                      <th>Name</th>
 	                      <th>User_ID</th>
 	                      <th>Level</th>
@@ -243,14 +243,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                    	 <tbody th:remove="all-but-first">
                    		<tr th:each="pro:${pros}">
                    		  <td th:text="${proStat.count}"></td>
-	                      <td th:text="${pro.activityId}">Activity_ID</td>
+<!-- 	                      <td th:text="${pro.activityId}">Activity_ID</td> -->
 	                      <td th:text="${pro.name}">Name</td>
 	                      <td th:text="${pro.director}">User_ID</td>
 	                      <td th:text="${pro.level}">Level</td>
 	                      <td th:text="${pro.domain}">Domain</td>
 	                      <td th:text="${pro.promise}">Promise</td>
-	                      <td th:text="${pro.remarks}">Remark</td>
-	                      <td th:text="${pro.score}">Score</td>
+	                      <td th:text="('' eq ${pro.remarks}) ? '空' : ${pro.remarks}">Remark</td>
+	                      <td th:text="('' eq ${pro.score}) ? '空' : ${pro.score}">Score</td>
 	                      <td th:text="${pro.status}">Status</td>
 	                      <td th:text="${pro.text}">Text</td>
 	                      <td>

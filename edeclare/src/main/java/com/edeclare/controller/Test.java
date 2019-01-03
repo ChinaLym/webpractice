@@ -251,12 +251,12 @@ public class Test {
     	return "staff/main";
     }*/
     
-    @GetMapping(value = "/toSbxm")
+    /*@GetMapping(value = "/toSbxm")
     public String toSbxm(Map<Object, Object> map) {
     	map.put("levels", levels);
     	map.put("proStatuses", proStatuses);
     	return "staff/projects/declare_projects";
-    }
+    }*/
     @GetMapping(value = "/toZqcl")
     public String toZqcl(Map<Object, Object> map) {
     	List<Project> pros = new ArrayList<Project>();

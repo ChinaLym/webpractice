@@ -1,5 +1,8 @@
 package com.edeclare.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +30,19 @@ public class ActivityServiceImpl implements IActivityService{
 		Activity a=activityRepository.save(activity);
 		return a;
 	}
+
+	@Override
+	public List<Activity> getAllActivity() {
+		List<Activity> list=activityRepository.findAll();
+		return list;
+	}
+
+	@Override
+	public Activity getById(Integer id) {
+		return activityRepository.getOne(id);
+	}
+	
+	
 	
 	
 	
