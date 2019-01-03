@@ -274,9 +274,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   	<thead>
                   		<tr>
 	                      <th>#</th>
-	                      <th>Activity_ID</th>
+<!-- 	                      <th>Activity_ID</th> -->
 	                      <th>Name</th>
-	                      <th>User_ID</th>
+	                      <th>Director</th>
 	                      <th>Level</th>
 	                      <th>Domain</th>
 	                      <th>Promise</th>
@@ -284,24 +284,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                      <th>Score</th>
 	                      <th>Status</th>
 	                      <th>Text</th>
-	                      <th>Check</th>
+	                      <th>Operation</th>
+<!-- 	                      <th>Check</th> -->
 	                    </tr>
                   	</thead>
                    	 <tbody th:remove="all-but-first">
-                   		<tr th:each="pro:${projects}">
-                   		  <td th:text="${proStat.count}"></td>
-	                      <td th:text="${pro.activityId}">Activity_ID</td>
-	                      <td th:text="${pro.name}">Name</td>
-	                      <td th:text="${pro.director}">User_ID</td>
-	                      <td th:text="${pro.level}">Level</td>
-	                      <td th:text="${pro.domain}">Domain</td>
-	                      <td th:text="${pro.promise}">Promise</td>
-	                      <td th:text="${pro.remarks}">Remark</td>
-	                      <td th:text="${pro.score}">Score</td>
-	                      <td th:text="${pro.status}">Status</td>
-	                      <td th:text="${pro.text}">Text</td>
+                   		<tr th:each="proDTO:${projectDTOList}">
+                   		  <td th:text="${proDTOStat.count}"></td>
+<!-- 	                      <td th:text="${pro.activityId}">Activity_ID</td> -->
+	                      <td th:text="${proDTO.project.name}">Name</td>
+	                      <td th:text="${proDTO.userName}">Director</td>
+	                      <td th:text="${proDTO.project.level}">Level</td>
+	                      <td th:text="${proDTO.project.domain}">Domain</td>
+	                      <td th:text="${proDTO.project.promise}">Promise</td>
+	                      <td th:text="${proDTO.project.remarks} ? ${proDTO.project.remarks} : '空'">Remark</td>
+	                      <td th:text="${proDTO.project.score} ? ${proDTO.project.score} : '空'">Score</td>
+	                      <td th:text="${proDTO.project.status}">Status</td>
+	                      <td th:text="${proDTO.project.text}">Text</td>
 	                      <td>
-	                      	<a th:href="@{/lixiang(proName=${pro.name})}">
+	                      	<a th:href="@{/lixiang(id=${proDTO.project.id})}">
 	                      		<button type="button" class="btn btn-block btn-primary btn-sm">立项</button>
 	                      	</a>
 	                      </td>

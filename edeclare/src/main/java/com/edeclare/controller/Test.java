@@ -131,13 +131,13 @@ public class Test {
     	return "manager/declare/establish_projects";
     }*/
     
-    @GetMapping(value = "/lixiang")
+    /*@GetMapping(value = "/lixiang")
     public String lixaing(Map<Object, Object> map) {
     	map.put("project", projects.get(0));
     	map.put("levels", levels);
     	map.put("proStatuses", proStatuses);
     	return "manager/declare/establish_check";
-    }
+    }*/
     
     @GetMapping(value = "/toZqgz")
     public String toZqgz() {

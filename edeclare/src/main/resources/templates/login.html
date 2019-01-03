@@ -125,11 +125,12 @@ var contentPath = "/" + location.pathname.split("/")[1];
 			   success:function(returnUser){
 				   if("success" == returnUser)					   
 				   	   //location.href="/managerLogin";
-				   else if("error" == returnUser)
+				   else if("error" == returnUser){
 					   alert("登录失败！");
 				  		 //returnUser = JSON.parse(returnUser);
 				   		//alert(returnUser);
 				   		//location.href="/managerLogin";
+				   }
 			   }});
 	} */	
 </script>
