@@ -69,6 +69,7 @@ public class UserController {
         } else {
             // 登录成功,判断用户角色
             session.setAttribute("user", loginUser);
+            session.setAttribute("username", loginUser.getName());
             System.out.println("login success");
             if(loginUser.getRoleId()==1||loginUser.getRoleId()==2) {
             	return "/manager/main";
