@@ -1,7 +1,6 @@
 package com.edeclare.constant.responseBody.enums;
 
 import com.edeclare.constant.responseBody.BaseResponse;
-import com.edeclare.constant.responseBody.UserControllerResponse;
 
 /**
 * Type: UserControllerResponseEnum
@@ -16,14 +15,4 @@ public class UserControllerResponseEnum extends BaseResponseEnum{
 		super(response);
 	}
 
-	public static final UserControllerResponse SUCCESS = 
-			new UserControllerResponse("成功");
-	public static final UserControllerResponse FAIL = 
-			new UserControllerResponse("失败");
-	public static final UserControllerResponse ERROR = 
-			new UserControllerResponse("错误");
-	public static final UserControllerResponse EXITS = 
-			new UserControllerResponse("已存在");
-	public static final UserControllerResponse NON_EXISTENT = 
-			new UserControllerResponse("不存在");
 }
