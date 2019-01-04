@@ -264,7 +264,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- form start -->
             <form class="form-horizontal" action="midCheck" method="POST" th:object=${project}>
               <div class="box-body">
-              	<input hidden="hidden" name="id" th:value="*{id}">
+              	<input hidden="hidden" name="id" id="projectId" th:value="*{id}">
                 <!-- <div class="form-group">
                   <label for=activityId class="col-sm-2 control-label">所属活动</label>
 
@@ -293,6 +293,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<option th:each="level:${levels}" th:text="${level.toString()}" th:value="${level.toString()}"></option>
 						</select>
 	              	</div>
+              	</div>
+              	<div class="form-group">
+              		<label for="file"class="col-sm-2 control-label">材料</label>
+              		<div class="col-sm-4">
+              			<button type="button" class="btn btn-primary" id="downFile">下载材料</button>
+              		</div>
               	</div>
 	             
 	              <div class="form-group">
@@ -325,7 +331,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               
               <!-- /.box-body -->
               <div class="box-footer" style="padding: 10px 20%">
-                <a href="toXmcs"><button type="button" class="btn btn-default">取消</button></a>
+                <a href="toZqsh"><button type="button" class="btn btn-default">取消</button></a>
                 <button type="submit" class="btn btn-info pull-right">提交</button>
               </div>
               <!-- /.box-footer -->
@@ -351,5 +357,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
          user experience. Slimscroll is required when using the
          fixed layout. -->
   </body>
+  <script>
+  $(function(){
+	  $("#downFile").click(function(){
+		  var projectId = $("#projectId").val();
+		  console.log(projectId);
+		  var param = {"projectId" :  projectId};
+	      $.ajax({
+	          url:"/meterial/downloadByProject",
+	          data: param,
+	          type: 'GET',
+	          contentType: false,
+	          processData: false,
+	          success: function(obj){
+	        	  if(obj.message == "跳转"){
+	        		  
+	             location.href=obj.uri;
+	        	  }
+	          }
+	      });
+	  });
+  })
+  
+  </script>
   
 </html>

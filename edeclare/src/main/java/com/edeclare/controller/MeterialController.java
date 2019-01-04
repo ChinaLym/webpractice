@@ -72,6 +72,7 @@ public class MeterialController {
     public String zqcl(@RequestParam(value = "projectId")Integer projectId, Model model) {
     	Project project = projectService.findById(projectId);
     	Meterial meterial = meterialService.getMeterialByProject(project);
+    	model.addAttribute("project", project);
     	model.addAttribute("meterial",meterial);
     	return "staff/material/middle_material";
     }
@@ -79,7 +80,11 @@ public class MeterialController {
 
     
     @GetMapping(value = "/jtcl")
-    public String jtcl() {
+    public String jtcl(@RequestParam(value = "projectId")Integer projectId, Model model) {
+    	Project project = projectService.findById(projectId);
+    	Meterial meterial = meterialService.getMeterialByProject(project);
+    	model.addAttribute("project", project);
+    	model.addAttribute("meterial",meterial);
     	return "staff/material/final_material";
     }
     
@@ -92,7 +97,7 @@ public class MeterialController {
             throws Exception {
     	try {
         byte[] content = uploadFile.getBytes();
-        // 保存文件到具体目录，此处为D:/book/upload
+        // 保存文件到具体目录，此处为D:/eDeclare/upload
         String path = WebMvcConfig.FILE_DIR;
         File folder = new File(path);
         if (!folder.exists()) {
@@ -130,6 +135,22 @@ public class MeterialController {
     		String uri = WebMvcConfig.VIRTUL_DIR + meterial.getUrl();
     		return URIResponseEnum.REDIRECT.setUri(uri);
 		}
+    	return BaseResponseEnum.NON_EXISTENT;
+    }
+    
+    //下载
+    @GetMapping(value = "/meterial/downloadByProject")
+    @ResponseBody
+    public BaseResponse downloadMeterialByProjectId(Integer projectId) throws Exception {
+    	List<Meterial> meterialList= meterialService.listByProjectId(projectId);
+    	if(meterialList != null && meterialList.size() != 0) {
+    		for (Meterial item : meterialList) {
+    			if (item.getCommit()) {
+    				String uri = WebMvcConfig.VIRTUL_DIR + item.getUrl();
+    				return URIResponseEnum.REDIRECT.setUri(uri.replaceAll("\\*", ""));
+    			}
+			}
+    	}
     	return BaseResponseEnum.NON_EXISTENT;
     }
     

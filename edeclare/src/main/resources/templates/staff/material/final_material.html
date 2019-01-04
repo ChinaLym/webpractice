@@ -217,11 +217,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" class="form-horizontal" action="uploadMiddleMaterial" method="POST">
+            <input type="hidden" th:value="${meterial.id}" id="meterialId">
               <div class="box-body">
                 <div class="form-group">
                   <label for="name" class="control-label col-sm-2">名称</label>
                   <div class="col-sm-8">
-                  	<input type="text" class="form-control" id="name" th:value="${param.proName}" readonly="readonly" name="name">
+                  	<input type="text" class="form-control" id="name" th:value="${project.name}" readonly="readonly" name="name">
                   </div>
                 </div>
                 <div class="form-group">
@@ -236,7 +237,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               <div class="box-footer" style="padding: 10px 20%">
                 <button type="reset" class="btn btn-default">重置</button>
-                <button type="submit" class="btn btn-info pull-right">提交</button>
+                <button type="button" id = "uploadButton" class="btn btn-info pull-right">提交</button>
               </div>
             </form>
           </div>
@@ -260,4 +261,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
          user experience. Slimscroll is required when using the
          fixed layout. -->
   </body>
+  <script>
+  $("#uploadButton").click(function() {
+      var formData = new FormData();
+      var uploadFile = $("#uploadFile")[0].files[0];
+      formData.append("uploadFile", uploadFile);
+      var meterialId = $("#meterialId").val();
+      formData.append("meterialId", meterialId);
+      $.ajax({
+          url:'meterial/upload',
+          data: formData,
+          type: 'POST',
+          contentType: false,
+          processData: false,
+          success: function(obj){
+             alert("上传成功");
+          }
+      });
+  });
+</script>
 </html>

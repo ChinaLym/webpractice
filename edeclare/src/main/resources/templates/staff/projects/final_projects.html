@@ -227,14 +227,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   	<thead>
                   		<tr>
 	                      <th>#</th>
-	                      <th>Activity_ID</th>
+<!-- 	                      <th>Activity_ID</th> -->
 	                      <th>Name</th>
-	                      <th>User_ID</th>
+<!-- 	                      <th>User_ID</th> -->
 	                      <th>Level</th>
 	                      <th>Domain</th>
 	                      <th>Promise</th>
-	                      <!-- <th>Remark</th>
-	                      <th>Score</th> -->
+	                      <th>Remark</th>
+	                      <th>Score</th>
 	                      <th>Status</th>
 	                      <th>Text</th>
 	                      <th>Operation</th>
@@ -243,14 +243,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                    	 <tbody th:remove="all-but-first">
                    		<tr th:each="pro:${pros}">
                    		  <td th:text="${proStat.count}"></td>
-	                      <td th:text="${pro.activityId}">Activity_ID</td>
+<!-- 	                      <td th:text="${pro.activityId}">Activity_ID</td> -->
 	                      <td th:text="${pro.name}">Name</td>
-	                      <td th:text="${pro.director}">User_ID</td>
+<!-- 	                      <td th:text="${pro.director}">User_ID</td> -->
 	                      <td th:text="${pro.level}">Level</td>
 	                      <td th:text="${pro.domain}">Domain</td>
 	                      <td th:text="${pro.promise}">Promise</td>
-	                      <!-- <td th:text="${pro.remarks}">Remark</td>
-	                      <td th:text="${pro.score}">Score</td> -->
+	                      <td th:text="${pro.remarks}">Remark</td>
+	                      <td th:text="${pro.score}">Score</td>
 	                      <td th:text="${pro.status}">Status</td>
 	                      <td th:text="${pro.text}">Text</td>
 	                      <td>
@@ -266,7 +266,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                      	<!-- <a th:if="'FINAL_RECTIFICATION' eq ${pro.status}" th:href="@{/jtcl(proName=${pro.name})}">
 	                      		<button type="button" class="btn btn-primary btn-sm">上传材料</button>
 	                      	</a> -->
-	                      	<a th:href="@{/jtcl(proName=${pro.name})}">
+	                      	<a th:href="@{/jtcl(projectId=${pro.id})}">
 	                      		<button type="button" class="btn btn-primary btn-sm">上传材料</button>
 	                      	</a>
 	                      </td>
