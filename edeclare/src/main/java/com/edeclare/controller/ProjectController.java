@@ -213,6 +213,22 @@ public class ProjectController {
 		return "redirect:/toShxm";
 	}
 	
+	//去到设置中期检查规则表单
+	@GetMapping(value = "/toZqgz")
+    public String toZqgz() {
+    	return "manager/middle_trial/setting_rules";
+    }
+	
+	//提交中期规则表单
+	
+	
+	//去到设置结题检查规则表单
+    @GetMapping(value = "/toJtgz")
+    public String toJtgz() {
+    	return "manager/final_trial/setting_rules";
+    }
+	
+	//去到需要添加中期材料项目列表
 	@LoginRequired
     @GetMapping(value = "/toZqcl")
     public String toZqcl(Map<Object, Object> map, HttpSession session) {
@@ -223,6 +239,7 @@ public class ProjectController {
     	return "staff/projects/middle_projects";
     }
 	
+	//去到需要添加结题材料项目列表
 	@LoginRequired
     @GetMapping(value = "/toJtcl")
     public String toJtcl(Map<Object, Object> map, HttpSession session) {

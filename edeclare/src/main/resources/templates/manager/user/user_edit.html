@@ -265,6 +265,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- form start -->
             <form class="form-horizontal" action="userUpdate" method="POST" th:object=${user}>
               <div class="box-body">
+              	<input type="hidden" name="id" id="id" th:value="*{id}"/>
                 <div class="form-group">
                   <label for=account class="col-sm-2 control-label">账号</label>
 
@@ -324,7 +325,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		                  <div class="input-group-addon">
 		                    <i class="fa fa-calendar"></i>
 		                  </div>
-		                  <input type="text" class="form-control pull-right" id="createTime" name="createTime" th:value="*{createTime.month + 1} + '/' + *{createTime.date} + '/' + *{createTime.year}">
+		                  <input type="text" class="form-control pull-right" id="createTime" name="createTime" th:value="*{createTime.month + 1} + '/' + *{createTime.date} + '/' + *{createTime.year + 1900}">
 		                </div>
 	                </div>
 	              </div>
@@ -335,7 +336,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		                  <div class="input-group-addon">
 		                    <i class="fa fa-calendar"></i>
 		                  </div>
-		                  <input type="text" class="form-control pull-right" id="updateTime" name="updateTime" th:value="*{updateTime.month + 1} + '/' + *{updateTime.date} + '/' + *{updateTime.year}">
+		                  <input type="text" class="form-control pull-right" id="updateTime" name="updateTime" th:value="*{updateTime.month + 1} + '/' + *{updateTime.date} + '/' + *{updateTime.year + 1900}">
 		                </div>
 	                </div>
 	              </div>

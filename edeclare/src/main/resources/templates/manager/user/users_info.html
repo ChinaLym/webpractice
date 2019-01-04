@@ -282,7 +282,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                      <th>Sex</th>
 	                      <th>Phone</th>
 	                      <th>Department</th>
-	                      <th>Role</th>
+<!-- 	                      <th>Role</th> -->
 	                      <th>CreateTime</th>
 	                      <th>UpdateTime</th>
 	                      <th>Status</th>
@@ -299,21 +299,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                      <td th:text="${user.sex}">Sex</td>
 	                      <td th:text="${user.phone}">Phone</td>
 	                      <td th:text="${user.department}">Department</td>
-	                      <td th:text="${user.roleId}">Role</td>
-	                      <td th:text="${user.createTime.month + 1} + '-' + ${user.createTime.date} + '-' + ${user.createTime.year}">CreateTime</td>
-	                      <td th:text="${user.updateTime.month + 1} + '-' + ${user.updateTime.date} + '-' + ${user.updateTime.year}">UpdateTime</td>
+<!-- 	                      <td th:text="${user.roleId}">Role</td> -->
+	                      <td th:text="((${user.createTime.month + 1} < 10)?('0' + ${user.createTime.month + 1} ):${user.createTime.month + 1}) + '-' 
+	                      				+ ((${user.createTime.date + 1} < 10)?('0' + ${user.createTime.date + 1} ):${user.createTime.date + 1}) + '-' 
+	                      				+ ${user.createTime.year + 1900}">CreateTime</td>
+	                      <td th:text="((${user.updateTime.month + 1} < 10)?('0' + ${user.updateTime.month + 1} ):${user.updateTime.month + 1}) + '-' 
+	                      				+ ((${user.updateTime.date + 1} < 10)?('0' + ${user.updateTime.date + 1} ):${user.updateTime.date + 1}) + '-' 
+	                      				+ ${user.updateTime.year + 1900}">UpdateTime</td>
 	                      <td th:text="${user.status}">Status</td>
 	                      <td th:text="${user.text}">Text</td>
 	                      <td>
-	                      	<a th:href="@{/userInfo(name=${user.name})}">
+	                      	<a th:href="@{/userInfo(id=${user.id})}">
 	                      		<button type="button" class="btn btn-info btn-sm"><i class="fa fa-check"></i>&nbsp;&nbsp;查看</button>
 	                      	</a>
 	                      	&nbsp;&nbsp;
-	                      	<a th:href="@{/userEdit(name=${user.name})}">
+	                      	<a th:href="@{/userEdit(id=${user.id})}">
 	                      		<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>&nbsp;&nbsp;编辑</button>
 	                      	</a>
 	                      	&nbsp;&nbsp;
-	                      	<a th:href="@{/userDelete(name=${user.name})}"></a>
+	                      	<a th:href="@{/userDelete(id=${user.id})}"></a>
 	                      		<button type="button" class="btn btn-danger btn-sm userDelete" data-toggle="modal" data-target="#userDelete"><i class="fa fa-trash"></i>&nbsp;&nbsp;删除</button>
 	                      </td>
                    		</tr>

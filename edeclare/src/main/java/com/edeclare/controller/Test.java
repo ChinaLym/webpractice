@@ -139,7 +139,7 @@ public class Test {
     	return "manager/declare/establish_check";
     }*/
     
-    @GetMapping(value = "/toZqgz")
+    /*@GetMapping(value = "/toZqgz")
     public String toZqgz() {
     	return "manager/middle_trial/setting_rules";
     }
@@ -147,7 +147,7 @@ public class Test {
     @GetMapping(value = "/toJtgz")
     public String toJtgz() {
     	return "manager/final_trial/setting_rules";
-    }
+    }*/
     
     private static List<User> users = new ArrayList<User>();
     private static Date date = new Date();
@@ -183,22 +183,22 @@ public class Test {
     	roleStatuses.add(RoleStatusEnum.PROHIBIT);
     }
     
-    @GetMapping(value = "/toUserMana")
+   /* @GetMapping(value = "/toUserMana")
     public String toUserMana(Map<Object, Object> map) {
     	map.put("users", users);
     	return "manager/user/users_info";
-    }
+    }*/
     
-    @GetMapping(value = "/userInfo")
+    /*@GetMapping(value = "/userInfo")
     public String userInfo(Map<Object, Object> map) {
     	map.put("user", users.get(0));
     	map.put("sexes", sexes);
     	map.put("roles", roles);
     	map.put("userStatuses", userStatuses);
     	return "manager/user/user_check";
-    }
+    }*/
     
-    @GetMapping(value = "/userEdit")
+    /*@GetMapping(value = "/userEdit")
     public String userEdit(Map<Object, Object> map) {
     	map.put("user", users.get(1));
     	map.put("sexes", sexes);
@@ -213,7 +213,7 @@ public class Test {
     	map.put("roles", roles);
     	map.put("userStatuses", userStatuses);
     	return "manager/user/user_insert";
-    }
+    }*/
     
     @GetMapping(value = "/toResetPass")
     public String toResetPass(Map<Object, Object> map) {

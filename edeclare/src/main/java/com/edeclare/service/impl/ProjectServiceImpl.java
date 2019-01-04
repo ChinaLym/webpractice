@@ -56,7 +56,7 @@ public class ProjectServiceImpl implements IProjectService {
 	@Override
 	public Project updateStatelixiang(Integer id) {
 		Project project = projectRepository.getOne(id);
-		project.setStatus(ProjectStatusEnum.FINISHED_PENDING.toString());
+		project.setStatus(ProjectStatusEnum.ESTABLISHED.toString());
 		projectRepository.save(project);
 		return project;
 	}

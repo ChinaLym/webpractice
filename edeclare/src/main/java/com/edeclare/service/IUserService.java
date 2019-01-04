@@ -30,4 +30,8 @@ public interface IUserService {
 	List<User> findListByIds(List<Integer> ids);
 	
 	User findById(Integer id);
+	
+	User save(User user);
+	
+	void delete(Integer id);
 }

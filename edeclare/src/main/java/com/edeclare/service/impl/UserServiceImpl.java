@@ -63,4 +63,14 @@ public class UserServiceImpl implements IUserService{
 	public User findById(Integer id) {
 		return userRepository.getOne(id);
 	}
+
+	@Override
+	public User save(User user) {
+		return userRepository.save(user);
+	}
+
+	@Override
+	public void delete(Integer id) {
+		userRepository.deleteById(id);
+	}
 }
