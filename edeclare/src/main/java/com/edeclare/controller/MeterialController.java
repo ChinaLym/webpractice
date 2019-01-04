@@ -114,7 +114,12 @@ public class MeterialController {
         FileUtil.writeFile(file, content);
         Meterial meterial = meterialService.uploadMeterial(meterialId, file.getName());
         if( meterial != null ) {
-        	Project project = projectService.updateStatusToById(meterial.getProjectId(), ProjectStatusEnum.MIDDLE_TRIAL_PENDING.toString());
+        	Project project = null;
+        	if("MID".equals(meterial.getStage())) {
+        		project = projectService.updateStatusToById(meterial.getProjectId(), ProjectStatusEnum.MIDDLE_TRIAL_PENDING.toString());
+        	}else if("FINAL".equals(meterial.getStage())){
+        		project = projectService.updateStatusToById(meterial.getProjectId(), ProjectStatusEnum.FINISHED_PENDING.toString());
+        	}
         	if(project != null) {
         		return new BaseResponse().setMessage("success");
         	}
