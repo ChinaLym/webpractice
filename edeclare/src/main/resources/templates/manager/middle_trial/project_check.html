@@ -58,7 +58,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="managerLogin" class="logo">
+        <a href="toManaMain" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>E-Declare</b></span>
           <!-- logo for regular state and mobile devices -->
@@ -72,7 +72,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <span class="sr-only">Toggle navigation</span>
           </a>
           <!-- Navbar Right Menu -->
-          <div class="navbar-custom-menu">
+          <div class="navbar-custom-menu" style="margin-right: 8%;">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu">
@@ -114,13 +114,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- User menu -->
 			<li class="dropdown">
 	             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
-	               User <span class="caret"></span>
+	               <span th:text="${session.username}">User</span><span class="caret"></span>
 	             </a>
 	             <ul class="dropdown-menu">
-	               <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="text-align: center"><i class="fa fa-info-circle"></i>个人信息</a></li>
-			     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="text-align: center"><i class="fa fa-pencil"></i>修改密码</a></li>
+	               <li role="presentation"><a role="menuitem" tabindex="-1" href="toMyInfo" style="text-align: center"><i class="fa fa-info-circle"></i>个人信息</a></li>
+			     <li role="presentation"><a role="menuitem" tabindex="-1" href="toMyResetPassword" style="text-align: center"><i class="fa fa-pencil"></i>修改密码</a></li>
 			     <li role="presentation" class="divider"></li>
-			     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="text-align: center"><i class="fa fa-sign-out"></i>溜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;了</a></li>
+			     <li role="presentation"><a role="menuitem" tabindex="-1" href="logout" style="text-align: center"><i class="fa fa-sign-out"></i>溜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;了</a></li>
 			   </ul>
 			</li>
              
@@ -141,7 +141,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <img src="AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p th:text="${session.username}">Alexander Pierce</p>
               <!-- Status -->
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -174,20 +174,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
             		<span>一级列表</span>
             	</a>
             </li> -->
-            <li class="treeview ">
+           <li class="treeview">
            		<a href="#">
             		<i class="fa fa-files-o"></i> 
             		<span>申报管理</span> 
             		<i class="fa fa-angle-left pull-right"></i>
             	</a>
             	<ul class="treeview-menu">
-              		<li ><a href="#">&nbsp;&nbsp;<i class="fa fa-pencil"></i>设置申报规则</a></li>
+              		<li><a href="toSbgz">&nbsp;&nbsp;<i class="fa fa-pencil"></i>设置申报规则</a></li>
              		<li><a href="toXmcs">&nbsp;&nbsp;<i class="fa fa-check"></i>项目初审</a></li>
              		<li><a href="toFpzj">&nbsp;&nbsp;<i class="fa fa-user"></i>分配专家</a></li>
              		<li><a href="toLx">&nbsp;&nbsp;<i class="fa fa-book"></i>立项</a></li>
             	</ul>
             </li>
-            <li class="treeview">
+            <li class="treeview active">
            		<a href="#">
             		<i class="fa fa-files-o"></i> 
             		<span>中期检查管理</span> 
@@ -195,7 +195,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             	</a>
             	<ul class="treeview-menu">
               		<li><a href="toZqgz">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
-              		<li><a href="toZqsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
+              		<li class="active"><a href="toZqsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
             	</ul>
             </li>
             <li class="treeview">
@@ -206,7 +206,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             	</a>
             	<ul class="treeview-menu">
               		<li><a href="toJtgz">&nbsp;&nbsp;<i class="fa fa-hourglass"></i>设置检查时间</a></li>
-              		<li><a href="toJtsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
+              		<li ><a href="toJtsh">&nbsp;&nbsp;<i class="fa fa-file-text"></i>检查材料审核</a></li>
             	</ul>
             </li>
             <li class="treeview">
@@ -221,14 +221,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               		<li><a href="toResetPass">&nbsp;&nbsp;<i class="fa fa-refresh"></i>密码重置</a></li>
             	</ul>
             </li>
-            <li class="treeview active">
+            <li class="treeview">
            		<a href="#">
             		<i class="fa fa-cog"></i> 
             		<span>系统设置</span> 
             		<i class="fa fa-angle-left pull-right"></i>
             	</a>
             	<ul class="treeview-menu">
-              		<li class="active"><a href="toRoleMana">&nbsp;&nbsp;<i class="fa fa-users"></i>角色管理</a></li>
+              		<li><a href="toRoleMana">&nbsp;&nbsp;<i class="fa fa-users"></i>角色管理</a></li>
               		<li><a href="toMenuMana">&nbsp;&nbsp;<i class="fa fa-bars"></i>菜单管理</a></li>
               		<li><a href="toAssignPer">&nbsp;&nbsp;<i class="fa fa-hand-paper-o"></i>角色权限分配</a></li>
             	</ul>
@@ -244,8 +244,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <section class="content-header">
           <h1>
             	欢迎您！
-            <small>User</small>
-<!--             <small th:text="${user.username}">User</small> -->
+<!--             <small>User</small> -->
+            <small th:text="${session.username}">首页</small>
           </h1>
           <!-- <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -256,38 +256,82 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <section class="content">
 
-          <!-- Your Page Content Here -->
-          <div class="box box-info" style="width: 70%; margin: 0 auto 20px">
+        <div class="box box-info" style="width: 70%; margin: 0 auto 20px">
             <div class="box-header with-border">
-              <h3 class="box-title">新增角色</h3>
+              <h3 class="box-title">中期检查</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" action="/Role/save" method="POST">
+            <form class="form-horizontal" action="midCheck" method="POST" th:object=${project}>
               <div class="box-body">
-                <div class="form-group">
-                  <label for="sponsor" class="col-sm-2 control-label">角色名称</label>
+              	<input hidden="hidden" name="id" th:value="*{id}">
+                <!-- <div class="form-group">
+                  <label for=activityId class="col-sm-2 control-label">所属活动</label>
 
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control" id="sponsor" placeholder="sponsor..." name="name"  onblur="comfirmName(this)">
+                  <div class="col-sm-2">
+                    <input type="text" class="form-control" id="activityId" th:value="*{activityId}" name="activityId" readonly="readonly">
+                  </div>
+                </div> -->
+                <div class="form-group">
+                  <label for="name" class="col-sm-2 control-label">名称</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="name" th:value="*{name}" name="name" readonly="readonly">
                   </div>
                 </div>
                <div class="form-group">
-                  <label for="content" class="col-sm-2 control-label">角色描述</label>
+                  <label for="director" class="col-sm-2 control-label">负责人</label>
                   <div class="col-sm-8">
-                  	<textarea class="form-control" rows="3" placeholder="content..." id="content" name="description"></textarea>
+                  	<input type="text" class="form-control" th:value="*{director}" id="director" name="director" readonly="readonly"></input>
                   </div>
                 </div>
+                <div class="form-group">
+	              	<label for="level" class="col-sm-2 control-label">级别</label>
+	              	<div class="col-sm-4">
+<!-- 	              		<input type="text" class="form-control" id="level" name="level" th:value="*{level}" readonly="readonly"/> -->
+						<select th:field="*{level}" class="form-control" name="level" disabled="disabled">
+							<option th:each="level:${levels}" th:text="${level.toString()}" th:value="${level.toString()}"></option>
+						</select>
+	              	</div>
+              	</div>
+	             
+	              <div class="form-group">
+	              	<label for="domain" class="col-sm-2 control-label">领域</label>
+	              	<div class="col-sm-8">
+                  		<input type="text" class="form-control" th:value="*{domain}" id="domain" name="domain" readonly="readonly"></input>
+                  	</div>
+	              </div>
+	              <div class="form-group">
+	              	<label for="promise" class="col-sm-2 control-label">立项承诺</label>
+	              	<div class="col-sm-8">
+                  		<textarea rows="3" class="form-control" th:text="*{promise}" id="promise" name="promise" readonly="readonly"></textarea>
+                  	</div>
+	              </div>
+	              <div class="form-group">
+	              	<label for="status" class="col-sm-2 control-label">状态</label>
+	              	<div class="col-sm-4">
+	              		<select th:field="*{status}" class="form-control" name="status" disabled="disabled">
+	              			<option th:each="status:${proStatuses}" th:text="${status.toString()}" th:value="${status.toString()}"></option>
+	              		</select>
+	              	</div>
+	              </div>
+	              <div class="form-group">
+	              	<label for="text" class="col-sm-2 control-label">备注</label>
+	              	<div class="col-sm-8">
+                  		<textarea class="form-control" rows="3" th:text="*{text}" id="text" name="text" readonly="readonly"></textarea>
+                  	</div>
+	              </div>
               </div>
               
               <!-- /.box-body -->
               <div class="box-footer" style="padding: 10px 20%">
-                <button type="reset" class="btn btn-default">重置</button>
+                <a href="toXmcs"><button type="button" class="btn btn-default">取消</button></a>
                 <button type="submit" class="btn btn-info pull-right">提交</button>
               </div>
               <!-- /.box-footer -->
             </form>
           </div>
+
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
@@ -301,42 +345,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="AdminLTE/bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="AdminLTE/dist/js/app.min.js"></script>
-    <!-- AdminLTE demo -->
-    <script src="AdminLTE/dist/js/demo.js"></script>
-    <!-- DatePicker -->
-    <script src="AdminLTE/bower_components/moment/min/moment.min.js"></script>
-    <script src="AdminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <script src="AdminLTE/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-    <script src="AdminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
          fixed layout. -->
-    <script type="text/javascript">
-    	
-    	/*验证角色名称*/
-		function comfirmName(data){
-    		var res = data.value;
-    	 	$.ajax({
-    			        type:"GET",
-    			        url:"/role_cmfirmName",
-    			 		data:{"res":res},
-    			       dataType:"TEXT",
-    			        success:function(data){
-    			           if("success" == data){
-    			           }else{
-    			               alert("请重新输入角色名称！！！");
-    							$(".form-control").val("");
-    			           }
-    			        },
-    			        error:function(jqXHR){
-    			           alert("发生错误：");
-    			        }
-    			}); 
-    	}    	
-    </script>
   </body>
+  
 </html>
-
-

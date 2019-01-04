@@ -23,6 +23,12 @@ public interface IProjectService {
 
 	//立项通过
 	Project updateStatelixiang(Integer id);
+	
+	//中期检查通过
+	Project updateStateMidCheck(Integer id);
+	
+	//结题验收通过
+	Project updateStateFinalCheck(Integer id);
 
 	List<Project> listProjectByDirectorIdAndNeedUploadMeterial(Integer id);
 

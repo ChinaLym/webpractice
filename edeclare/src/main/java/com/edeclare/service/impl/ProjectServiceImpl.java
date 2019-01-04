@@ -60,6 +60,24 @@ public class ProjectServiceImpl implements IProjectService {
 		projectRepository.save(project);
 		return project;
 	}
+	
+	//中期检查通过
+	@Override
+	public Project updateStateMidCheck(Integer id) {
+		Project project = projectRepository.getOne(id);
+		project.setStatus(ProjectStatusEnum.MIDDLE_TRIAL_PASSED.toString());
+		projectRepository.save(project);
+		return project;
+	}
+	
+	//结题验收通过
+	@Override
+	public Project updateStateFinalCheck(Integer id) {
+		Project project = projectRepository.getOne(id);
+		project.setStatus(ProjectStatusEnum.FINISHED.toString());
+		projectRepository.save(project);
+		return project;
+	}
 
 	@Override
 	public List<Project> listProjectByDirectorIdAndNeedUploadMeterial(Integer id) {
@@ -87,4 +105,7 @@ public class ProjectServiceImpl implements IProjectService {
 		project.setStatus(newStatus);
 		return projectRepository.save(project);
 	}
+
+
+
 }

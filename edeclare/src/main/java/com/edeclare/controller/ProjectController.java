@@ -186,7 +186,6 @@ public class ProjectController {
 				}
 			}
 		}
-		System.out.println(projectDTOList);
 		map.put("projectDTOList", projectDTOList);
 		return "professor/projects_info";
 	}
@@ -220,13 +219,108 @@ public class ProjectController {
     }
 	
 	//提交中期规则表单
+	@PostMapping(value = "/settingMidRule")
+	public String settingMidRule(Project project) {
+		return "redirect:/toManaMain";
+	}
 	
+	//去到需要中期审核项目列表
+	@GetMapping(value = "/toZqsh")
+    public String toZqsh(Map<Object, Object> map) {
+		List<Project> projectList = projectService.findAllProject();
+		if(projectList== null || projectList.size() == 0) {
+	    	return "manager/middle_trial/projects_info";			
+		}
+		List<ProjectDTO> projectDTOList = new ArrayList<ProjectDTO>();
+		User u = new User();
+		for (Project pro : projectList) {
+			if(pro.getStatus().equals(ProjectStatusEnum.MIDDLE_TRIAL_PENDING.toString()) || 
+					pro.getStatus().equals(ProjectStatusEnum.MIDDLE_RECTIFICATION.toString())) {
+				ProjectDTO proDTO = new ProjectDTO();
+				u = userService.findById(pro.getDirector());
+				if(u != null) {
+					proDTO.setProject(pro);
+					proDTO.setUserName(u.getName());
+					projectDTOList.add(proDTO);
+				}
+			}
+		}
+		map.put("projectDTOList", projectDTOList);
+    	return "manager/middle_trial/projects_info";
+    }
+	
+	//去到中期检查项目表单
+	@GetMapping(value = "/toMidCheck")
+	public String toMidCheck(@RequestParam(value = "id")Integer id ,Map<Object, Object> map) {
+		Project pro = projectService.findById(id);
+		map.put("levels", levels);
+    	map.put("proStatuses", proStatuses);
+		map.put("project", pro);
+		return "manager/middle_trial/project_check";
+	}
+	
+	//提交中期检查表单
+	@PostMapping(value = "/midCheck")
+	public String midCheck(Project project) {
+		projectService.updateStateMidCheck(project.getId());
+		return "redirect:/toZqsh";
+	}
+
 	
 	//去到设置结题检查规则表单
     @GetMapping(value = "/toJtgz")
     public String toJtgz() {
     	return "manager/final_trial/setting_rules";
     }
+    
+    //提交结题规则表单
+  	@PostMapping(value = "/settingFinalRule")
+  	public String settingFinalRule() {
+  		return "redirect:/toManaMain";
+  	}
+    
+	//去到需要结题验收项目列表
+	@GetMapping(value = "/toJtsh")
+    public String toJtsh(Map<Object, Object> map) {
+		List<Project> projectList = projectService.findAllProject();
+		if(projectList== null || projectList.size() == 0) {
+	    	return "manager/final_trial/projects_info";			
+		}
+		List<ProjectDTO> projectDTOList = new ArrayList<ProjectDTO>();
+		User u = new User();
+		for (Project pro : projectList) {
+			if(pro.getStatus().equals(ProjectStatusEnum.FINISHED_PENDING.toString()) || 
+					pro.getStatus().equals(ProjectStatusEnum.FINAL_RECTIFICATION.toString())) {
+				ProjectDTO proDTO = new ProjectDTO();
+				u = userService.findById(pro.getDirector());
+				if(u != null) {
+					proDTO.setProject(pro);
+					proDTO.setUserName(u.getName());
+					projectDTOList.add(proDTO);
+				}
+			}
+		}
+		map.put("projectDTOList", projectDTOList);
+    	return "manager/final_trial/projects_info";
+    }    
+	
+	//去到结题验收项目表单
+	@GetMapping(value = "/toFinalCheck")
+	public String toFinalCheck(@RequestParam(value = "id")Integer id ,Map<Object, Object> map) {
+		Project pro = projectService.findById(id);
+		map.put("levels", levels);
+    	map.put("proStatuses", proStatuses);
+		map.put("project", pro);
+		return "manager/final_trial/project_check";
+	}
+	
+	//提交结题验收表单
+	@PostMapping(value = "/finalCheck")
+	public String finalCheck(Project project) {
+		projectService.updateStateFinalCheck(project.getId());
+		return "redirect:/toJtsh";
+	}
+    
 	
 	//去到需要添加中期材料项目列表
 	@LoginRequired
