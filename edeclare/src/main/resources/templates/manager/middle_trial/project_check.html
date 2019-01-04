@@ -365,7 +365,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		  var param = {"projectId" :  projectId};
 	      $.ajax({
 	          url:"/meterial/downloadByProject",
-	          data: param,
+	          data: "projectId=" + projectId ,
 	          type: 'GET',
 	          contentType: false,
 	          processData: false,
