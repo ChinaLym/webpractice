@@ -13,7 +13,7 @@ import com.edeclare.repository.IRoleauthorityRepository;
 import com.edeclare.service.IRoleauthorityService;
 
 @Service
-public class IRoleauthorityServiceImpl implements IRoleauthorityService {
+public class RoleauthorityServiceImpl implements IRoleauthorityService {
 	
 	@Autowired
 	private IAuthorityRepository iAuthorityRepository;
