@@ -319,16 +319,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   	</div>
 	              </div>
 	              <div class="form-group">
-	              	<label for="createTime" class="col-sm-2 control-label">创建时间</label>
-	              	<div class="col-sm-4">
-                  		<input class="form-control" th:value="*{createTime.month + 1} + '-' + *{createTime.date} + '-' + *{createTime.year + 1900}" id="createTime" name="createTime" readonly="readonly"/>
-                  	</div>
+	                <label for="createTime" class="col-sm-2 control-label">创建时间</label>
+					<div class="col-sm-4">
+		                <div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-calendar"></i>
+		                  </div>
+		                  <input type="text" class="form-control pull-right" id="createTime" name="createTime" th:value="*{createTime.month + 1} + '/' + *{createTime.date} + '/' + *{createTime.year + 1900}" readonly="readonly"/>
+		                </div>
+	                </div>
 	              </div>
 	              <div class="form-group">
-	              	<label for="updateTime" class="col-sm-2 control-label">更新时间</label>
-	              	<div class="col-sm-4">
-                  		<input class="form-control" th:value="*{updateTime.month + 1} + '-' + *{updateTime.date} + '-' + *{updateTime.year + 1900}" id="updateTime" name="updateTime" readonly="readonly"/>
-                  	</div>
+	                <label for="updateTime" class="col-sm-2 control-label">结束时间</label>
+					<div class="col-sm-4">
+		                <div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-calendar"></i>
+		                  </div>
+		                  <input type="text" class="form-control pull-right" id="updateTime" name="updateTime" th:value="*{updateTime.month + 1} + '/' + *{updateTime.date} + '/' + *{updateTime.year + 1900}" readonly="readonly"/>
+		                </div>
+	                </div>
 	              </div>
 	              <div class="form-group">
 	              	<label for="status" class="col-sm-2 control-label">状态</label>
