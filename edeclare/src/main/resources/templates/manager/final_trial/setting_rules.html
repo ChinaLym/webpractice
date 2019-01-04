@@ -297,7 +297,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <!-- /.box-body -->
               <div class="box-footer" style="padding: 10px 20%">
                 <button type="reset" class="btn btn-default">重置</button>
-                <button type="submit" class="btn btn-info pull-right">提交</button>
+                <button type="submit" class="btn btn-info pull-right" id="submit">提交</button>
               </div>
               <!-- /.box-footer -->
             </form>
@@ -335,6 +335,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     	$("#endTime").datepicker({
     		autoclose: true
     	})
+    	$("#submit").click(function(){
+    		alert("设置成功！");
+    		window.location.href = "toManaMain";
+    		return false;
+    	});
     </script>
   </body>
 </html>
