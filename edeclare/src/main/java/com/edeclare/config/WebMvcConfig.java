@@ -29,7 +29,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public final static String FILE_DIR = "D:/eDeclare/upload/";
     
     //虚拟路径
-    public final static String VIRTUL_DIR = "/upload/**";
+    public final static String VIRTUL_DIR = "/upload/";
+    
+    //虚拟拦截路径
+    public final static String VIRTUL_DIR_Handle = "/upload/**";
     
     /**
      * 配置静态资源的web访问路径，例如上传的文件 abc.png 保存在 D:/book/upload 下
@@ -37,7 +40,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(VIRTUL_DIR).addResourceLocations(
+        registry.addResourceHandler(VIRTUL_DIR_Handle).addResourceLocations(
                 "file:///" + WebMvcConfig.FILE_DIR);
     }
     

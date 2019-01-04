@@ -152,7 +152,7 @@ public class MeterialController {
     		for (Meterial item : meterialList) {
     			if (item.getCommit()) {
     				String uri = WebMvcConfig.VIRTUL_DIR + item.getUrl();
-    				return URIResponseEnum.REDIRECT.setUri(uri.replaceAll("\\*", ""));
+    				return URIResponseEnum.REDIRECT.setUri(uri);
     			}
 			}
     	}
