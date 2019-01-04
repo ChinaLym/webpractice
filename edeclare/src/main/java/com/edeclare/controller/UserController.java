@@ -1,7 +1,5 @@
 package com.edeclare.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.edeclare.annotation.LoginRequired;
 import com.edeclare.constant.SessionKey;
-import com.edeclare.constant.fieldEnum.RoleStatusEnum;
 import com.edeclare.constant.fieldEnum.UserSexEnum;
 import com.edeclare.constant.fieldEnum.UserStatusEnum;
 import com.edeclare.entity.Project;
@@ -289,5 +286,20 @@ public class UserController {
     	u.setPassword(user.getPassword());
     	userService.save(u);
     	return "redirect:/toManaMain";
+    }
+    
+    @GetMapping(value = "/toResetPass")
+    public String toResetPass(Map<Object, Object> map) {
+    	List<User> users = userService.findAll();
+    	map.put("users", users);
+    	return "manager/user/reset_password";
+    }
+    
+    @GetMapping(value = "/resetPassword")
+    public String resetPassword(@RequestParam(value = "id")Integer id) {
+    	User u = userService.findById(id);
+    	u.setPassword("123456");
+    	userService.save(u);
+    	return "redirect:/toResetPass";
     }
 }

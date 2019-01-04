@@ -194,9 +194,11 @@ public class ProjectController {
 	@GetMapping(value = "/shenhe")
 	public String shenhe(@RequestParam(value = "id") Integer id, Map<Object, Object> map) {
 		Project pro = projectService.findById(id);
+		User u = userService.findById(pro.getDirector());
 		map.put("levels", levels);
     	map.put("proStatuses", proStatuses);
 		map.put("project", pro);
+		map.put("directorName", u.getName());
 		return "professor/check_project";
 	}
 	

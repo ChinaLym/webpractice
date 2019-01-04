@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -215,11 +214,11 @@ public class Test {
     	return "manager/user/user_insert";
     }*/
     
-    @GetMapping(value = "/toResetPass")
+    /*@GetMapping(value = "/toResetPass")
     public String toResetPass(Map<Object, Object> map) {
     	map.put("users", users);
     	return "manager/user/reset_password";
-    }
+    }*/
     
    /* @GetMapping(value = "/toRoleMana")
     public String toRoleMana(Map<Object, Object> map) {
