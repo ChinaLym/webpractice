@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import com.edeclare.constant.fieldEnum.ProjectStatusEnum;
 import com.edeclare.entity.Meterial;
 import com.edeclare.entity.Project;
 import com.edeclare.repository.IMeterialRepository;
@@ -76,8 +77,8 @@ public class MeterialServiceImpl implements IMeterialService{
     	Example<Meterial> example = Example.of(meterial);
     	List<Meterial> list = meterialRepository.findAll(example);
     	if (list != null && list.size() != 0) {
-    		if("ESTABLISHED".equals(project.getStatus())||
-					"MIDDLE_RECTIFICATION".equals(project.getStatus()))
+    		if(ProjectStatusEnum.ESTABLISHED.toString().equals(project.getStatus())||
+    				ProjectStatusEnum.MIDDLE_RECTIFICATION.toString().equals(project.getStatus()))
     			return list.get(0);
     		else {
     			for(Meterial item : list) {
@@ -94,8 +95,8 @@ public class MeterialServiceImpl implements IMeterialService{
 		meterial.setCreateTime(new Date());
 		meterial.setChangeTime(new Date());
 		meterial.setCommit(false);
-		if("ESTABLISHED".equals(projectStatus)||
-				"MIDDLE_RECTIFICATION".equals(projectStatus))
+		if(ProjectStatusEnum.ESTABLISHED.toString().equals(projectStatus)||
+				ProjectStatusEnum.MIDDLE_RECTIFICATION.toString().equals(projectStatus))
 			meterial.setStage("MID");
 		else
 			meterial.setStage("FINAL");
